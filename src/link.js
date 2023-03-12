@@ -1,0 +1,1 @@
+export const strategLink = "https://strateg.stat.gov.pl";
