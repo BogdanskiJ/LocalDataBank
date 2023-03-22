@@ -1,18 +1,11 @@
-import { MapPolska } from "./MapPolska";
-import { MapMazowieckie } from "./province/MapMazowieckie";
-import { MapOpolskie } from "./province/MapOpolskie";
-import { MapWielkopolskie } from "./province/MapWielkopolskie";
-import { Link } from "./styled";
+import { useAllProvinces } from "./province/MapAllProvinces";
 
 export const Maps = () => {
+  const poland = useAllProvinces();
 
   return (
     <>
-      <Link
-        to={`/movies/Opolskie`}
-      >
-        <MapMazowieckie />
-      </Link>
+
     </>
   );
 };
