@@ -7,7 +7,7 @@ const teritorialUnitSlice = createSlice({
     status: "loading",
     categoryData: "",
     categoryName: "niewybrana",
-    groupData: "1",
+    groupData: "",
     subGroupData: "",
   },
   reducers: {
