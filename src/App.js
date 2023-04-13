@@ -1,8 +1,10 @@
 import React from "react";
 import { HashRouter, Redirect, Route, Switch } from "react-router-dom";
-import { MapProvinces } from "./maps/MapProvinces";
-import { MapPoland } from "./maps/MapPoland";
+import { MapProvinces } from "./features/maps/MapProvinces";
+import { MapPoland } from "./features/maps/MapPoland";
 import { Navigation } from "./common/Navigation";
+import { TeritorialUnit } from "./features/baseLocalData/teritorialUnitManyVariables";
+import { DisplayResults } from "./features/displayResults";
 
 
 export const App = () => {
@@ -11,6 +13,7 @@ export const App = () => {
     <>
       <HashRouter>
         <Navigation />
+        <TeritorialUnit />
         <Switch>
           <Route path="/maps/Poland">
             <MapPoland />
