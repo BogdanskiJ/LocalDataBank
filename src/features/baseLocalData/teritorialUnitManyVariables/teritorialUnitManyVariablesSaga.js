@@ -1,7 +1,7 @@
-
-import { fetchTeritorialUnitError, fetchTeritorialUnitGroup, fetchTeritorialUnit, fetchTeritorialUnitSubGroup, selectTeritorialUnitCategoryName, setTeritorialUnitCategoryName } from "./teritorialUnitManyVariablesSlice";
-import { getCategory, getGroup } from "./getApi";
+import { fetchTeritorialUnitError, fetchTeritorialUnitGroup, fetchTeritorialUnit, fetchTeritorialUnitSubGroup, selectTeritorialUnitCategoryName, setTeritorialUnitCategoryName, selectTeritorialUnitGroupName, setTeritorialUnitGroupName, setTeritorialUnitSubGroupName, selectTeritorialUnitSubGroupName, fetchTeritorialUnitVariables, selectTeritorialUnitVariablesName, setTeritorialUnitVariablesName, fetchTeritorialUnitFinalData } from "./teritorialUnitManyVariablesSlice";
+import { getCategory, getFinalData, getGroup, getSubGroup, getVariables } from "./getApi";
 import { call, delay, put, select, takeLatest } from "@redux-saga/core/effects";
+import { selectRegionAndProvincesMapsSelectedMap, setSelectedMap } from "../../maps/mapsSlice";
 
 function* fetchTeritorialUnitSaga() {
   try {
@@ -26,7 +26,8 @@ function* fetchTeritorialUnitGroupSaga() {
 
 function* fetchTeritorialUnitSubGroupSaga() {
   try {
-    const data = yield call(getGroup);
+    const groupName = yield select(selectTeritorialUnitGroupName);
+    const data = yield call(getSubGroup, groupName);
     yield put(fetchTeritorialUnitSubGroup(data));
   } catch (error) {
     yield delay(200);
@@ -34,9 +35,33 @@ function* fetchTeritorialUnitSubGroupSaga() {
   };
 };
 
+function* fetchTeritorialUnitVariablesSaga() {
+  try {
+    const subGroupName = yield select(selectTeritorialUnitSubGroupName);
+    const data = yield call(getVariables, subGroupName);
+    yield put(fetchTeritorialUnitVariables(data));
+  } catch (error) {
+    yield delay(200);
+    yield put(fetchTeritorialUnitError());
+  };
+};
+
+function* fetchTeritorialUnitFinalDataSaga() {
+  try {
+    const variablesName = yield select(selectTeritorialUnitVariablesName);
+    const selectedUnit = yield select(selectRegionAndProvincesMapsSelectedMap);
+    const data = ((variablesName === "" || selectedUnit === "") ? "" : yield call(getFinalData, variablesName, selectedUnit[1]));
+    yield put(fetchTeritorialUnitFinalData(data));
+  } catch (error) {
+    yield delay(200);
+    yield put(fetchTeritorialUnitError());
+  };
+};
 
 export function* teritorialUnitSaga() {
-  yield (fetchTeritorialUnitSaga())
-  yield takeLatest(setTeritorialUnitCategoryName.type, fetchTeritorialUnitGroupSaga)
-  yield takeLatest(fetchTeritorialUnit.type, fetchTeritorialUnitSubGroupSaga)
+  yield (fetchTeritorialUnitSaga());
+  yield takeLatest(setTeritorialUnitCategoryName.type, fetchTeritorialUnitGroupSaga);
+  yield takeLatest(setTeritorialUnitGroupName.type, fetchTeritorialUnitSubGroupSaga);
+  yield takeLatest(setTeritorialUnitSubGroupName.type, fetchTeritorialUnitVariablesSaga);
+  yield takeLatest(([setTeritorialUnitVariablesName.type, setSelectedMap.type]), fetchTeritorialUnitFinalDataSaga);
 }

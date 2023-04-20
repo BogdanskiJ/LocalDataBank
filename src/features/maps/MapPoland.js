@@ -4,32 +4,32 @@ import { Box, Container, Header, StyledLi, StyledList, StyledMapPoland, StyledSv
 import { Link } from 'react-router-dom';
 import { usePoland } from './province/MapPoland';
 import { useState } from 'react';
-import { DisplayResults } from '../displayResults';
-import { useProvincesId } from './getData';
-import { nanoid } from '@reduxjs/toolkit';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectRegionAndProvincesMapsSelectedMap, selectRegionAndProvincesMapsState, setSelectedMap } from './mapsSlice';
 
 export const MapPoland = () => {
+  const dispatch = useDispatch();
   const poland = usePoland();
+
   const [isHovering, setIsHovering] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
-  const [isChosen, setIsChosen] = useState("");
 
   const handleMouseOver = (province) => {
     setIsHovering(province.name);
-    setIsClicked(false);
   };
 
   const handleMouseDown = (province) => {
-    setIsClicked(province.name);
-    setIsChosen([province.name, province.id])
+    dispatch(setSelectedMap([province.name, province.id]));
   };
 
   const handleMouseOut = () => {
     setIsHovering();
   };
 
+  const selectedMap = useSelector(selectRegionAndProvincesMapsSelectedMap);
+
   return (
-    <Container>
+    < Container >
       <Box >
         <StyledMapPoland>
           <Header>
@@ -41,18 +41,13 @@ export const MapPoland = () => {
             viewBox="0 0 500 464.876"
           >
             {poland.map((province) => (
-              // <Link
-              //   to={`/maps/provinces/${province.name}`}
-              //   
-              //   key={province.name}
-              // >
               <StyledSvg
                 data-tooltip-id="my-tooltip"
                 place="bottom"
                 data-tooltip-content={`${province.name}`}
                 style={{
                   transition: "all 0.5s ease-in-out",
-                  fill: (isHovering === province.name ? (isClicked === province.name ? "#8e0b23" : "crimson") : "teal"),
+                  fill: (selectedMap[0] === province.name ? "#8e0b23" : (isHovering === province.name ? "crimson" : "teal")),
                   borderStyle: "none",
                   outline: "none",
                   // position: "absolute",
@@ -94,9 +89,6 @@ export const MapPoland = () => {
           </StyledUl>
         </StyledList>
       </Box>
-      <DisplayResults
-        chosenRegion={isChosen}
-      />
     </Container >
 
   );

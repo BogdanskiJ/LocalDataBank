@@ -2,7 +2,7 @@ export const useSwietokrzyskie = () => {
   const swietokrzyskie = [
     {
       name: "Powiat Kazimierski",
-      id: 1303,
+      id: '052615303000',
       type: "county",
       data: <path
         data-tooltip-content="Powiat Kazimierski"
@@ -11,7 +11,7 @@ export const useSwietokrzyskie = () => {
     },
     {
       name: "Powiat Sandomierski",
-      id: 1310,
+      id: '052615309000',
       type: "county",
       data: <path
         data-tooltip-content="Powiat Sandomierski"
@@ -20,7 +20,7 @@ export const useSwietokrzyskie = () => {
     },
     {
       name: "Powiat Skarżyski",
-      id: 1311,
+      id: '052615210000',
       type: "county",
       data: <path
         data-tooltip-content="Powiat Skarżyski"
@@ -29,7 +29,7 @@ export const useSwietokrzyskie = () => {
     },
     {
       name: "Powiat Staszowski",
-      id: 1313,
+      id: '052615312000',
       type: "county",
       data: <path
         data-tooltip-content="Powiat Staszowski"
@@ -38,7 +38,7 @@ export const useSwietokrzyskie = () => {
     },
     {
       name: "Powiat Buski",
-      id: 1301,
+      id: '052615301000',
       type: "county",
       data: <path
         data-tooltip-content="Powiat Buski"
@@ -47,7 +47,7 @@ export const useSwietokrzyskie = () => {
     },
     {
       name: "Powiat Pińczowski",
-      id: 1309,
+      id: '052615308000',
       type: "county",
       data: <path
         data-tooltip-content="Powiat Pińczowski"
@@ -56,7 +56,7 @@ export const useSwietokrzyskie = () => {
     },
     {
       name: "Powiat Kielecki",
-      id: 1305,
+      id: '052615204000',
       type: "county",
       data: <path
         data-tooltip-content="Powiat Kielecki"
@@ -65,7 +65,7 @@ export const useSwietokrzyskie = () => {
     },
     {
       name: "Miasto Kielce",
-      id: 1304,
+      id: '052615261000',
       type: "city",
       data: <path
         data-tooltip-content="Miasto Kielce"
@@ -74,7 +74,7 @@ export const useSwietokrzyskie = () => {
     },
     {
       name: "Powiat Jędrzejowski",
-      id: 1302,
+      id: '052615302000',
       type: "county",
       data: <path
         data-tooltip-content="Powiat Jędrzejowski"
@@ -83,7 +83,7 @@ export const useSwietokrzyskie = () => {
     },
     {
       name: "Powiat Włoszczowski",
-      id: 1314,
+      id: '052615313000',
       type: "county",
       data: <path
         data-tooltip-content="Powiat Włoszczowski"
@@ -92,7 +92,7 @@ export const useSwietokrzyskie = () => {
     },
     {
       name: "Powiat Opatowski",
-      id: 1307,
+      id: '052615306000',
       type: "county",
       data: <path
         data-tooltip-content="Powiat Opatowski"
@@ -101,7 +101,7 @@ export const useSwietokrzyskie = () => {
     },
     {
       name: "Powiat Ostrowiecki",
-      id: 1308,
+      id: '052615207000',
       type: "county",
       data: <path
         data-tooltip-content="Powiat Ostrowiecki"
@@ -110,7 +110,7 @@ export const useSwietokrzyskie = () => {
     },
     {
       name: "Powiat Starachowicki",
-      id: 1312,
+      id: '052615211000',
       type: "county",
       data: <path
         data-tooltip-content="Powiat Starachowicki"
@@ -119,7 +119,7 @@ export const useSwietokrzyskie = () => {
     },
     {
       name: "Powiat Konecki",
-      id: 1306,
+      id: '052615205000',
       type: "county",
       data: <path
         data-tooltip-content="Powiat Konecki"

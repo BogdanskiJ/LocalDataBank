@@ -4,8 +4,6 @@ import { MapProvinces } from "./features/maps/MapProvinces";
 import { MapPoland } from "./features/maps/MapPoland";
 import { Navigation } from "./common/Navigation";
 import { TeritorialUnit } from "./features/baseLocalData/teritorialUnitManyVariables";
-import { DisplayResults } from "./features/displayResults";
-
 
 export const App = () => {
 

@@ -1,9 +1,8 @@
-import { apiLinkCategory, apiLinkGroup, apiLinkHead } from "../links";
+import { apiLinkCategory, apiLinkGroup, apiLinkHead, apiLinkVariables } from "../links";
 
 export const getCategory = async () => {
   try {
     const response = await fetch(`${apiLinkHead}${apiLinkCategory}`);
-
     if (!response.ok) {
       throw new Error(response.statusText);
     };
@@ -17,7 +16,6 @@ export const getCategory = async () => {
 export const getGroup = async (categoryName) => {
   try {
     const response = await fetch(`${apiLinkHead}${apiLinkGroup}${categoryName}`);
-
     if (!response.ok) {
       throw new Error(response.statusText);
     };
@@ -28,84 +26,41 @@ export const getGroup = async (categoryName) => {
   };
 };
 
+export const getSubGroup = async (groupName) => {
+  try {
+    const response = await fetch(`${apiLinkHead}${apiLinkGroup}${groupName}`);
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    };
+    return await (response.json());
 
+  } catch (error) {
+    console.log(error);
+  };
+};
 
+export const getVariables = async (subGroupName) => {
+  try {
+    const response = await fetch(`${apiLinkHead}${apiLinkVariables}${subGroupName}`);
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    };
+    return await (response.json());
 
-// export const useTeritorialUnit2 = (selectedGroup) => {
-//   const [teritorialUnit, setTeritorialUnit] = useState({
-//     data: [],
-//     state: "loading"
-//   });
+  } catch (error) {
+    console.log(error);
+  };
+};
 
-//   useEffect(() => {
-//     const fetchResponse = async () => {
-//       try {
-//         const response = await fetch(`${apiLinkHead}${apiLinkGroup}${selectedGroup}`);
-//         if (!response.ok) {
-//           throw new Error(response.statusText);
-//         }
-//         const data = await response.json();
-//         console.log("pobrało dane z grupy");
-//         setTeritorialUnit({
-//           data,
-//           state: "success"
-//         });
-//       } catch {
-//         setTeritorialUnit({
-//           state: "fail"
-//         });
-//       }
-//     };
-//     fetchResponse();
-//   }, [selectedGroup]);
-//   return teritorialUnit;
-// };
+export const getFinalData = async (varaiblesName, selectedUnit) => {
+  try {
+    const response = await fetch(`${apiLinkHead}/data/by-unit/${selectedUnit}?var-id=${varaiblesName}`);
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    };
+    return await (response.json());
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// export const getSubGroup = async () => {
-//   try {
-//     const response = await fetch(`${apiLinkHead}${apiLinkCategory}`);
-
-//     if (!response.ok) {
-//       throw new Error(response.statusText);
-//     };
-//     return await response.json();
-
-//   } catch (error) {
-//     console.log(error);
-//   };
-// };
-
-// export const getCategory = async () => {
-//   try {
-//     const response = await fetch(`${apiLinkHead}${apiLinkCategory}`);
-
-//     if (!response.ok) {
-//       throw new Error(response.statusText);
-//     };
-//     return await response.json();
-
-//   } catch (error) {
-//     console.log(error);
-//   };
-// };
+  } catch (error) {
+    console.log(error);
+  };
+};

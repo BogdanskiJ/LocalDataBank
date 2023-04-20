@@ -6,7 +6,6 @@ export const apiLinkCategory = "/subjects?page=0&page-size=100"
 
 export const apiLinkGroup = "/subjects?page=0&page-size=100&parent-id="
 
-
 export const apiLinkVariables = "/variables?page=0&page-size=100&subject-id="
 
 export const apiLinkProvincesId = "/units?level=2&page=0&page-size=100"
