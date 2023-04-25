@@ -1,23 +1,27 @@
 import { useRef, useState } from "react";
-import { StyledLi, StyledSvg } from "../styled";
-import { useDolnoslaskie } from "./MapDolnoslaskie";
-import { useKujawskoPomorskie } from "./MapKujawskopomorskie";
-import { useLodzkie } from "./MapLodzkie";
-import { useLubelskie } from "./MapLubelskie";
-import { useLubuskie } from "./MapLubuskie";
-import { useMalopolskie } from "./MapMalopolskie";
-import { useMazowieckie } from "./MapMazowieckie";
-import { useOpolskie } from "./MapOpolskie";
-import { usePodkarpackie } from "./MapPodkarpackie";
-import { usePodlaskie } from "./MapPodlaskie";
-import { usePomorskie } from "./MapPomorskie";
-import { useSlaskie } from "./MapSlaskie";
-import { useSwietokrzyskie } from "./MapSwietokrzyskie";
-import { useWarminskoMazurskie } from "./MapWarminsko-mazurskie";
-import { useWielkopolskie } from "./MapWielkopolskie";
-import { useZachodnioPomorskie } from "./MapZachodniopomorskie";
+import { StyledLi, StyledSvg } from "./styled";
+import { useDolnoslaskie } from "./province/MapDolnoslaskie";
+import { useKujawskoPomorskie } from "./province/MapKujawskopomorskie";
+import { useLodzkie } from "./province/MapLodzkie";
+import { useLubelskie } from "./province/MapLubelskie";
+import { useLubuskie } from "./province/MapLubuskie";
+import { useMalopolskie } from "./province/MapMalopolskie";
+import { useMazowieckie } from "./province/MapMazowieckie";
+import { useOpolskie } from "./province/MapOpolskie";
+import { usePodkarpackie } from "./province/MapPodkarpackie";
+import { usePodlaskie } from "./province/MapPodlaskie";
+import { usePomorskie } from "./province/MapPomorskie";
+import { useSlaskie } from "./province/MapSlaskie";
+import { useSwietokrzyskie } from "./province/MapSwietokrzyskie";
+import { useWarminskoMazurskie } from "./province/MapWarminsko-mazurskie";
+import { useWielkopolskie } from "./province/MapWielkopolskie";
+import { useZachodnioPomorskie } from "./province/MapZachodniopomorskie";
+import { useDispatch, useSelector } from "react-redux";
+import { selectRegionAndProvincesMapsSelectedMap, setSelectedMap } from "./mapsSlice";
 
 export const useAllProvinces = () => {
+  const dispatch = useDispatch();
+
   const swietokrzyskie = useSwietokrzyskie();
   const dolnoslaskie = useDolnoslaskie();
   const kujawskopomorskie = useKujawskoPomorskie();
@@ -34,29 +38,22 @@ export const useAllProvinces = () => {
   const warminskomazurskie = useWarminskoMazurskie();
   const wielkopolskie = useWielkopolskie();
   const zachodniopomorskie = useZachodnioPomorskie();
+  const selectedMap = useSelector(selectRegionAndProvincesMapsSelectedMap);
 
   const preserveAspectRatio = "xMidYMid meet";
 
-
   const [isHovering, setIsHovering] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
 
-
-
-  const handleMouseOver = (province) => {
-    setIsHovering(province);
+  const handleMouseOver = (region) => {
+    setIsHovering(region);
   };
   const handleMouseOut = () => {
     setIsHovering();
-    setIsClicked();
-  };
-  const handleMouseDown = (province) => {
-    setIsClicked(province);
-  };
 
-  // const changeLayer = (region) => {
-  // };
-
+  };
+  const handleMouseDown = (region) => {
+    dispatch(setSelectedMap([region.name, region.id]));
+  };
 
   const displayMap = (province) => {
     return (
@@ -67,18 +64,27 @@ export const useAllProvinces = () => {
           data-tooltip-content={`${region.name}`}
           onMouseOver={() => (handleMouseOver(region.name))}
           onMouseOut={() => handleMouseOut()}
-          onMouseDown={() => handleMouseDown(region.name)}
-          onMouseUp={() => handleMouseDown()}
+          onMouseDown={() => handleMouseDown(region)}
           xmlns="http://www.w3.org/2000/svg"
-          fill={`${(region.type === "county") ? ("teal") : ("#005757")}`}
-
           style={{
             transition: "all 0.5s ease-in-out",
-            fill: (isHovering === region.name ? (isClicked === region.name ? "#8e0b23" : "crimson") : ""),
+            fill: (selectedMap[0] === region.name
+              ?
+              "#8e0b23"
+              :
+              (isHovering === region.name
+                ?
+                "crimson"
+                :
+                (region.type === "county")
+                  ?
+                  ("teal")
+                  :
+                  ("#005757")
+              )
+            ),
             borderStyle: "none",
             outline: "none",
-            // position: "absolute",
-            // zIndex: (isHovering === region.name ? 6 : 1),
           }
           }
         >
@@ -100,8 +106,7 @@ export const useAllProvinces = () => {
           }
           onMouseOver={() => handleMouseOver(region.name)}
           onMouseOut={() => handleMouseOut()}
-          onMouseDown={() => handleMouseDown(region.name)}
-          onMouseUp={() => handleMouseDown()}
+          onMouseDown={() => handleMouseDown(region)}
           key={region.name}
         >
           {region.name}

@@ -2,7 +2,7 @@ import 'react-tooltip/dist/react-tooltip.css'
 import { Link, useParams } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 import { Box, Container, StyledList, StyledMapPoland, StyledSvg, StyledUl } from "./styled";
-import { useAllProvinces } from './province/useAllProvinces';
+import { useAllProvinces } from './useAllProvinces';
 
 export const MapProvinces = () => {
   const param = useParams();

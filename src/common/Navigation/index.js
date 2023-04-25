@@ -1,6 +1,5 @@
 import { Container, Icon, Input, Name, Logo, NavigationWrapper, Search, StyledNavigation, StyledNavLink, Subpages } from "./styled";
 
-
 export const Navigation = () => {
 
 

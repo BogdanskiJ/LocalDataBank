@@ -5,14 +5,13 @@ import { Link } from 'react-router-dom';
 import { usePoland } from './province/MapPoland';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectRegionAndProvincesMapsSelectedMap, selectRegionAndProvincesMapsState, setSelectedMap } from './mapsSlice';
+import { selectRegionAndProvincesMapsSelectedMap, setSelectedMap } from './mapsSlice';
 
 export const MapPoland = () => {
   const dispatch = useDispatch();
   const poland = usePoland();
 
   const [isHovering, setIsHovering] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
 
   const handleMouseOver = (province) => {
     setIsHovering(province.name);
@@ -50,19 +49,15 @@ export const MapPoland = () => {
                   fill: (selectedMap[0] === province.name ? "#8e0b23" : (isHovering === province.name ? "crimson" : "teal")),
                   borderStyle: "none",
                   outline: "none",
-                  // position: "absolute",
-                  // zIndex: (isHovering === region.name ? 6 : 1),
                 }
                 }
                 onMouseOver={() => handleMouseOver(province)}
                 onMouseDown={() => handleMouseDown(province)}
                 onMouseOut={() => handleMouseOut()}
-                //key={nanoid()}
                 key={province.id}
               >
                 {province.data}
               </StyledSvg>
-              // </Link>
             ))}
           </StyledSvg>
           <Tooltip id="my-tooltip" style={{ backgroundColor: "black", color: "white", padding: "5px 10px" }} place="bottom" />
@@ -79,7 +74,6 @@ export const MapPoland = () => {
               >
                 <StyledLi
                   onMouseOver={() => handleMouseOver(province)}
-                  onMouseDown={() => handleMouseDown(province)}
                   onMouseOut={() => handleMouseOut()}
                   style={{ fontWeight: (isHovering === province.name ? "700" : ""), }}
                 >
@@ -90,6 +84,5 @@ export const MapPoland = () => {
         </StyledList>
       </Box>
     </Container >
-
   );
 };

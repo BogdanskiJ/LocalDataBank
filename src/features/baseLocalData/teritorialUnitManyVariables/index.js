@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectTeritorialUnitCategoryData,
@@ -16,10 +16,10 @@ import {
   setTeritorialUnitVariablesName
 } from "./teritorialUnitManyVariablesSlice";
 import { nanoid } from "@reduxjs/toolkit";
-
+import { measures } from "../../../common/measures";
+import { SelectBoxTeritorialUnitManyVariables } from "../../../common/select";
 
 export const TeritorialUnit = () => {
-  const dispatch = useDispatch();
 
   const teritorialUnit = useSelector(selectTeritorialUnitCategoryData);
   const teritorialUnitGroup = useSelector(selectTeritorialUnitGroupData);
@@ -39,21 +39,14 @@ export const TeritorialUnit = () => {
           <div>
             <div>
               <label>Wybierz kategorię: </label>
-              <select
-                value={teritorialUnitCategoryName}
-                onChange={({ target }) => dispatch(setTeritorialUnitCategoryName(target.value))}
-              >
-                <option value="" disabled selected >Wybierz kategorię</option>
-                {(teritorialUnit.results).map((unit) => (
-                  <option key={unit.id} value={unit.id}>
-                    {unit.name}
-                  </option>
-                ))}
-              </select>
+              <SelectBoxTeritorialUnitManyVariables
+                teritorialUnitType={teritorialUnit}
+                setValue={setTeritorialUnitCategoryName}
+              />
             </div>
           </div>
           : "nie")
-      }</div>
+      }</div >
       {(teritorialUnitCategoryName !== "")
         ?
         <div>{
@@ -62,88 +55,84 @@ export const TeritorialUnit = () => {
             <div>
               <div>
                 <label>Wybierz grupę: </label>
-                <select
-                  value={teritorialUnitGroupName}
-                  onChange={({ target }) => dispatch(setTeritorialUnitGroupName(target.value))}
-                >
-                  <option value="" disabled hidden>Wybierz grupę</option>
-                  {(teritorialUnitGroup.results).map((unit) => (
-                    <option key={unit.id} value={unit.id}>
-                      {unit.name}
-                    </option>
-                  ))}
-                </select>
+                <SelectBoxTeritorialUnitManyVariables
+                  teritorialUnitType={teritorialUnitGroup}
+                  setValue={setTeritorialUnitGroupName}
+                />
               </div>
             </div>
             : "")
         }</div>
         :
-        ("")}
+        ("")
+      }
 
-      {(teritorialUnitGroupName !== "")
-        ?
-        <div>{
-          ((teritorialUnitSubGroup)
-            ?
-            <div>
-              <div>
-                <label>Wybierz podgrupę: </label>
-                <select
-                  value={teritorialUnitSubGroupName}
-                  onChange={({ target }) => dispatch(setTeritorialUnitSubGroupName(target.value))}
-                >
-                  <option value="" disabled selected >Wybierz podgrupę</option>
-                  {(teritorialUnitSubGroup.results).map((unit) => (
-                    <option key={unit.id} value={unit.id}>
-                      {unit.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            : "")
-        }</div>
-        :
-        ("")}
-
-      {(teritorialUnitSubGroupName !== "")
-        ?
-        <div>{
-          ((teritorialUnitVariables)
-            ?
-            <div>
-              <div>
-                <label>Wybierz zmienną: </label>
-                <select
-                  value={teritorialUnitVariablesName}
-                  onChange={({ target }) => dispatch(setTeritorialUnitVariablesName(target.value))}
-                >
-                  <option value="" disabled selected >Wybierz zmienną</option>
-                  {(teritorialUnitVariables.results).map((unit) => (
-                    <option key={unit.id} value={unit.id}>
-                      {unit.n1}{" - "}{unit.n2}{" - "}{unit.n3}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            : "")
-        }</div>
-        :
-        ("")}
-
-      {(teritorialUnitVariablesName !== "")
-        ?
-        <div>
-          {
-            teritorialUnitFinalData
+      {
+        (teritorialUnitGroupName !== "")
+          ?
+          <div>{
+            ((teritorialUnitSubGroup)
               ?
-              (teritorialUnitFinalData.results).map(result => <ul key={nanoid()}>{(result.values).map(value => <li key={nanoid()}>{value.val} w {value.year} roku</li>)}</ul>)
-              : ""
-          }
-        </div>
-        :
-        ("")}
+              <div>
+                <div>
+                  <label>Wybierz podgrupę: </label>
+                  <SelectBoxTeritorialUnitManyVariables
+                    teritorialUnitType={teritorialUnitSubGroup}
+                    setValue={setTeritorialUnitSubGroupName}
+                  />
+                </div>
+              </div>
+              : "")
+          }</div>
+          :
+          ("")
+      }
+
+      {
+        (teritorialUnitSubGroupName !== "")
+          ?
+          <div>{
+            ((teritorialUnitVariables)
+              ?
+              <div>
+                <div>
+                  <label>Wybierz zmienną: </label>
+                  <SelectBoxTeritorialUnitManyVariables
+                    teritorialUnitType={teritorialUnitVariables}
+                    setValue={setTeritorialUnitVariablesName}
+                  />
+                </div>
+              </div>
+              : "")
+          }</div>
+          :
+          ("")
+      }
+
+      {
+        (teritorialUnitVariablesName !== "")
+          ?
+          <div>
+            {
+              teritorialUnitFinalData
+                ?
+                ((teritorialUnitFinalData.totalRecords === 0)
+                  ?
+                  "Brak danych"
+                  :
+                  (teritorialUnitFinalData.results).map(result => <ul key={nanoid()}>{(result.values).map(value => <li key={nanoid()}>
+                    {value.val} {`${(measures.results.find(measure => measure.id === result.measureUnitId).name)}`} w
+                    {value.year}
+                    roku
+
+                  </li>)}</ul>)
+                )
+                : ""
+            }
+          </div>
+          :
+          ("")
+      }
     </>
   )
 };
