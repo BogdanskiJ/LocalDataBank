@@ -97,3 +97,12 @@ width:fit-content;
   color:#808080;
 };
 `;
+
+
+export const StyledSelect = styled.div`
+display:flex;
+color: black;
+text-decoration:none;
+text-decoration-line:none;
+width:fit-content;
+`;

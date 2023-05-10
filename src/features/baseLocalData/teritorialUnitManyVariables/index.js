@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectTeritorialUnitCategoryData,
   selectTeritorialUnitCategoryName,
   selectTeritorialUnitFinalData,
+  selectTeritorialUnitFinalValues,
   selectTeritorialUnitGroupData,
   selectTeritorialUnitGroupName,
   selectTeritorialUnitSubGroupData,
@@ -11,6 +12,7 @@ import {
   selectTeritorialUnitVariablesData,
   selectTeritorialUnitVariablesName,
   setTeritorialUnitCategoryName,
+  setTeritorialUnitFinalData,
   setTeritorialUnitGroupName,
   setTeritorialUnitSubGroupName,
   setTeritorialUnitVariablesName
@@ -18,19 +20,47 @@ import {
 import { nanoid } from "@reduxjs/toolkit";
 import { measures } from "../../../common/measures";
 import { SelectBoxTeritorialUnitManyVariables } from "../../../common/select";
+import { useState } from "react";
+import { useEffect } from "react";
 
 export const TeritorialUnit = () => {
+  const dispatch = useDispatch();
 
   const teritorialUnit = useSelector(selectTeritorialUnitCategoryData);
   const teritorialUnitGroup = useSelector(selectTeritorialUnitGroupData);
   const teritorialUnitSubGroup = useSelector(selectTeritorialUnitSubGroupData);
   const teritorialUnitVariables = useSelector(selectTeritorialUnitVariablesData);
   const teritorialUnitFinalData = useSelector(selectTeritorialUnitFinalData);
+  const teritorialUnitFinalValues = useSelector(selectTeritorialUnitFinalValues);
 
   const teritorialUnitCategoryName = useSelector(selectTeritorialUnitCategoryName);
   const teritorialUnitGroupName = useSelector(selectTeritorialUnitGroupName);
   const teritorialUnitSubGroupName = useSelector(selectTeritorialUnitSubGroupName);
   const teritorialUnitVariablesName = useSelector(selectTeritorialUnitVariablesName);
+
+  const [data, setData] = useState(teritorialUnitFinalValues);
+  const [order, setOrder] = useState("ASC");
+
+  useEffect(() => {
+    setData(teritorialUnitFinalValues)
+  }, [teritorialUnitFinalValues]);
+
+  const sorting = (col) => {
+    if (order === "ASC") {
+      const sorted = [...data].sort((a, b) =>
+        a[col] > b[col] ? 1 : -1
+      );
+      setData(sorted);
+      setOrder("DSC");
+    }
+    if (order === "DSC") {
+      const sorted = [...data].sort((a, b) =>
+        a[col] < b[col] ? 1 : -1
+      );
+      setData(sorted);
+      setOrder("ASC");
+    }
+  }
 
   return (
     <>
@@ -120,16 +150,46 @@ export const TeritorialUnit = () => {
                   ?
                   "Brak danych"
                   :
-                  (teritorialUnitFinalData.results).map(result => <ul key={nanoid()}>{(result.values).map(value => <li key={nanoid()}>
-                    {value.val} {`${(measures.results.find(measure => measure.id === result.measureUnitId).name)}`} w
-                    {value.year}
-                    roku
-
-                  </li>)}</ul>)
+                  <>
+                    {Array.isArray(data)
+                      ?
+                      teritorialUnitFinalData.results.map(result =>
+                        <table>
+                          <thead>
+                            <th key={nanoid()} onClick={() => sorting("val")}>{`Wartość [${(measures.results.find(measure => measure.id === teritorialUnitFinalData.results[0].measureUnitId).name)}]`}</th>
+                            <th key={nanoid()} onClick={() => sorting("year")}>Rok</th>
+                          </thead>
+                          <tbody>
+                            {
+                              (Array.isArray(data)
+                                ?
+                                <>
+                                  {
+                                    data.map(value =>
+                                      <>
+                                        <tr key={nanoid()}>
+                                          <td>{value.val}</td>
+                                          <td>{value.year}</td>
+                                        </tr>
+                                      </>
+                                    )
+                                  }
+                                </>
+                                :
+                                ("asdfdhjdfsadfhjgfds"))
+                            }
+                          </tbody>
+                        </table>
+                      )
+                      :
+                      "setData(teritorialUnitFinalValues)"
+                    }
+                  </>
                 )
-                : ""
+                :
+                ("")
             }
-          </div>
+          </div >
           :
           ("")
       }

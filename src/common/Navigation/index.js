@@ -1,13 +1,13 @@
-import { Container, Icon, Input, Name, Logo, NavigationWrapper, Search, StyledNavigation, StyledNavLink, Subpages } from "./styled";
+import { Container, StyledNavigation } from "./styled";
 
 export const Navigation = () => {
-
 
   return (
     <nav>
       <StyledNavigation>
         <Container>
-          NAPIS NAVIAGACJA COŚ TAM COŚ TAM
+          <div>Navigacja nr 1</div>
+          <div>Navigacja nr 2</div>
         </Container>
       </StyledNavigation>
     </nav>

@@ -13,6 +13,8 @@ const teritorialUnitSlice = createSlice({
     groupName: "",
     subGroupName: "",
     variablesName: "",
+    provinceName: "",
+    finalValues: "",
   },
   reducers: {
     fetchTeritorialUnit: (state, { payload: data }) => {
@@ -30,6 +32,7 @@ const teritorialUnitSlice = createSlice({
     },
     fetchTeritorialUnitFinalData: (state, { payload: data }) => {
       state.finalData = data;
+      state.finalValues = data.results[0].values;
     },
     fetchTeritorialUnitError: (state) => {
       state.status = "error";
@@ -59,6 +62,11 @@ const teritorialUnitSlice = createSlice({
       state.variablesName = name;
       state.finalData = "";
     },
+    setProvinceName: (state, { payload: name }) => {
+      state.provinceName = name;
+      console.log(state.provinceName)
+    },
+
   },
 });
 
@@ -73,6 +81,7 @@ export const {
   setTeritorialUnitGroupName,
   setTeritorialUnitSubGroupName,
   setTeritorialUnitVariablesName,
+  setProvinceName,
 } = teritorialUnitSlice.actions;
 
 export const selectTeritorialUnitState = state => state.teritorialUnit;
@@ -85,4 +94,6 @@ export const selectTeritorialUnitCategoryName = state => selectTeritorialUnitSta
 export const selectTeritorialUnitGroupName = state => selectTeritorialUnitState(state).groupName;
 export const selectTeritorialUnitSubGroupName = state => selectTeritorialUnitState(state).subGroupName;
 export const selectTeritorialUnitVariablesName = state => selectTeritorialUnitState(state).variablesName;
+export const selectProvinceName = state => selectTeritorialUnitState(state).provinceName;
+export const selectTeritorialUnitFinalValues = state => selectTeritorialUnitState(state).finalValues;
 export default teritorialUnitSlice.reducer;

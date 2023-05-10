@@ -1,11 +1,12 @@
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
-import { Box, Container, Header, StyledLi, StyledList, StyledMapPoland, StyledSvg, StyledUl } from "./styled";
-import { Link } from 'react-router-dom';
+import { Box, Container, Header, StyledMapPoland, StyledSelect, StyledSvg } from "./styled";
 import { usePoland } from './province/MapPoland';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectRegionAndProvincesMapsSelectedMap, setSelectedMap } from './mapsSlice';
+import { SelectBoxRegionNameDisplay } from '../../common/select';
+import { setProvinceName } from '../baseLocalData/teritorialUnitManyVariables/teritorialUnitManyVariablesSlice';
 
 export const MapPoland = () => {
   const dispatch = useDispatch();
@@ -62,7 +63,21 @@ export const MapPoland = () => {
           </StyledSvg>
           <Tooltip id="my-tooltip" style={{ backgroundColor: "black", color: "white", padding: "5px 10px" }} place="bottom" />
         </StyledMapPoland >
-        <StyledList >
+
+        <StyledSelect>
+          <SelectBoxRegionNameDisplay
+            poland={poland}
+            handleMouseOut={handleMouseOut}
+            handleMouseOver={handleMouseOver}
+            isHovering={isHovering}
+            setProvinceName={setProvinceName}
+          ></SelectBoxRegionNameDisplay>
+        </StyledSelect>
+
+
+
+
+        {/* <StyledList >
           <StyledUl >
             Przejdz do danego województwa:
             {poland.map(province =>
@@ -81,7 +96,7 @@ export const MapPoland = () => {
                 </StyledLi>
               </Link>)}
           </StyledUl>
-        </StyledList>
+        </StyledList> */}
       </Box>
     </Container >
   );
