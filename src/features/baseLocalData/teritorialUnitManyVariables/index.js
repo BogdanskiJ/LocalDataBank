@@ -22,6 +22,8 @@ import { measures } from "../../../common/measures";
 import { SelectBoxTeritorialUnitManyVariables } from "../../../common/select";
 import { useState } from "react";
 import { useEffect } from "react";
+import { ReactComponent as TriangleUp } from '../../../common/images/triangleUp.svg';
+import { Triangle, TriangleVal, TriangleYear } from "./Triangle";
 
 export const TeritorialUnit = () => {
   const dispatch = useDispatch();
@@ -39,26 +41,26 @@ export const TeritorialUnit = () => {
   const teritorialUnitVariablesName = useSelector(selectTeritorialUnitVariablesName);
 
   const [data, setData] = useState(teritorialUnitFinalValues);
-  const [order, setOrder] = useState("ASC");
+  const [order, setOrder] = useState(["year", "ASC"]);
 
   useEffect(() => {
     setData(teritorialUnitFinalValues)
   }, [teritorialUnitFinalValues]);
 
   const sorting = (col) => {
-    if (order === "ASC") {
+    if (order[1] === "DSC") {
       const sorted = [...data].sort((a, b) =>
         a[col] > b[col] ? 1 : -1
       );
       setData(sorted);
-      setOrder("DSC");
+      setOrder([col, "ASC"]);
     }
-    if (order === "DSC") {
+    if (order[1] === "ASC") {
       const sorted = [...data].sort((a, b) =>
         a[col] < b[col] ? 1 : -1
       );
       setData(sorted);
-      setOrder("ASC");
+      setOrder([col, "DSC"]);
     }
   }
 
@@ -156,8 +158,13 @@ export const TeritorialUnit = () => {
                       teritorialUnitFinalData.results.map(result =>
                         <table>
                           <thead>
-                            <th key={nanoid()} onClick={() => sorting("val")}>{`Wartość [${(measures.results.find(measure => measure.id === teritorialUnitFinalData.results[0].measureUnitId).name)}]`}</th>
-                            <th key={nanoid()} onClick={() => sorting("year")}>Rok</th>
+                            <th key={nanoid()} onClick={() => sorting("val")}>{`Wartość [${(measures.results.find(measure => measure.id === teritorialUnitFinalData.results[0].measureUnitId).name)}] `}
+                              < TriangleVal
+                                order={order} />
+                            </th>
+                            <th key={nanoid()} onClick={() => sorting("year")}>Rok
+                              < TriangleYear
+                                order={order} /></th>
                           </thead>
                           <tbody>
                             {
