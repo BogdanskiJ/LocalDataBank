@@ -3,8 +3,9 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Select from 'react-select';
 import { selectProvinceName } from '../features/baseLocalData/teritorialUnitManyVariables/teritorialUnitManyVariablesSlice';
+import { useEffect } from 'react';
 
-export const SelectBoxTeritorialUnitManyVariables = ({ teritorialUnitType, setValue }) => {
+export const SelectBoxTeritorialUnitOneVariable = ({ teritorialUnitType, setValue }) => {
   const dispatch = useDispatch();
   const style = {
     control: styles => ({
@@ -45,6 +46,51 @@ export const SelectBoxTeritorialUnitManyVariables = ({ teritorialUnitType, setVa
           ))
         }
         onChange={(target) => dispatch(setValue(target.value))}
+      >
+      </Select>
+    </>
+  )
+};
+
+export const SelectBoxTeritorialUnitManyVariables = ({ teritorialUnitType, setValue }) => {
+  const dispatch = useDispatch();
+  const style = {
+    control: styles => ({
+      ...styles, display: "flex", width: "fit-content", margin: "0 10px", cursor: "pointer",
+    }),
+  };
+
+  console.log("teritorialUnitType", teritorialUnitType)
+  return (
+    <>
+      <Select
+        className="basic-multi-select"
+        classNamePrefix="select"
+        defaultValue={null
+        }
+        isMulti
+        isClearable={true}
+        isSearchable={true}
+        autoFocus={true}
+        styles={style}
+        options={
+          (teritorialUnitType.results.map((unit) =>
+          (
+            {
+              value: unit.id,
+              label: ((unit.n3) ? (unit.n1 + " " + unit.n2 + " " + unit.n3)
+                :
+                ((unit.n2) ? (unit.n1 + " " + unit.n2)
+                  :
+                  (unit.n1 ? (unit.n1)
+                    :
+                    (unit.name))
+                ))
+            }
+          )
+          ))
+        }
+        onChange={(target) => (dispatch(setValue(target)) && console.log("target", target))}
       >
       </Select>
     </>

@@ -1,4 +1,4 @@
-import { fetchTeritorialUnitError, fetchTeritorialUnitGroup, fetchTeritorialUnit, fetchTeritorialUnitSubGroup, selectTeritorialUnitCategoryName, setTeritorialUnitCategoryName, selectTeritorialUnitGroupName, setTeritorialUnitGroupName, setTeritorialUnitSubGroupName, selectTeritorialUnitSubGroupName, fetchTeritorialUnitVariables, selectTeritorialUnitVariablesName, setTeritorialUnitVariablesName, fetchTeritorialUnitFinalData, setTeritorialUnitFinalData } from "./teritorialUnitManyVariablesSlice";
+import { fetchTeritorialUnitError, fetchTeritorialUnitGroup, fetchTeritorialUnit, fetchTeritorialUnitSubGroup, selectTeritorialUnitCategoryName, setTeritorialUnitCategoryName, selectTeritorialUnitGroupName, setTeritorialUnitGroupName, setTeritorialUnitSubGroupName, selectTeritorialUnitSubGroupName, fetchTeritorialUnitVariables, selectTeritorialUnitVariablesName, setTeritorialUnitVariablesNames, fetchTeritorialUnitFinalData, setTeritorialUnitFinalData } from "./teritorialUnitManyVariablesSlice";
 import { getCategory, getFinalData, getGroup, getSubGroup, getVariables } from "./getApi";
 import { call, delay, put, select, takeLatest } from "@redux-saga/core/effects";
 import { selectRegionAndProvincesMapsSelectedMap, setSelectedMap } from "../../maps/mapsSlice";
@@ -63,5 +63,5 @@ export function* teritorialUnitSaga() {
   yield takeLatest(setTeritorialUnitCategoryName.type, fetchTeritorialUnitGroupSaga);
   yield takeLatest(setTeritorialUnitGroupName.type, fetchTeritorialUnitSubGroupSaga);
   yield takeLatest(setTeritorialUnitSubGroupName.type, fetchTeritorialUnitVariablesSaga);
-  yield takeLatest(([setTeritorialUnitVariablesName.type, setSelectedMap.type]), fetchTeritorialUnitFinalDataSaga);
+  yield takeLatest(([setTeritorialUnitVariablesNames.type, setSelectedMap.type]), fetchTeritorialUnitFinalDataSaga);
 }

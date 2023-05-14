@@ -52,9 +52,10 @@ export const getVariables = async (subGroupName) => {
   };
 };
 
-export const getFinalData = async (varaiblesName, selectedUnit) => {
+export const getFinalData = async (variablesName, selectedUnit) => {
   try {
-    const response = await fetch(`${apiLinkHead}/data/by-unit/${selectedUnit}?var-id=${varaiblesName}`);
+    const variablesNames = [...variablesName].map((variable) => `var-id=${variable.value}`)
+    const response = await fetch(`${apiLinkHead}/data/by-unit/${selectedUnit}?${variablesNames.join('&')}`);
     if (!response.ok) {
       throw new Error(response.statusText);
     };

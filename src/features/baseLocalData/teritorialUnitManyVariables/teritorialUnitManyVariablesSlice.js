@@ -29,10 +29,14 @@ const teritorialUnitSlice = createSlice({
     },
     fetchTeritorialUnitVariables: (state, { payload: data }) => {
       state.variablesData = data;
+      console.log("state.variablesData", state.variablesData)
     },
     fetchTeritorialUnitFinalData: (state, { payload: data }) => {
       state.finalData = data;
-      state.finalValues = data.results[0].values;
+      const finalArray = [];
+      const finalValuesArray = data.results.map(result => finalArray.push(result.values));
+      state.finalValues = finalArray
+      console.log(state.finalValues)
     },
     fetchTeritorialUnitError: (state) => {
       state.status = "error";
@@ -58,7 +62,7 @@ const teritorialUnitSlice = createSlice({
       state.variablesName = "";
       state.finalData = "";
     },
-    setTeritorialUnitVariablesName: (state, { payload: name }) => {
+    setTeritorialUnitVariablesNames: (state, { payload: name }) => {
       state.variablesName = name;
       state.finalData = "";
     },
@@ -80,7 +84,7 @@ export const {
   setTeritorialUnitCategoryName,
   setTeritorialUnitGroupName,
   setTeritorialUnitSubGroupName,
-  setTeritorialUnitVariablesName,
+  setTeritorialUnitVariablesNames,
   setProvinceName,
 } = teritorialUnitSlice.actions;
 
