@@ -33,10 +33,11 @@ const teritorialUnitSlice = createSlice({
     },
     fetchTeritorialUnitFinalData: (state, { payload: data }) => {
       state.finalData = data;
+      console.log("data", data)
       const finalArray = [];
       const finalValuesArray = data.results.map(result => finalArray.push(result.values));
       state.finalValues = finalArray
-      console.log(state.finalValues)
+      console.log("state.finalValues", state.finalValues)
     },
     fetchTeritorialUnitError: (state) => {
       state.status = "error";
@@ -70,7 +71,6 @@ const teritorialUnitSlice = createSlice({
       state.provinceName = name;
       console.log(state.provinceName)
     },
-
   },
 });
 
