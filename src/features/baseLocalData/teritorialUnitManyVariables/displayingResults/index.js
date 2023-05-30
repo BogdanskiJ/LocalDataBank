@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { selectTeritorialUnitFinalData, selectTeritorialUnitFinalValues } from "../teritorialUnitManyVariablesSlice";
+import { selectTeritorialUnitFinalData, selectTeritorialUnitFinalValues, selectTeritorialUnitVariablesName } from "../teritorialUnitManyVariablesSlice";
 import { useSelector } from "react-redux";
 import { measures } from "../../../../common/measures";
 import { Table } from "./Table";
@@ -9,20 +9,19 @@ import { Tables } from "./Tables";
 import { useEffect } from "react";
 
 export const Results = () => {
-  console.clear()
   const teritorialUnitFinalData = useSelector(selectTeritorialUnitFinalData);
   const teritorialUnitFinalValues = useSelector(selectTeritorialUnitFinalValues);
+  const teritorialUnitVariablesName = useSelector(selectTeritorialUnitVariablesName);
 
   const [toogleButton, setToogleButton] = useState(true);
   const [data, setData] = useState(teritorialUnitFinalData);
-
-  const [data1, setData1] = useState(teritorialUnitFinalValues);
-
-  console.log("data1", teritorialUnitFinalValues)
-  console.log("teritorialUnitFinalData", teritorialUnitFinalData)
-
   const [newArray, setNewArray] = useState([]);
   const [newArray2, setNewArray2] = useState([]);
+  const [data1, setData1] = useState(teritorialUnitFinalValues);
+
+  useEffect(() => {
+    setData(teritorialUnitFinalData);
+  }, [teritorialUnitFinalData]);
 
   const addNewYearToArray = () => {
     let namesArray = [];
@@ -48,12 +47,13 @@ export const Results = () => {
     data.results.map(results =>
       results.values.map(values =>
       (
-        index = valuesArray.findIndex(element => element.year === values.year),
-        (valuesArray2[index] = { ...valuesArray2[index], values: { ...valuesArray2[index].values, [results.id]: values.val } })
+        index = valuesArray.findIndex(element => (element.year === values.year)),
+        (valuesArray2[index] ?
+          valuesArray2[index] = { ...valuesArray2[index], values: { ...valuesArray2[index].values, [results.id]: { val: values.val, id: (teritorialUnitVariablesName.find(variable => variable.value === results.id).label) } } }
+          : "")
       )
       )
     )
-    console.log("valuesArray", valuesArray2);
     setNewArray(valuesArray2);
   }
 
@@ -63,7 +63,8 @@ export const Results = () => {
 
   useEffect(() => {
     addValuesToArray();
-  }, [newArray2]);
+  }, [newArray2, teritorialUnitFinalData, teritorialUnitFinalValues]);
+
 
   const toggleButtonChange = () => {
     setToogleButton((state) => !state);
@@ -73,11 +74,12 @@ export const Results = () => {
 
   return (
     <div>
-      {console.log("newArray ostatecznie", newArray)}
       <button
         onClick={toggleButtonChange}
       >Wybierz tabelę lub wykres</button>
-      <Tables />
+      {/* <Tables
+        newArray={newArray}
+      /> */}
       {toogleButton
         ?
         <LineGraph
@@ -87,7 +89,8 @@ export const Results = () => {
         :
         <Table
           measure={measure}
-        />
+          newArray2={newArray}
+        >{console.log("newArray", newArray)}</Table>
       }
     </div>
   );
