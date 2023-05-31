@@ -2,30 +2,16 @@ import { ReactComponent as TriangleUp } from '../../../../common/images/triangle
 import { ReactComponent as TriangleDown } from '../../../../common/images/triangleDown.svg';
 import { ReactComponent as TriangleGray } from '../../../../common/images/triangleGray.svg';
 
-export const TriangleVal = ({ order }) => {
-  return (
-    (order[0] === "val" ?
-      (order[1] === "ASC" ?
-        (<TriangleUp />)
-        :
-        (<TriangleDown />)
-      )
-      :
-      (<TriangleGray />)
-    )
-  );
-};
+export const Arrow = ({ order, sort }) => {
 
-export const TriangleYear = ({ order }) => {
   return (
-    (order[0] === "year" ?
+    (order[0] === sort ?
       (order[1] === "ASC" ?
         (<TriangleUp />)
         :
         (<TriangleDown />)
-      )
-      :
-      (<TriangleGray />)
+      ) :
+      <TriangleGray fill={order[2] ? "none" : "blue"} />
     )
-  );
-};
+  )
+}

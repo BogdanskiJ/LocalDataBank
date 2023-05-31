@@ -49,7 +49,7 @@ export const Results = () => {
       (
         index = valuesArray.findIndex(element => (element.year === values.year)),
         (valuesArray2[index] ?
-          valuesArray2[index] = { ...valuesArray2[index], values: { ...valuesArray2[index].values, [results.id]: { val: values.val, id: (teritorialUnitVariablesName.find(variable => variable.value === results.id).label) } } }
+          valuesArray2[index] = { ...valuesArray2[index], [results.id]: values.val }
           : "")
       )
       )
@@ -76,10 +76,10 @@ export const Results = () => {
     <div>
       <button
         onClick={toggleButtonChange}
-      >Wybierz tabelę lub wykres</button>
-      {/* <Tables
+      >Wybierz tabelę lub wykres{console.log("newArray", newArray)}</button>
+      <Tables
         newArray={newArray}
-      /> */}
+      />
       {toogleButton
         ?
         <LineGraph
@@ -95,3 +95,25 @@ export const Results = () => {
     </div>
   );
 }
+
+
+
+
+
+// const addValuesToArray = () => {
+//   let valuesArray = [...newArray2];
+//   let valuesArray2 = [...newArray2];
+//   let index = "";
+
+//   data.results.map(results =>
+//     results.values.map(values =>
+//     (
+//       index = valuesArray.findIndex(element => (element.year === values.year)),
+//       (valuesArray2[index] ?
+//         valuesArray2[index] = { ...valuesArray2[index], values: { ...valuesArray2[index].values, [results.id]: { val: values.val, id: (teritorialUnitVariablesName.find(variable => variable.value === results.id).label) } } }
+//         : "")
+//     )
+//     )
+//   )
+//   setNewArray(valuesArray2);
+// }

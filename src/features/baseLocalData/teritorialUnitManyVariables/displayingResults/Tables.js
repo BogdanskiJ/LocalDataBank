@@ -80,7 +80,7 @@ const headCells = [
     id: 'calories',
     numeric: true,
     disablePadding: false,
-    label: 'Calories',
+    label: 'CaloriesCaloriesCaloriesCaloriesCaloriesCaloriesCaloriesCaloriesCaloriesCaloriesCaloriesCalories CaloriesCalories CaloriesCaloriesCaloriesCalories CaloriesCaloriesCaloriesCaloriesCalories CaloriesCaloriesCalories CaloriesCaloriesCalories CaloriesCaloriesCalories CaloriesCaloriesCaloriesCaloriesCaloriesCaloriesCaloriesCaloriesCaloriesCaloriesCaloriesCalories CaloriesCaloriesCalories',
   },
   {
     id: 'fat',

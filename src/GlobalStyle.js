@@ -12,6 +12,6 @@ export const GlobalStyle = createGlobalStyle`
     body {
         margin: 0 auto;
         background: ${({ theme }) => theme.color.whisper};
-        font-family: "Poppins", sans-serif;
+        font-family: "Roboto", sans-serif;
     };
 `
