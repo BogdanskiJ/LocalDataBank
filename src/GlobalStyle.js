@@ -14,4 +14,4 @@ export const GlobalStyle = createGlobalStyle`
         background: ${({ theme }) => theme.color.whisper};
         font-family: "Roboto", sans-serif;
     };
-`
+`;

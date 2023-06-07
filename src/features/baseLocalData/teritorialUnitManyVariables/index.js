@@ -1,136 +1,75 @@
 import React from "react";
+import { TeritorialUnit } from "./TeritorialUnit";
+import { MapPoland } from "../../maps/MapPoland";
+import { StyledHead, StyledPageBody, StyledResults } from "./styled";
 import { useSelector } from "react-redux";
 import {
-  selectTeritorialUnitCategoryData,
-  selectTeritorialUnitCategoryName,
-  selectTeritorialUnitFinalData,
-  selectTeritorialUnitGroupData,
-  selectTeritorialUnitGroupName,
-  selectTeritorialUnitSubGroupData,
-  selectTeritorialUnitSubGroupName,
-  selectTeritorialUnitVariablesData,
-  selectTeritorialUnitVariablesName,
-  setTeritorialUnitCategoryName,
-  setTeritorialUnitGroupName,
-  setTeritorialUnitSubGroupName,
-  setTeritorialUnitVariablesNames
+	selectTeritorialUnitFinalData,
+	selectTeritorialUnitStatus,
+	selectTeritorialUnitVariablesName,
 } from "./teritorialUnitManyVariablesSlice";
-import { SelectBoxTeritorialUnitManyVariables, SelectBoxTeritorialUnitOneVariable } from "../../../common/select";
 import { Results } from "./displayingResults";
+import { NoDataPage } from "../../../common/NoDataPage";
+import { ErrorPage } from "../../../common/ErrorPage";
+import { useRef } from "react";
+import { useEffect } from "react";
 
-export const TeritorialUnit = () => {
+export const TeritorialUnitManyVariables = () => {
+	const teritorialUnitFinalData = useSelector(selectTeritorialUnitFinalData);
+	const teritorialUnitVariablesName = useSelector(
+		selectTeritorialUnitVariablesName,
+	);
+	const status = useSelector(selectTeritorialUnitStatus);
 
-  const teritorialUnit = useSelector(selectTeritorialUnitCategoryData);
-  const teritorialUnitGroup = useSelector(selectTeritorialUnitGroupData);
-  const teritorialUnitSubGroup = useSelector(selectTeritorialUnitSubGroupData);
-  const teritorialUnitVariables = useSelector(selectTeritorialUnitVariablesData);
-  const teritorialUnitFinalData = useSelector(selectTeritorialUnitFinalData);
+	// const resultsRef = useRef(null);
 
-  const teritorialUnitCategoryName = useSelector(selectTeritorialUnitCategoryName);
-  const teritorialUnitGroupName = useSelector(selectTeritorialUnitGroupName);
-  const teritorialUnitSubGroupName = useSelector(selectTeritorialUnitSubGroupName);
-  const teritorialUnitVariablesName = useSelector(selectTeritorialUnitVariablesName);
+	// const scrollToResults = () => {
+	// 	resultsRef.current.scrollIntoView({
+	// 		behavior: "smooth",
+	// 		block: "start",
+	// 	});
+	// };
 
-  return (
-    <>
-      <div>{
-        ((teritorialUnit) ?
-          <div>
-            <div>
-              <label>Wybierz kategorię: </label>
-              <SelectBoxTeritorialUnitOneVariable
-                teritorialUnitType={teritorialUnit}
-                setValue={setTeritorialUnitCategoryName}
-              />
-            </div>
-          </div>
-          : "nie")
-      }</div >
-      {(teritorialUnitCategoryName !== "")
-        ?
-        <div>{
-          ((teritorialUnitGroup)
-            ?
-            <div>
-              <div>
-                <label>Wybierz grupę: </label>
-                <SelectBoxTeritorialUnitOneVariable
-                  teritorialUnitType={teritorialUnitGroup}
-                  setValue={setTeritorialUnitGroupName}
-                />
-              </div>
-            </div>
-            : "")
-        }</div>
-        :
-        ("")
-      }
+	// useEffect(() => {
+	// 	scrollToResults();
+	// }, [teritorialUnitFinalData]);
 
-      {
-        (teritorialUnitGroupName !== "")
-          ?
-          <div>{
-            ((teritorialUnitSubGroup)
-              ?
-              <div>
-                <div>
-                  <label>Wybierz podgrupę: </label>
-                  <SelectBoxTeritorialUnitOneVariable
-                    teritorialUnitType={teritorialUnitSubGroup}
-                    setValue={setTeritorialUnitSubGroupName}
-                  />
-                </div>
-              </div>
-              : "")
-          }</div>
-          :
-          ("")
-      }
+	return (
+		<StyledPageBody>
+			{/* <ErrorPage /> */}
 
-      {
-        (teritorialUnitSubGroupName !== "")
-          ?
-          <div>{
-            ((teritorialUnitVariables)
-              ?
-              <div>
-                <div>
-                  <label>Wybierz zmienne: </label>
-                  <SelectBoxTeritorialUnitManyVariables
-                    teritorialUnitType={teritorialUnitVariables}
-                    setValue={setTeritorialUnitVariablesNames}
-                  />
-                </div>
-              </div>
-              : "")
-          }</div>
-          :
-          ("")
-      }
+			<StyledHead>Dane dla wybranej jednostki terytorialnej</StyledHead>
+			<StyledResults>
+				<TeritorialUnit />
+				<MapPoland />
+			</StyledResults>
 
-      {
-        (teritorialUnitVariablesName !== "")
-          ?
-          <div>
-            {
-              teritorialUnitFinalData !== ""
-                ?
-                ((teritorialUnitFinalData.totalRecords === 0)
-                  ?
-                  "Brak danych"
-                  :
-                  <>
-                    <Results />
-                    {"final data istneiej "}
-                  </>
-                )
-                :
-                (console.log("Brak danychhhh", teritorialUnitFinalData) && "brak danychhh")
-            }
-          </div >
-          :
-          ("teritorialUnitVariablesName nie istnieje")
-      }
-    </>
-  )
+			{teritorialUnitVariablesName !== "" ? (
+				<div>
+					{teritorialUnitFinalData !== "" ? (
+						<>
+							<div>
+								{teritorialUnitFinalData.totalRecords === 0 ? (
+									<NoDataPage />
+								) : (
+									<>
+										<Results />
+									</>
+								)}
+							</div>
+						</>
+					) : (
+						""
+					)}
+				</div>
+			) : (
+				""
+			)}
+			{/* <div
+			// ref={resultsRef}
+			>
+				cośtam tasdasdasdasd
+			</div> */}
+		</StyledPageBody>
+	);
 };
