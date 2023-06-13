@@ -4,6 +4,7 @@ import { MapPoland } from "../../maps/MapPoland";
 import { StyledHead, StyledPageBody, StyledResults } from "./styled";
 import { useSelector } from "react-redux";
 import {
+	selectProvinceName,
 	selectTeritorialUnitFinalData,
 	selectTeritorialUnitStatus,
 	selectTeritorialUnitVariablesName,
@@ -13,14 +14,18 @@ import { NoDataPage } from "../../../common/NoDataPage";
 import { ErrorPage } from "../../../common/ErrorPage";
 import { useRef } from "react";
 import { useEffect } from "react";
+import { MapProvinces } from "../../maps/MapProvinces";
 
 export const TeritorialUnitManyVariables = () => {
 	const teritorialUnitFinalData = useSelector(selectTeritorialUnitFinalData);
 	const teritorialUnitVariablesName = useSelector(
 		selectTeritorialUnitVariablesName,
 	);
+	const provinceName = useSelector(selectProvinceName);
+	console.log("provinceName", provinceName);
 	const status = useSelector(selectTeritorialUnitStatus);
 
+	console.log("status w slice", status);
 	// const resultsRef = useRef(null);
 
 	// const scrollToResults = () => {
@@ -36,40 +41,39 @@ export const TeritorialUnitManyVariables = () => {
 
 	return (
 		<StyledPageBody>
-			{/* <ErrorPage /> */}
+			{status === "error" ? (
+				<ErrorPage />
+			) : (
+				<>
+					<StyledHead>Dane dla wybranej jednostki terytorialnej</StyledHead>
+					<StyledResults>
+						<TeritorialUnit />
+						{provinceName === "" ? <MapPoland /> : <MapProvinces />}
+					</StyledResults>
 
-			<StyledHead>Dane dla wybranej jednostki terytorialnej</StyledHead>
-			<StyledResults>
-				<TeritorialUnit />
-				<MapPoland />
-			</StyledResults>
-
-			{teritorialUnitVariablesName !== "" ? (
-				<div>
-					{teritorialUnitFinalData !== "" ? (
-						<>
-							<div>
-								{teritorialUnitFinalData.totalRecords === 0 ? (
-									<NoDataPage />
-								) : (
-									<>
-										<Results />
-									</>
-								)}
-							</div>
-						</>
+					{teritorialUnitVariablesName !== "" ? (
+						<div>
+							{teritorialUnitFinalData !== "" ? (
+								<>
+									<div>
+										{teritorialUnitFinalData.totalRecords === 0 ? (
+											<NoDataPage />
+										) : (
+											<>
+												<Results />
+											</>
+										)}
+									</div>
+								</>
+							) : (
+								""
+							)}
+						</div>
 					) : (
 						""
 					)}
-				</div>
-			) : (
-				""
+				</>
 			)}
-			{/* <div
-			// ref={resultsRef}
-			>
-				cośtam tasdasdasdasd
-			</div> */}
 		</StyledPageBody>
 	);
 };

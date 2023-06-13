@@ -62,6 +62,7 @@ export const getFinalData = async (variablesName, selectedUnit) => {
 		const variablesNames = [...variablesName].map(
 			(variable) => `var-id=${variable.value}`,
 		);
+
 		const response = await fetch(
 			`${apiLinkHead}/data/by-unit/${selectedUnit}?${variablesNames.join("&")}`,
 		);

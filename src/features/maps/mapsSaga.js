@@ -1,10 +1,4 @@
-
 // import { fetchTeritorialUnitError, fetchTeritorialUnitGroup, fetchTeritorialUnit, fetchTeritorialUnitSubGroup, selectTeritorialUnitCategoryName, setTeritorialUnitCategoryName, selectTeritorialUnitGroupName, setTeritorialUnitGroupName, setTeritorialUnitSubGroupName, selectTeritorialUnitSubGroupName, fetchTeritorialUnitVariables, selectTeritorialUnitVariablesName, setTeritorialUnitVariablesName, fetchTeritorialUnitFinalData } from "./teritorialUnitManyVariablesSlice";
-// import { getCategory, getFinalData, getGroup, getSubGroup, getVariables } from "./getApi";
-import { call, delay, put, select, takeLatest } from "@redux-saga/core/effects";
-import { selectRegionAndProvincesMapsSelectedMap, setSelectedMap } from "./mapsSlice";
-import { fetchTeritorialUnitError, fetchTeritorialUnitFinalData, selectTeritorialUnitVariablesName, setTeritorialUnitVariablesName } from "../baseLocalData/teritorialUnitManyVariables/teritorialUnitManyVariablesSlice";
-import { getFinalData } from "../baseLocalData/teritorialUnitManyVariables/getApi";
 
 // function* fetchTeritorialUnitSaga() {
 //   try {
@@ -53,7 +47,6 @@ import { getFinalData } from "../baseLocalData/teritorialUnitManyVariables/getAp
 //   try {
 //     const variablesName = yield select(selectTeritorialUnitVariablesName);
 //     const selectedUnit = "071400000000";
-//     const data = yield call(getFinalData, variablesName, selectedUnit);
 //     yield put(fetchTeritorialUnitFinalData(data));
 //   } catch (error) {
 //     yield delay(200);
@@ -66,12 +59,10 @@ import { getFinalData } from "../baseLocalData/teritorialUnitManyVariables/getAp
 //   yield call(saveTasksInLocalStorage, tasks.tasks);
 // }
 
-
-
 export function* mapsSaga() {
-  // yield (fetchTeritorialUnitSaga());
-  // yield takeLatest(setTeritorialUnitCategoryName.type, fetchTeritorialUnitGroupSaga);
-  // yield takeLatest(setTeritorialUnitGroupName.type, fetchTeritorialUnitSubGroupSaga);
-  // yield takeLatest(setTeritorialUnitSubGroupName.type, fetchTeritorialUnitVariablesSaga);
-  //yield takeLatest(setSelectedMap, fetchTeritorialUnitFinalDataSaga);
+	// yield (fetchTeritorialUnitSaga());
+	// yield takeLatest(setTeritorialUnitCategoryName.type, fetchTeritorialUnitGroupSaga);
+	// yield takeLatest(setTeritorialUnitGroupName.type, fetchTeritorialUnitSubGroupSaga);
+	// yield takeLatest(setTeritorialUnitSubGroupName.type, fetchTeritorialUnitVariablesSaga);
+	//yield takeLatest(setSelectedMap, fetchTeritorialUnitFinalDataSaga);
 }

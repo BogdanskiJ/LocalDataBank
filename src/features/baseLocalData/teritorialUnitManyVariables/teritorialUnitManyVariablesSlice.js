@@ -22,6 +22,7 @@ const teritorialUnitSlice = createSlice({
 		fetchTeritorialUnit: (state, { payload: data }) => {
 			state.status = "success";
 			state.categoryData = data;
+			console.log("state.categoryData", state.categoryData);
 		},
 		fetchTeritorialUnitGroup: (state, { payload: data }) => {
 			state.status = "success";
@@ -43,6 +44,7 @@ const teritorialUnitSlice = createSlice({
 				(result) => (finalArray = [...finalArray, result.values]),
 			);
 			state.finalValues = finalArray;
+			console.log("finalData", state.finalValues);
 		},
 		fetchTeritorialUnitError: (state, { payload: data }) => {
 			state.status = "error";
@@ -84,6 +86,9 @@ const teritorialUnitSlice = createSlice({
 		},
 		setTeritorialUnitAutoScrollSwitcher: (state) => {
 			state.autoScrollSwitcher = !state.autoScrollSwitcher;
+		},
+		setTeritorialUnitError: (state) => {
+			state.status = "error";
 		},
 	},
 });

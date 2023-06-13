@@ -11,6 +11,7 @@ export const StyledHeader = styled.header`
 	line-height: 120%;
 	color: gray;
 	margin-top: 56px;
+	text-align: center;
 
 	@media (max-width: 1420px) {
 		margin-left: 60px;

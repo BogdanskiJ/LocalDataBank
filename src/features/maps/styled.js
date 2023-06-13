@@ -1,10 +1,11 @@
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
 	display: flex;
 	-webkit-box-align: center;
 	align-items: center;
+	gap: 10px;
 	padding: 20px;
 	flex-direction: column;
 	width: 50%;
@@ -27,14 +28,22 @@ export const StyledBoxPoland = styled.div`
 export const Box = styled.div`
 	display: flex;
 	width: 100%;
-	justify-content: center;
+	gap: 10px;
+	justify-content: space-between;
 	align-items: center;
 	flex-direction: row;
+	max-height: 550px;
+	@media ((max-width: ${({ theme }) => theme.breakpoint.lg})) {
+		flex-direction: column;
+		height: 100%;
+	}
 `;
 
 export const StyledMapPoland = styled.div`
 	display: flex;
 	height: 100%;
+	margin: auto;
+	min-width: 65%;
 	align-content: center;
 	flex-direction: column;
 	place-content: center;
@@ -115,8 +124,62 @@ export const Link = styled(NavLink)`
 `;
 
 export const StyledList = styled.div`
-	min-width: 235px;
-	max-width: 50%;
+	display: flex;
+	max-width: 35%;
+	width: auto;
+	background-color: white;
+	padding: 10px;
+	border: 1px solid rgb(203, 203, 203);
+	border-radius: 20px 0 0 20px;
+	height: auto;
+	max-height: 100%;
+	overflow-y: scroll;
+	scrollbar-width: thin;
+	word-break: break-word;
+	/*
+		xs: 0
+		sm: 576
+		md: 768p
+		lg: 992px
+		xl: 1200px
+		xxl: 1400px
+, */
+
+	@media ((max-width: ${({ theme }) => theme.breakpoint.xxl})) {
+		font-size: 14px;
+		max-height: 400px;
+	}
+
+	@media ((max-width: ${({ theme }) => theme.breakpoint.xl})) {
+		max-height: 300px;
+	}
+
+	@media ((max-width: ${({ theme }) => theme.breakpoint.lg})) {
+		font-size: 12px;
+		max-width: 95%;
+		width: 100%;
+		height: auto;
+		padding: 2px 10px;
+		border-radius: 20px 20px 0 0;
+		overflow-y: hidden;
+		justify-content: center;
+		&::-webkit-scrollbar {
+			height: 8px;
+		}
+		&::-webkit-scrollbar-thumb {
+			width: 100px;
+		}
+	}
+
+	&::-webkit-scrollbar {
+		width: 8px;
+	}
+	&::-webkit-scrollbar-thumb {
+		background: teal;
+		border-radius: 10px;
+		border: 1px solid black;
+		height: 100px;
+	}
 `;
 
 export const StyledUl = styled.ul`
@@ -124,29 +187,56 @@ export const StyledUl = styled.ul`
 	flex-direction: column;
 	justify-content: flex-start;
 	width: fit-content;
-	margin: 0;
-	color: green;
+	margin: auto;
+	padding: 0;
 	text-decoration: none;
 	text-decoration-line: none;
 	list-style-type: none;
-	padding: 0;
-	&:hover {
-		// transition: all 0.6s ease-in-out;
+	@media ((max-width: ${({ theme }) => theme.breakpoint.lg})) {
+		flex-direction: row;
+		width: auto;
+		min-width: 100px;
+		height: 100%;
+		justify-content: flex-start;
+		text-align: center;
+		align-items: center;
+		padding: 0;
 	}
 `;
 
 export const StyledLi = styled.li`
 	display: flex;
-	color: black;
 	text-decoration: none;
 	text-decoration-line: none;
-	width: fit-content;
+	padding: 5px;
+	border: 0px solid black;
+	border-radius: 10px;
 	&:hover {
 		font-weight: bold;
-		cursor: default;
+		cursor: pointer;
+		background-color: rgb(240, 240, 240);
 	}
 	&:active {
 		color: #808080;
+	}
+	${({ active }) =>
+		active &&
+		css`
+			 {
+				fill: black;
+				font-weight: bold;
+				background-color: rgba(0, 0, 0, 0.17);
+				&:hover {
+					fill: black;
+					color: black;
+					background-color: rgba(0, 0, 0, 0.27);
+				}
+			}
+		`};
+	@media ((max-width: ${({ theme }) => theme.breakpoint.lg})) {
+		flex-direction: row;
+		width: auto;
+		word-break: keep-all;
 	}
 `;
 
@@ -181,4 +271,21 @@ export const StyledCheck = styled.div`
 export const StyledRegionNameLabel = styled.div`
 	text-transform: uppercase;
 	text-align: center;
+`;
+
+export const StyledProvinceButtonBox = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-content: center;
+	align-items: center;
+	justify-content: space-between;
+	gap: 5px;
+	width: 100%;
+`;
+
+export const StyledHeaderText = styled.span`
+	display: flex;
+	text-align: center;
+	text-transform: uppercase;
+	margin: auto;
 `;

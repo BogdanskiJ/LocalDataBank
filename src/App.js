@@ -4,6 +4,7 @@ import { MapProvinces } from "./features/maps/MapProvinces";
 import { Navigation } from "./common/Navigation";
 import { TeritorialUnit } from "./features/baseLocalData/teritorialUnitManyVariables/TeritorialUnit";
 import { TeritorialUnitManyVariables } from "./features/baseLocalData/teritorialUnitManyVariables";
+import { BDL } from "./features/bdl";
 
 export const App = () => {
 	return (
@@ -15,9 +16,12 @@ export const App = () => {
 					<Route path="/maps/Poland">
 						<TeritorialUnitManyVariables />
 					</Route>
-					<Route path="/maps/provinces/:name">
-						<MapProvinces />
+					<Route path="/bdl">
+						<BDL />
 					</Route>
+					{/* <Route path="/maps/provinces/:name">
+						<MapProvinces />
+					</Route> */}
 					<Route path="/">
 						<Redirect to="/maps/Poland" />
 					</Route>

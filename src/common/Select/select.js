@@ -164,7 +164,9 @@ export const SelectBoxTeritorialUnitManyVariables = ({
 						? unit.n1
 						: unit.name,
 				}))}
-				onChange={(target) => dispatch(setValue(target))}></Select>
+				onChange={(target) =>
+					dispatch(setValue(target[0] ? target : ""))
+				}></Select>
 		</StyledMultiSelect>
 	);
 };
@@ -174,7 +176,9 @@ export const SelectBoxRegionNameDisplay = ({
 	handleMouseOver,
 	handleMouseOut,
 	isHovering,
+	setProvinceName,
 }) => {
+	const dispatch = useDispatch();
 	return (
 		<Select
 			className="basic-single"
@@ -187,22 +191,49 @@ export const SelectBoxRegionNameDisplay = ({
 			isSearchable={true}
 			options={poland.map((province) => ({
 				value: province.id,
-				label: (
-					<Link
-						to={`/maps/provinces/${province.name}`}
-						data-tooltip-content={`${province.name}`}
-						style={{
-							display: "flex",
-							justifyContent: "center",
-							textDecoration: "none",
-							color: "black",
-							fontWeight: isHovering === province.name ? "700" : "",
-						}}
-						onMouseOver={() => handleMouseOver(province)}
-						onMouseOut={() => handleMouseOut()}>
-						{province.name}
-					</Link>
-				),
-			}))}></Select>
+				label: province.name,
+			}))}
+			onChange={(target) => dispatch(setProvinceName(target.label))}></Select>
 	);
 };
+
+// export const SelectBoxRegionNameDisplay = ({
+// 	poland,
+// 	handleMouseOver,
+// 	handleMouseOut,
+// 	isHovering,
+// 	setProvinceName,
+// }) => {
+// 	const dispatch = useDispatch();
+// 	return (
+// 		<Select
+// 			className="basic-single"
+// 			classNamePrefix="select"
+// 			defaultValue={{
+// 				value: "",
+// 				label: "Wybierz województwo",
+// 			}}
+// 			isClearable={false}
+// 			isSearchable={true}
+// 			options={poland.map((province) => ({
+// 				value: province.id,
+// 				label: (
+// 					<Link
+// 						to={`/maps/provinces/${province.name}`}
+// 						data-tooltip-content={`${province.name}`}
+// 						style={{
+// 							display: "flex",
+// 							justifyContent: "center",
+// 							textDecoration: "none",
+// 							color: "black",
+// 							fontWeight: isHovering === province.name ? "700" : "",
+// 						}}
+// 						onMouseOver={() => handleMouseOver(province)}
+// 						onMouseOut={() => handleMouseOut()}>
+// 						{province.name}
+// 					</Link>
+// 				),
+// 			}))}
+// 			onChange={(target) => dispatch(setProvinceName(target.value))}></Select>
+// 	);
+// };

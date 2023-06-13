@@ -1,17 +1,20 @@
 import styled from "styled-components";
 
-export const StyledTablePage = styled.div`
-	display: block;
-	margin: auto;
+export const StyledLine = styled.div`
+	//display: flex;
+	width: auto;
+	height: auto;
+	aspect-ratio: 5/2;
+	margin-top: 0;
+	justify-content: center;
 	background-color: white;
-	padding: 4%;
-	max-width: 100%;
 	border: 1px solid rgb(203, 203, 203);
 	border-radius: 20px;
-	overflow: auto;
+	//min-height: 400px;
+	//height: 100%;
+	//max-height: 700px;
 
-	//aspect-ratio: 2/1;
-	/* @media ((max-width: ${({ theme }) => theme.breakpoint.xxl})) {
+	@media ((max-width: ${({ theme }) => theme.breakpoint.xxl})) {
 		aspect-ratio: 2/1;
 	}
 
@@ -29,10 +32,5 @@ export const StyledTablePage = styled.div`
 
 	@media ((max-width: ${({ theme }) => theme.breakpoint.sm})) {
 		aspect-ratio: 1/1.5;
-	} */
-`;
-
-export const StyledTrThead = styled.tr`
-	max-width: 100%;
-	cursor: pointer;
+	}
 `;

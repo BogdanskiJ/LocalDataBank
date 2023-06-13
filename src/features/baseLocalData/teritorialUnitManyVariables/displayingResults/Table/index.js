@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import { Arrow } from "./Arrow";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -21,6 +20,7 @@ import {
 	StyledTr,
 } from "../styled";
 import { StyledTablePage, StyledTrThead } from "./styled";
+import { Arrow } from "./Arrow";
 
 export const Table = ({ measure, newArray2 }) => {
 	const teritorialUnitFinalData = useSelector(selectTeritorialUnitFinalData);
@@ -91,12 +91,14 @@ export const Table = ({ measure, newArray2 }) => {
 	const tbody = () => {
 		return newArray3.map((results) => (
 			<StyledTr>
-				<StyledTdYear>{results.year}</StyledTdYear>
+				<StyledTdYear active={sort === "year"}>{results.year}</StyledTdYear>
 				{data1.map((element) =>
 					results[element.id] ? (
-						<StyledTd>{results[element.id]}</StyledTd>
+						<StyledTd active={sort === `${element.id}`}>
+							{results[element.id]}
+						</StyledTd>
 					) : (
-						<StyledTd>0</StyledTd>
+						<StyledTd active={sort === `${element.id}`}>0</StyledTd>
 					),
 				)}
 			</StyledTr>

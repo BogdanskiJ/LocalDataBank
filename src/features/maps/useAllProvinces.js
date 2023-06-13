@@ -1,4 +1,8 @@
 import { useRef, useState } from "react";
+import {
+	selectRegionAndProvincesMapsSelectedMap,
+	setSelectedMap,
+} from "../maps/mapsSlice";
 import { StyledLi, StyledSvg } from "./styled";
 import { useDolnoslaskie } from "./province/MapDolnoslaskie";
 import { useKujawskoPomorskie } from "./province/MapKujawskopomorskie";
@@ -17,10 +21,6 @@ import { useWarminskoMazurskie } from "./province/MapWarminsko-mazurskie";
 import { useWielkopolskie } from "./province/MapWielkopolskie";
 import { useZachodnioPomorskie } from "./province/MapZachodniopomorskie";
 import { useDispatch, useSelector } from "react-redux";
-import {
-	selectRegionAndProvincesMapsSelectedMap,
-	setSelectedMap,
-} from "./mapsSlice";
 
 export const useAllProvinces = () => {
 	const dispatch = useDispatch();
@@ -46,7 +46,6 @@ export const useAllProvinces = () => {
 	const preserveAspectRatio = "xMidYMid meet";
 
 	const [isHovering, setIsHovering] = useState(false);
-
 	const handleMouseOver = (region) => {
 		setIsHovering(region);
 	};
@@ -86,9 +85,12 @@ export const useAllProvinces = () => {
 	};
 
 	const displayProvincesName = (province) => {
-		const sortedProvince = [...province].sort((a, b) => (a.id > b.id ? 1 : -1));
+		const sortedProvince = [...province]
+			.map((region) => region)
+			.sort((a, b) => (a.name > b.name ? 1 : -1));
 		return sortedProvince.map((region) => (
 			<StyledLi
+				active={selectedMap[0] === region.name}
 				style={{
 					fontWeight: isHovering === region.name ? "700" : "",
 				}}
@@ -101,12 +103,23 @@ export const useAllProvinces = () => {
 		));
 	};
 
+	const regionList = (province) => {
+		const newProvince = [...province].map((region) => ({
+			name: region.name,
+			id: region.id,
+		}));
+		return newProvince
+			.map((region) => region)
+			.sort((a, b) => (a.name > b.name ? 1 : -1));
+	};
+
 	const allProvinces = [
 		{
 			name: "Dolnośląskie",
 			id: 1,
 			mapLink: displayMap(dolnoslaskie),
 			mapProvincesName: displayProvincesName(dolnoslaskie),
+			regionNameList: regionList(dolnoslaskie),
 			viewBox: "0 0 303 275",
 			preserveAspectRatio: preserveAspectRatio,
 		},

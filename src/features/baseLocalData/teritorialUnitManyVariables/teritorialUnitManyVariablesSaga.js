@@ -13,7 +13,6 @@ import {
 	selectTeritorialUnitVariablesName,
 	setTeritorialUnitVariablesNames,
 	fetchTeritorialUnitFinalData,
-	setTeritorialUnitFinalData,
 } from "./teritorialUnitManyVariablesSlice";
 import {
 	getCategory,
@@ -27,16 +26,13 @@ import {
 	selectRegionAndProvincesMapsSelectedMap,
 	setSelectedMap,
 } from "../../maps/mapsSlice";
-
 function* fetchTeritorialUnitSaga() {
 	try {
 		const data = yield call(getCategory);
-		data
-			? yield put(fetchTeritorialUnit(data))
-			: yield put(fetchTeritorialUnitError());
+		yield put(fetchTeritorialUnit(data));
 	} catch (error) {
 		yield delay(200);
-		yield put(fetchTeritorialUnitError());
+		yield put(fetchTeritorialUnitError(1));
 	}
 }
 
@@ -44,12 +40,10 @@ function* fetchTeritorialUnitGroupSaga() {
 	try {
 		const categoryName = yield select(selectTeritorialUnitCategoryName);
 		const data = yield call(getGroup, categoryName);
-		data
-			? yield put(fetchTeritorialUnitGroup(data))
-			: yield put(fetchTeritorialUnitError());
+		yield put(fetchTeritorialUnitGroup(data));
 	} catch (error) {
 		yield delay(200);
-		yield put(fetchTeritorialUnitError());
+		yield put(fetchTeritorialUnitError(2));
 	}
 }
 
@@ -57,12 +51,10 @@ function* fetchTeritorialUnitSubGroupSaga() {
 	try {
 		const groupName = yield select(selectTeritorialUnitGroupName);
 		const data = yield call(getSubGroup, groupName);
-		data
-			? yield put(fetchTeritorialUnitSubGroup(data))
-			: yield put(fetchTeritorialUnitError());
+		yield put(fetchTeritorialUnitSubGroup(data));
 	} catch (error) {
 		yield delay(200);
-		yield put(fetchTeritorialUnitError());
+		yield put(fetchTeritorialUnitError(3));
 	}
 }
 
@@ -72,10 +64,10 @@ function* fetchTeritorialUnitVariablesSaga() {
 		const data = yield call(getVariables, subGroupName);
 		data
 			? yield put(fetchTeritorialUnitVariables(data))
-			: yield put(fetchTeritorialUnitError());
+			: yield put(fetchTeritorialUnitError("variablesSaga"));
 	} catch (error) {
 		yield delay(200);
-		yield put(fetchTeritorialUnitError());
+		yield put(fetchTeritorialUnitError(4));
 	}
 }
 
@@ -83,16 +75,22 @@ function* fetchTeritorialUnitFinalDataSaga() {
 	try {
 		const variablesName = yield select(selectTeritorialUnitVariablesName);
 		const selectedUnit = yield select(selectRegionAndProvincesMapsSelectedMap);
-		const data =
-			variablesName === "" || selectedUnit === ""
-				? ""
-				: yield call(getFinalData, variablesName, selectedUnit[1]);
-		data
-			? yield put(fetchTeritorialUnitFinalData(data))
-			: yield put(fetchTeritorialUnitError());
+		console.log("variablesName", variablesName, "selectedUnit", selectedUnit);
+		if ((variablesName !== "") & (selectedUnit !== "")) {
+			console.log("jestem w pętli", variablesName, selectedUnit, "-- zmienne");
+			const data = yield call(getFinalData, variablesName, selectedUnit[1]);
+			if (data !== "") {
+				yield put(fetchTeritorialUnitFinalData(data));
+			}
+		}
+
+		// const data =
+		// 	variablesName !== "" && selectedUnit[0] !== ""
+		// 		? yield call(getFinalData, variablesName, selectedUnit[1])
+		// 		: "";
 	} catch (error) {
 		yield delay(200);
-		yield put(fetchTeritorialUnitError());
+		yield put(fetchTeritorialUnitError(5));
 	}
 }
 
@@ -111,7 +109,7 @@ export function* teritorialUnitSaga() {
 		fetchTeritorialUnitVariablesSaga,
 	);
 	yield takeLatest(
-		[setTeritorialUnitVariablesNames.type, setSelectedMap.type],
+		[setSelectedMap.type, setTeritorialUnitVariablesNames.type],
 		fetchTeritorialUnitFinalDataSaga,
 	);
 }

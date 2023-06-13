@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 
 export const StyledTr = styled.tr`
-	line-height: 1.43;
 	border: 1px solid rgba(224, 224, 224, 1);
 	text-align: left;
 	display: table-row;
@@ -11,33 +10,66 @@ export const StyledTr = styled.tr`
 	&:hover {
 		margin: 10px;
 		padding: 0px;
-		background-color: rgba(0, 0, 0, 0.04);
+		background-color: rgba(0, 0, 0, 0.07);
 	}
 `;
 
 export const StyledTd = styled.td`
-	line-height: 1.43;
+	border-right: 1px solid rgb(224, 224, 224);
 	text-align: right;
 	display: table-cell;
 	outline: 0;
-	padding: 16px 10px;
+	padding: 10px;
 	word-break: break-word;
+	vertical-align: top;
+	//text-align: center;
+	//vertical-align: middle;
 	/* @media ((max-width: ${({ theme }) => theme.breakpoint.xl})) {
 		padding: 0;
 	} */
 	//margin:10px;
 	//padding: 10px;
+	&:hover {
+		background-color: rgba(0, 0, 0, 0.07);
+	}
+	${({ active }) =>
+		active &&
+		css`
+			 {
+				fill: black;
+				background-color: rgba(0, 0, 0, 0.07);
+				&:hover {
+					fill: black;
+					color: black;
+				}
+			}
+		`};
 `;
 
 export const StyledTdYear = styled.td`
-	line-height: 1.43;
+	padding-left: 10px;
 	text-align: left;
 	display: table-cell;
 	outline: 0;
 	background-color: rgba(0, 0, 0, 0.04);
+	&:hover {
+		background-color: rgba(0, 0, 0, 0.07);
+	}
 	//padding: 16px 10px;
 	//margin:10px;
 	//padding: 10px;
+	${({ active }) =>
+		active &&
+		css`
+			 {
+				fill: black;
+				background-color: rgba(0, 0, 0, 0.07);
+				&:hover {
+					fill: black;
+					color: black;
+				}
+			}
+		`};
 `;
 
 export const StyledTh = styled.th`
@@ -47,8 +79,8 @@ export const StyledTh = styled.th`
 	&:hover {
 		fill: gray;
 		color: gray;
+		background-color: rgba(0, 0, 0, 0.05);
 	}
-	line-height: 1.43;
 	text-align: right;
 	display: table-cell;
 	outline: 0;
@@ -57,7 +89,7 @@ export const StyledTh = styled.th`
 		css`
 			 {
 				fill: black;
-				background-color: rgba(0, 0, 0, 0.14);
+				background-color: rgba(0, 0, 0, 0.07);
 				&:hover {
 					fill: black;
 					color: black;
@@ -67,26 +99,23 @@ export const StyledTh = styled.th`
 `;
 
 export const StyledThYear = styled.th`
+	padding: 10px;
 	fill: none;
 	border: 1px solid rgb(224, 224, 224);
 	&:hover {
 		fill: gray;
 		color: gray;
 	}
-	line-height: 1.43;
 	text-align: left;
 	display: table-cell;
 	outline: 0;
-	//padding: 16px 10px;
-	//margin:10px;
-	//padding: 10px;
 
 	${({ active }) =>
 		active &&
 		css`
 			 {
 				fill: black;
-				background-color: rgba(0, 0, 0, 0.14);
+				background-color: rgba(0, 0, 0, 0.07);
 				&:hover {
 					fill: black;
 					color: black;
@@ -108,14 +137,47 @@ export const StyledThArrow = styled.div`
 export const StyledTable = styled.table`
 	border-collapse: collapse;
 	border-spacing: 0;
+	margin: auto;
 	width: auto;
 	min-width: 60%;
 	max-width: 100%;
 	display: table;
 
-	/* @media ((max-width: ${({ theme }) => theme.breakpoint.sm})) {
-		font-size: 16px;
-	} */
+	@media ((max-width: ${({ theme }) => theme.breakpoint.lg})) {
+		font-size: 14px;
+	}
+
+	@media ((max-width: ${({ theme }) => theme.breakpoint.md})) {
+		font-size: 12px;
+	}
+
+	@media ((max-width: ${({ theme }) => theme.breakpoint.sm})) {
+		font-size: 11px;
+	}
+
+	/* breakpoint: {
+		xs: 0,
+		sm: 576
+		md: 768
+		lg:992
+		xl: 1200
+		xxl: 1400px
+	}, */
+
+	/* @media (min-width: ${({ theme }) => theme.breakpoint.xxl}) {
+		font-size: 28px;
+	}
+
+	@media ((max-width: ${({ theme }) => theme.breakpoint.xxl})) {
+		font-size: 26px;
+	}
+
+	@media ((max-width: ${({ theme }) => theme.breakpoint.xl})) {
+		font-size: 24px;
+	}
+
+	
+ */
 `;
 
 export const StyledTbody = styled.tbody`

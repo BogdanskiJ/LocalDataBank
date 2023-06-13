@@ -10,8 +10,8 @@ import {
 } from "../teritorialUnitManyVariablesSlice";
 import { useSelector } from "react-redux";
 import { measures } from "../../../../common/measures";
-import { Table } from "./Table/Table";
-import { LineGraph } from "./LineGraph/LineGraph";
+import { Table } from "./Table";
+import { LineGraph } from "./LineGraph/index";
 import { useEffect } from "react";
 import {
 	StyledResultHeader,

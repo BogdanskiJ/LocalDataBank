@@ -4,46 +4,53 @@ import {
 	selectTeritorialUnitDisplayResultsSwitcher,
 	setTeritorialUnitDisplayResultsSwitcher,
 } from "../../../teritorialUnitManyVariablesSlice";
-
-import FormLabel from "@mui/material/FormLabel";
-import FormControl from "@mui/material/FormControl";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
+import styled from "styled-components";
+import {
+	StyledResultSwitcheLabelBox,
+	StyledResultSwitcherBox,
+	StyledResultSwitcherText,
+	StyledResultSwitcherTextGraph,
+	StyledResultSwitcherTextTable,
+} from "./styled";
 
 export const DisplayResultsSwitcher = () => {
 	const dispatch = useDispatch();
 	const teritorialUnitToogleButton = useSelector(
 		selectTeritorialUnitDisplayResultsSwitcher,
 	);
+	const ColoredSwitch = styled(Switch)(() => ({
+		"& MuiSwitch-switchBase.Mui-checked": {
+			color: "#1976d2",
+		},
+		"& .MuiSwitch-switchBase": {
+			color: "green",
+		},
+		"& .MuiSwitch-track": {
+			backgroundColor: "#49ad26",
+		},
+	}));
 
 	return (
-		<FormControl component="fieldset" variant="standard">
-			<FormLabel component="legend">Wyświetl dane w postaci:</FormLabel>
-			<FormGroup>
-				<FormControlLabel
-					control={
-						<Switch
-							checked={teritorialUnitToogleButton}
-							onChange={() =>
-								dispatch(setTeritorialUnitDisplayResultsSwitcher())
-							}
-						/>
-					}
-					label="Wykres"
-				/>
-				<FormControlLabel
-					control={
-						<Switch
-							checked={!teritorialUnitToogleButton}
-							onChange={() =>
-								dispatch(setTeritorialUnitDisplayResultsSwitcher())
-							}
-						/>
-					}
-					label="Tabela"
-				/>
-			</FormGroup>
-		</FormControl>
+		<>
+			<StyledResultSwitcheLabelBox>
+				<StyledResultSwitcherText>
+					Wyświetl dane w postaci:
+				</StyledResultSwitcherText>
+				<StyledResultSwitcherBox>
+					<StyledResultSwitcherTextGraph active={teritorialUnitToogleButton}>
+						Wykres
+					</StyledResultSwitcherTextGraph>
+					<ColoredSwitch
+						checked={!teritorialUnitToogleButton}
+						size={"small"}
+						onChange={() => dispatch(setTeritorialUnitDisplayResultsSwitcher())}
+					/>
+					<StyledResultSwitcherTextTable active={!teritorialUnitToogleButton}>
+						Tabela
+					</StyledResultSwitcherTextTable>
+				</StyledResultSwitcherBox>
+			</StyledResultSwitcheLabelBox>
+		</>
 	);
 };

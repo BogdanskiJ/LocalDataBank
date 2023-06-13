@@ -1,7 +1,6 @@
 import "react-tooltip/dist/react-tooltip.css";
 import { Tooltip } from "react-tooltip";
 import {
-	Box,
 	Container,
 	Header,
 	StyledBoxPoland,
@@ -9,20 +8,24 @@ import {
 	StyledMapPoland,
 	StyledRegionNameLabel,
 	StyledSelect,
+	StyledSelectedPolandButton,
 	StyledSvg,
 	StyledUnitBox,
 } from "./styled";
-import { usePoland } from "./province/MapPoland";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import {
 	selectRegionAndProvincesMapsSelectedMap,
 	setSelectedMap,
-} from "./mapsSlice";
+} from "../maps/mapsSlice";
+
+import { usePoland } from "./province/MapPoland";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { SelectBoxRegionNameDisplay } from "../../common/Select/select";
 import { setProvinceName } from "../baseLocalData/teritorialUnitManyVariables/teritorialUnitManyVariablesSlice";
 import { ReactComponent as Check } from "../../common/images/check.svg";
 import { ReactComponent as NoCheck } from "../../common/images/noCheck.svg";
+import Button from "@mui/material/Button";
+import { useWindowSize } from "../../common/WindowSize";
 
 export const MapPoland = () => {
 	const dispatch = useDispatch();
@@ -43,11 +46,34 @@ export const MapPoland = () => {
 		setIsHovering();
 	};
 
+	const [widthSize] = useWindowSize();
+
+	const buttonSx = () => {
+		let style = {
+			padding: 0,
+			maxWidth: "fit-content",
+			marginLeft: "auto",
+		};
+		if (widthSize <= 576) {
+			style.fontSize = "11px";
+		}
+		return style;
+	};
+
 	return (
 		<Container>
 			<StyledBoxPoland>
 				<StyledMapPoland>
-					<Header>Wybierz jednostkę terytorialną - WOJEWÓDZTWA</Header>
+					<Header>Wybierz jednostkę terytorialną - WOJEWÓDZTWA </Header>
+					<Button
+						variant="contained"
+						size="small"
+						sx={buttonSx()}
+						onClick={() =>
+							dispatch(setSelectedMap(["POLSKA", "000000000000"]))
+						}>
+						Polska
+					</Button>
 					<StyledUnitBox>
 						<StyledSvg
 							version="1"
@@ -64,6 +90,8 @@ export const MapPoland = () => {
 										fill:
 											selectedMap[0] === province.name
 												? "#8e0b23"
+												: selectedMap[0] === "POLSKA"
+												? "#f03356"
 												: isHovering === province.name
 												? "crimson"
 												: "teal",
@@ -87,7 +115,6 @@ export const MapPoland = () => {
 							color: "white",
 							padding: "5px 10px",
 						}}
-						// place="bottom"
 					/>
 				</StyledMapPoland>
 
