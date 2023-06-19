@@ -13,12 +13,12 @@ import {
   setTeritorialUnitGroupName,
   setTeritorialUnitSubGroupName,
   setTeritorialUnitVariablesNames,
-} from '../teritorialUnitManyVariablesSlice'
+} from '../teritorialUnitSlice'
 import {
-  SelectBoxTeritorialUnitManyVariables,
-  SelectBoxTeritorialUnitOneVariable,
-} from '../../../../common/Select/select'
-import LoadingPage from '../../../../common/LoadingPage'
+  SelectBoxManyVariables,
+  SelectBoxOneVariable,
+} from '../../../common/Select/select'
+import LoadingPage from '../../../common/LoadingPage'
 import {
   StyledBox,
   StyledCheck as StyledCheckBox,
@@ -30,8 +30,8 @@ import {
   StyledSelectBox,
   StyledTeritorialUnit,
 } from './styled'
-import {ReactComponent as Check} from '../../../../common/images/check.svg'
-import {ReactComponent as NoCheck} from '../../../../common/images/noCheck.svg'
+import {ReactComponent as Check} from '../../../common/images/check.svg'
+import {ReactComponent as NoCheck} from '../../../common/images/noCheck.svg'
 import {AutoScrollSwitcher} from '../displayingResults/Switchers/AutoScrollSwitcher'
 
 function TeritorialUnit() {
@@ -60,8 +60,8 @@ function TeritorialUnit() {
           <StyledLabelBox>
             <StyledLabel>Wybierz kategorię: </StyledLabel>
             <StyledSelectBox>
-              <SelectBoxTeritorialUnitOneVariable
-                teritorialUnitType={teritorialUnit}
+              <SelectBoxOneVariable
+                dataType={teritorialUnit}
                 setValue={setTeritorialUnitCategoryName}
               />
               <StyledCheckBox>
@@ -80,8 +80,8 @@ function TeritorialUnit() {
               <StyledLabelBox>
                 <StyledLabel>Wybierz grupę: </StyledLabel>
                 <StyledSelectBox>
-                  <SelectBoxTeritorialUnitOneVariable
-                    teritorialUnitType={teritorialUnitGroup}
+                  <SelectBoxOneVariable
+                    dataType={teritorialUnitGroup}
                     setValue={setTeritorialUnitGroupName}
                   />
                   <StyledCheckBox>
@@ -105,8 +105,8 @@ function TeritorialUnit() {
               <StyledLabelBox>
                 <StyledLabel>Wybierz podgrupę: </StyledLabel>
                 <StyledSelectBox>
-                  <SelectBoxTeritorialUnitOneVariable
-                    teritorialUnitType={teritorialUnitSubGroup}
+                  <SelectBoxOneVariable
+                    dataType={teritorialUnitSubGroup}
                     setValue={setTeritorialUnitSubGroupName}
                   />
                   <StyledCheckBox>
@@ -133,8 +133,8 @@ function TeritorialUnit() {
                     Wybierz zmienne: <StyledLabelText>max 10</StyledLabelText>
                   </StyledLabel>
                   <StyledMultiSelectBox>
-                    <SelectBoxTeritorialUnitManyVariables
-                      teritorialUnitType={teritorialUnitVariables}
+                    <SelectBoxManyVariables
+                      dataType={teritorialUnitVariables}
                       setValue={setTeritorialUnitVariablesNames}
                     />
 

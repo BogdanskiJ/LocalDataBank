@@ -1,4 +1,4 @@
-// import { fetchTeritorialUnitError, fetchTeritorialUnitGroup, fetchTeritorialUnit, fetchTeritorialUnitSubGroup, selectTeritorialUnitCategoryName, setTeritorialUnitCategoryName, selectTeritorialUnitGroupName, setTeritorialUnitGroupName, setTeritorialUnitSubGroupName, selectTeritorialUnitSubGroupName, fetchTeritorialUnitVariables, selectTeritorialUnitVariablesName, setTeritorialUnitVariablesName, fetchTeritorialUnitFinalData } from "./teritorialUnitManyVariablesSlice";
+// import { fetchTeritorialUnitError, fetchTeritorialUnitGroup, fetchTeritorialUnit, fetchTeritorialUnitSubGroup, selectTeritorialUnitCategoryName, setTeritorialUnitCategoryName, selectTeritorialUnitGroupName, setTeritorialUnitGroupName, setTeritorialUnitSubGroupName, selectTeritorialUnitSubGroupName, fetchTeritorialUnitVariables, selectTeritorialUnitVariablesName, setTeritorialUnitVariablesName, fetchTeritorialUnitFinalData } from "./teritorialUnitSlice";
 
 // function* fetchTeritorialUnitSaga() {
 //   try {
@@ -60,9 +60,9 @@
 // }
 
 export function* mapsSaga() {
-	// yield (fetchTeritorialUnitSaga());
-	// yield takeLatest(setTeritorialUnitCategoryName.type, fetchTeritorialUnitGroupSaga);
-	// yield takeLatest(setTeritorialUnitGroupName.type, fetchTeritorialUnitSubGroupSaga);
-	// yield takeLatest(setTeritorialUnitSubGroupName.type, fetchTeritorialUnitVariablesSaga);
-	//yield takeLatest(setSelectedMap, fetchTeritorialUnitFinalDataSaga);
+  // yield (fetchTeritorialUnitSaga());
+  // yield takeLatest(setTeritorialUnitCategoryName.type, fetchTeritorialUnitGroupSaga);
+  // yield takeLatest(setTeritorialUnitGroupName.type, fetchTeritorialUnitSubGroupSaga);
+  // yield takeLatest(setTeritorialUnitSubGroupName.type, fetchTeritorialUnitVariablesSaga);
+  //yield takeLatest(setSelectedMap, fetchTeritorialUnitFinalDataSaga);
 }

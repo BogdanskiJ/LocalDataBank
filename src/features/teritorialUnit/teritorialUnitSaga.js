@@ -13,7 +13,7 @@ import {
   selectTeritorialUnitVariablesName,
   setTeritorialUnitVariablesNames,
   fetchTeritorialUnitFinalData,
-} from './teritorialUnitManyVariablesSlice'
+} from './teritorialUnitSlice'
 import {
   getCategory,
   getFinalData,
@@ -25,7 +25,7 @@ import {call, delay, put, select, takeLatest} from '@redux-saga/core/effects'
 import {
   selectRegionAndProvincesMapsSelectedMap,
   setSelectedMap,
-} from '../../maps/mapsSlice'
+} from '../maps/mapsSlice'
 function* fetchTeritorialUnitSaga() {
   try {
     const data = yield call(getCategory)

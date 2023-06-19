@@ -3,26 +3,26 @@ import {Line} from 'react-chartjs-2'
 import {CategoryScale, Chart, registerables} from 'chart.js'
 import {useSelector} from 'react-redux'
 import {
-  selectTeritorialUnitFinalData,
-  selectTeritorialUnitVariablesName,
-} from '../../teritorialUnitManyVariablesSlice'
+  selectManyVariablesFinalData,
+  selectManyVariablesVariablesName,
+} from '../../manyVariablesSlice'
 import {StyledLine} from './styled'
-import {useWindowSize} from '../../../../../common/WindowSize'
+import {useWindowSize} from '../../../../common/WindowSize'
 
 Chart.register(CategoryScale)
 Chart.register(...registerables)
 
 export const LineGraph = ({measure, newArray}) => {
-  const teritorialUnitFinalData = useSelector(selectTeritorialUnitFinalData)
-  const teritorialUnitVariablesName = useSelector(
-    selectTeritorialUnitVariablesName,
+  const manyVariablesFinalData = useSelector(selectManyVariablesFinalData)
+  const manyVariablesVariablesName = useSelector(
+    selectManyVariablesVariablesName,
   )
 
-  const [data1, setData1] = useState(teritorialUnitFinalData.results)
+  const [data1, setData1] = useState(manyVariablesFinalData.results)
 
   useEffect(() => {
-    setData1(teritorialUnitFinalData.results)
-  }, [teritorialUnitFinalData])
+    setData1(manyVariablesFinalData.results)
+  }, [manyVariablesFinalData])
 
   const xAxis = newArray.map(value => value.year)
 
@@ -41,17 +41,17 @@ export const LineGraph = ({measure, newArray}) => {
   const datasetsValue = data1.map(results => ({
     label:
       `${
-        teritorialUnitVariablesName.find(
+        manyVariablesVariablesName.find(
           variable => variable.value === results.id,
         ).label
       } - wartość ${measure}`.length > 58
         ? `${
-            teritorialUnitVariablesName.find(
+            manyVariablesVariablesName.find(
               variable => variable.value === results.id,
             ).label
           } - wartość ${measure}`.slice(0, 57) + '...'
         : `${
-            teritorialUnitVariablesName.find(
+            manyVariablesVariablesName.find(
               variable => variable.value === results.id,
             ).label
           } - wartość ${measure}`,

@@ -4,13 +4,13 @@ import Switch from '@mui/material/Switch'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import {
-  selectTeritorialUnitAutoScrollSwitcher,
-  setTeritorialUnitAutoScrollSwitcher,
-} from '../../../teritorialUnitManyVariablesSlice'
+  selectManyVariablesAutoScrollSwitcher,
+  setManyVariablesAutoScrollSwitcher,
+} from '../../../manyVariablesSlice'
 
 export const AutoScrollSwitcher = () => {
   const dispatch = useDispatch()
-  const state = useSelector(selectTeritorialUnitAutoScrollSwitcher)
+  const state = useSelector(selectManyVariablesAutoScrollSwitcher)
   return (
     <Stack
       direction="row"
@@ -22,7 +22,7 @@ export const AutoScrollSwitcher = () => {
       <Typography>Off</Typography>
       <Switch
         checked={state}
-        onChange={() => dispatch(setTeritorialUnitAutoScrollSwitcher())}
+        onChange={() => dispatch(setManyVariablesAutoScrollSwitcher())}
       />
       <Typography>On</Typography>
     </Stack>

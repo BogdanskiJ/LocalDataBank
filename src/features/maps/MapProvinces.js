@@ -1,6 +1,6 @@
-import "react-tooltip/dist/react-tooltip.css";
-import {Link, useParams} from "react-router-dom";
-import {Tooltip} from "react-tooltip";
+import 'react-tooltip/dist/react-tooltip.css'
+import {Link, useParams} from 'react-router-dom'
+import {Tooltip} from 'react-tooltip'
 import {
   Box,
   Container,
@@ -12,33 +12,31 @@ import {
   StyledProvinceButtonBox,
   StyledSvg,
   StyledUl,
-} from "./styled";
-import {useAllProvinces} from "./useAllProvinces";
-import {useDispatch, useSelector} from "react-redux";
+} from './styled'
+import {useAllProvinces} from './useAllProvinces'
+import {useDispatch, useSelector} from 'react-redux'
 import {
   selectProvinceName,
   setProvinceName,
-} from "../baseLocalData/teritorialUnitManyVariables/teritorialUnitManyVariablesSlice";
-import Button from "@mui/material/Button";
-import {useWindowSize} from "../../common/WindowSize";
-import Select from "react-select";
-import {usePoland} from "./province/MapPoland";
+} from '../teritorialUnit/teritorialUnitSlice'
+import Button from '@mui/material/Button'
+import {useWindowSize} from '../../common/WindowSize'
+import Select from 'react-select'
+import {usePoland} from './province/MapPoland'
 
 export const MapProvinces = () => {
-  const dispatch = useDispatch();
-  const param = useParams();
-  const allProvinces = useAllProvinces();
-  const provinceName = useSelector(selectProvinceName);
-  const [widthSize] = useWindowSize();
-  const poland = usePoland();
+  const dispatch = useDispatch()
+  const param = useParams()
+  const allProvinces = useAllProvinces()
+  const provinceName = useSelector(selectProvinceName)
+  const [widthSize] = useWindowSize()
+  const poland = usePoland()
   const provinceNameList = province => {
-    const data = province.mapProvincesName.map(region => region.key);
-    const sortedlist = [...data]
-      .sort()
-      .map(name => <StyledLi>{name}</StyledLi>);
+    const data = province.mapProvincesName.map(region => region.key)
+    const sortedlist = [...data].sort().map(name => <StyledLi>{name}</StyledLi>)
 
-    return sortedlist;
-  };
+    return sortedlist
+  }
 
   // <StyledList>
   // 	{allProvinces.map((province) =>
@@ -59,7 +57,7 @@ export const MapProvinces = () => {
         <Button
           variant="contained"
           size="small"
-          onClick={() => dispatch(setProvinceName(""))}>
+          onClick={() => dispatch(setProvinceName(''))}>
           Mapa Polski
         </Button>
       </StyledProvinceButtonBox>
@@ -81,14 +79,14 @@ export const MapProvinces = () => {
                 <Tooltip
                   id="my-tooltip"
                   style={{
-                    backgroundColor: "black",
-                    color: "white",
-                    padding: "5px 10px",
+                    backgroundColor: 'black',
+                    color: 'white',
+                    padding: '5px 10px',
                   }}
                 />
               </>
             ) : (
-              ""
+              ''
             ),
           )}
         </StyledMapPoland>
@@ -97,14 +95,14 @@ export const MapProvinces = () => {
             province.name === provinceName ? (
               <StyledUl key={province.id}>{province.mapProvincesName}</StyledUl>
             ) : (
-              ""
+              ''
             ),
           )}
         </StyledList>
       </Box>
     </Container>
-  );
-};
+  )
+}
 /* <SelectBoxRegionNameDisplay
 						poland={poland}
 						handleMouseOut={handleMouseOut}

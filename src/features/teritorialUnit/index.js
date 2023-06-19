@@ -1,17 +1,17 @@
 import {useSelector} from 'react-redux'
-import TeritorialUnit from './TeritorialUnit'
-import {MapPoland} from '../../maps/MapPoland'
+import TeritorialUnit from './teritorialUnit'
+import {MapPoland} from '../maps/MapPoland'
 import {StyledHead, StyledPageBody, StyledResults} from './styled'
 import {
   selectProvinceName,
   selectTeritorialUnitFinalData,
   selectTeritorialUnitStatus,
   selectTeritorialUnitVariablesName,
-} from './teritorialUnitManyVariablesSlice'
+} from './teritorialUnitSlice'
 import {Results} from './displayingResults'
-import NoDataPage from '../../../common/NoDataPage'
-import {MapProvinces} from '../../maps/MapProvinces'
-import ErrorPage from '../../../common/ErrorPage'
+import NoDataPage from '../../common/NoDataPage'
+import {MapProvinces} from '../maps/MapProvinces'
+import ErrorPage from '../../common/ErrorPage'
 
 function TeritorialUnitManyVariables() {
   const teritorialUnitFinalData = useSelector(selectTeritorialUnitFinalData)
