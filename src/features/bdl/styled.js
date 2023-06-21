@@ -64,9 +64,10 @@ export const StyledParagraph = styled.p`
 	} */
 `
 export const StyledBDLPage = styled.div`
+  max-width: 1920px;
+  margin: auto;
   display: flex;
   flex-direction: column;
-  margin: 20px;
   gap: 10px;
   text-align: justify;
   /* font-size: 30px;
@@ -98,6 +99,7 @@ export const StyledBDLPage = styled.div`
 
 export const StyledSection = styled.section`
   background-color: white;
+  margin: 0 20px;
   border: 1px solid rgb(203, 203, 203);
   border-radius: 10px;
   padding: 20px 40px;
