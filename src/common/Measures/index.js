@@ -1,4 +1,4 @@
-export default measures = {
+export const measures = {
   totalRecords: 73,
   results: [
     {

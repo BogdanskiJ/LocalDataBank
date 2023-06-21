@@ -22,7 +22,7 @@ import {
 } from './styled'
 import {DisplayResultsSwitcher} from '../../manyVariables/displayingResults/Switchers/DisplayResultsSwitcher'
 import {useRef} from 'react'
-import measures from '../../../common/Measures'
+import {measures} from '../../../common/Measures'
 
 export const Results = () => {
   const manyVariablesFinalData = useSelector(selectManyVariablesFinalData)
