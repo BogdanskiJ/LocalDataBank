@@ -15,7 +15,9 @@ export default function Navigation() {
             <IconCategory />
             Dziedziny tematyczne
           </StyledNavLink>
-          <StyledNavLink to="/bdl">BDL</StyledNavLink>
+          <StyledNavLink to="/bank-danych-lokalnych">
+            Bank Danych Lokalnych
+          </StyledNavLink>
         </StyledNavBox>
       </StyledNavUl>
     </nav>

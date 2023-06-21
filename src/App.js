@@ -1,7 +1,7 @@
 import {HashRouter, Redirect, Route, Switch} from 'react-router-dom'
 import Navigation from './common/Navigation'
 import TeritorialUnitManyVariables from './features/teritorialUnit'
-import BDL from './features/bdl'
+import LocalDataBank from './features/LocalDataBank'
 import ManyVariablesOneUnit from './features/manyVariables'
 
 function App() {
@@ -12,8 +12,8 @@ function App() {
         <Route path="/jednostki-terytorialne">
           <TeritorialUnitManyVariables />
         </Route>
-        <Route path="/bdl">
-          <BDL />
+        <Route path="/bank-danych-lokalnych">
+          <LocalDataBank />
         </Route>
         <Route path="/dziedziny-tematyczne">
           <ManyVariablesOneUnit />

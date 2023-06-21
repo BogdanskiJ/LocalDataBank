@@ -1,5 +1,13 @@
 import styled from 'styled-components'
 
+export const StyledBDLPage = styled.div`
+  max-width: 1920px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: justify;
+`
 export const StyledHead = styled.h1`
   display: flex;
   justify-content: center;
@@ -32,77 +40,13 @@ export const StyledHead = styled.h1`
   }
 `
 
-export const StyledParagraph = styled.p`
-  display: flex;
-  justify-content: flex-start;
-  text-align: justify;
-  line-height: 1.45;
-  /* font-size: 30px;
-
-	@media (min-width: ${({theme}) => theme.breakpoint.xxl}) {
-		font-size: 30px;
-	}
-
-	@media ((max-width: ${({theme}) => theme.breakpoint.xxl})) {
-		font-size: 28px;
-	}
-
-	@media ((max-width: ${({theme}) => theme.breakpoint.xl})) {
-		font-size: 26px;
-	}
-
-	@media ((max-width: ${({theme}) => theme.breakpoint.lg})) {
-		font-size: 24px;
-	}
-
-	@media ((max-width: ${({theme}) => theme.breakpoint.md})) {
-		font-size: 22px;
-	}
-
-	@media ((max-width: ${({theme}) => theme.breakpoint.sm})) {
-		font-size: 18px;
-	} */
-`
-export const StyledBDLPage = styled.div`
-  max-width: 1920px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  text-align: justify;
-  /* font-size: 30px;
-
-	@media (min-width: ${({theme}) => theme.breakpoint.xxl}) {
-		font-size: 30px;
-	}
-
-	@media ((max-width: ${({theme}) => theme.breakpoint.xxl})) {
-		font-size: 28px;
-	}
-
-	@media ((max-width: ${({theme}) => theme.breakpoint.xl})) {
-		font-size: 26px;
-	}
-
-	@media ((max-width: ${({theme}) => theme.breakpoint.lg})) {
-		font-size: 24px;
-	}
-
-	@media ((max-width: ${({theme}) => theme.breakpoint.md})) {
-		font-size: 22px;
-	}
-
-	@media ((max-width: ${({theme}) => theme.breakpoint.sm})) {
-		font-size: 18px;
-	} */
-`
-
 export const StyledSection = styled.section`
   background-color: white;
   margin: 0 20px;
   border: 1px solid rgb(203, 203, 203);
   border-radius: 10px;
   padding: 20px 40px;
+
   @media (min-width: ${({theme}) => theme.breakpoint.xxl}) {
     font-size: 18px;
   }
@@ -131,6 +75,7 @@ export const StyledSection = styled.section`
 export const StyledSectionHeader = styled.h2`
   margin: auto;
   text-align: center;
+
   @media (min-width: ${({theme}) => theme.breakpoint.xxl}) {
     font-size: 24px;
   }
@@ -156,16 +101,29 @@ export const StyledSectionHeader = styled.h2`
   }
 `
 
+export const StyledParagraph = styled.p`
+  display: flex;
+  justify-content: flex-start;
+  text-align: justify;
+  line-height: 1.45;
+`
+
+export const StyledTableBox = styled.table`
+  display: flex;
+  justify-content: flex-start;
+  text-align: justify;
+  line-height: 1.45;
+`
+
 export const StyledTbody = styled.tbody`
   margin: auto;
   text-align: center;
   border-collapse: collapse;
+
   tr:nth-child(odd) {
     background-color: #f2f2f2;
   }
 `
-
-export const StyledTr = styled.tr``
 
 export const StyledTh = styled.th`
   padding: 10px;
@@ -179,15 +137,12 @@ export const StyledTd = styled.td`
 
 export const StyledAnchor = styled.a`
   color: blue;
+
   &:hover {
     color: blue;
   }
   &:visited {
     color: #6827ff;
-  }
-  &:hover {
-    text-decoration: underline;
-    color: purple;
   }
   &:active {
     color: red;

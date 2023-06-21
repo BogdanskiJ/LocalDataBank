@@ -1,4 +1,6 @@
 import {useDispatch} from 'react-redux'
+import {useLocation} from 'react-router-dom'
+import {useEffect} from 'react'
 import {
   StyledAnchor,
   StyledBDLPage,
@@ -6,28 +8,22 @@ import {
   StyledParagraph,
   StyledSection,
   StyledSectionHeader,
+  StyledTableBox,
   StyledTbody,
   StyledTd,
   StyledTh,
-  StyledTr,
+  tr,
 } from './styled'
-import {useLocation} from 'react-router-dom'
-import {
-  setProvinceNameBegin,
-  setProvinceNameUnitBegin,
-  setTeritorialUnitBegin,
-} from '../teritorialUnit/teritorialUnitSlice'
-import {
-  setManyVariablesBegin,
-  setProvinceNameVariablesBegin,
-} from '../manyVariables/manyVariablesSlice'
-import {useEffect} from 'react'
+import {setTeritorialUnitBegin} from '../teritorialUnit/teritorialUnitSlice'
+import {setManyVariablesBegin} from '../manyVariables/manyVariablesSlice'
 import {setSelectedMapBegin} from '../maps/mapsSlice'
-function BDL() {
+
+export default function LocalDataBank() {
   const dispatch = useDispatch()
   const {pathname} = useLocation()
+
   useEffect(() => {
-    pathname === '/bdl'
+    pathname === '/bank-danych-lokalnych'
       ? dispatch(setTeritorialUnitBegin()) &&
         dispatch(setManyVariablesBegin()) &&
         dispatch(setSelectedMapBegin())
@@ -43,8 +39,8 @@ function BDL() {
           społeczeństwie i środowisku.
         </StyledSectionHeader>
         <StyledParagraph>
-          BDL oferuje ponad 40 tys. cech statystycznych pogrupowanych
-          tematycznie. Pierwsze dane pochodzą z 1995 roku.
+          Bank Danych Lokalnych oferuje ponad 40 tys. cech statystycznych
+          pogrupowanych tematycznie. Pierwsze dane pochodzą z 1995 roku.
         </StyledParagraph>
         <ul>
           <li>Dane i wskaźniki opisują powiaty, województwa i Polskę. </li>
@@ -55,11 +51,11 @@ function BDL() {
         </ul>
         <StyledParagraph>
           Aplikacja API pozwala przeglądać i pobierać do dalszego przetwarzania
-          pełny zakres danych znajdujących się w Banku. API do BDL zrealizowano
-          w ramach partnerskiego projektu „Otwarte dane - dostęp, standard,
-          edukacja”, którego Liderem jest Ministerstwo Cyfryzacji. Projekt jest
-          współfinansowany ze środków Unii Europejskiej z Programu Operacyjnego
-          Polska Cyfrowa.
+          pełny zakres danych znajdujących się w Banku. API do Banku Danych
+          Lokalnych zrealizowano w ramach partnerskiego projektu „Otwarte dane -
+          dostęp, standard, edukacja”, którego Liderem jest Ministerstwo
+          Cyfryzacji. Projekt jest współfinansowany ze środków Unii Europejskiej
+          z Programu Operacyjnego Polska Cyfrowa.
         </StyledParagraph>
       </StyledSection>
       <StyledSection>
@@ -68,30 +64,30 @@ function BDL() {
           Ze względów bezpieczeństwa API na ilość żądań nałożone są limity
           ilościowe.
         </StyledParagraph>
-        <StyledParagraph>
+        <StyledTableBox>
           <StyledTbody>
-            <StyledTr>
+            <tr>
               <StyledTh>Okres</StyledTh>
               <StyledTh>Ilość zapytań</StyledTh>
-            </StyledTr>
-            <StyledTr>
+            </tr>
+            <tr>
               <StyledTd>1s</StyledTd>
               <StyledTd>5</StyledTd>
-            </StyledTr>
-            <StyledTr>
+            </tr>
+            <tr>
               <StyledTd>15m</StyledTd>
               <StyledTd>100</StyledTd>
-            </StyledTr>
-            <StyledTr>
+            </tr>
+            <tr>
               <StyledTd>12h</StyledTd>
               <StyledTd>1&nbsp;000</StyledTd>
-            </StyledTr>
-            <StyledTr>
+            </tr>
+            <tr>
               <StyledTd>7d</StyledTd>
               <StyledTd>10&nbsp;000</StyledTd>
-            </StyledTr>
+            </tr>
           </StyledTbody>
-        </StyledParagraph>
+        </StyledTableBox>
       </StyledSection>
       <StyledSection>
         <StyledSectionHeader>Licencja</StyledSectionHeader>
@@ -113,4 +109,3 @@ function BDL() {
     </StyledBDLPage>
   )
 }
-export default BDL
