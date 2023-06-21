@@ -21,7 +21,7 @@ import {
 } from './styled'
 import {DisplayResultsSwitcher} from '../../teritorialUnit/displayingResults/Switchers/DisplayResultsSwitcher'
 import {useRef} from 'react'
-import {measures} from '../../../common/measures'
+import measures from '../../../common/Measures'
 
 export const Results = () => {
   const teritorialUnitFinalData = useSelector(selectTeritorialUnitFinalData)

@@ -10,7 +10,6 @@ import {
   selectManyVariablesVariablesName,
 } from '../manyVariablesSlice'
 import {useSelector} from 'react-redux'
-import {measures} from '../../../common/measures'
 import {Table} from './Table'
 import {LineGraph} from './LineGraph/index'
 import {useEffect} from 'react'
@@ -23,6 +22,7 @@ import {
 } from './styled'
 import {DisplayResultsSwitcher} from '../../manyVariables/displayingResults/Switchers/DisplayResultsSwitcher'
 import {useRef} from 'react'
+import measures from '../../../common/Measures'
 
 export const Results = () => {
   const manyVariablesFinalData = useSelector(selectManyVariablesFinalData)
