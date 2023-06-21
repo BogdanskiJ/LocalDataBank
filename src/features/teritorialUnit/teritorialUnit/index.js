@@ -15,8 +15,8 @@ import {
   setTeritorialUnitVariablesNames,
 } from '../teritorialUnitSlice'
 import {
-  SelectBoxManyVariables,
-  SelectBoxOneVariable,
+  SelectManyVariables,
+  SelectOneVariable,
 } from '../../../common/Select/select'
 import LoadingPage from '../../../common/LoadingPage'
 import {
@@ -60,7 +60,7 @@ function TeritorialUnit() {
           <StyledLabelBox>
             <StyledLabel>Wybierz kategorię: </StyledLabel>
             <StyledSelectBox>
-              <SelectBoxOneVariable
+              <SelectOneVariable
                 dataType={teritorialUnit}
                 setValue={setTeritorialUnitCategoryName}
               />
@@ -80,7 +80,7 @@ function TeritorialUnit() {
               <StyledLabelBox>
                 <StyledLabel>Wybierz grupę: </StyledLabel>
                 <StyledSelectBox>
-                  <SelectBoxOneVariable
+                  <SelectOneVariable
                     dataType={teritorialUnitGroup}
                     setValue={setTeritorialUnitGroupName}
                   />
@@ -105,7 +105,7 @@ function TeritorialUnit() {
               <StyledLabelBox>
                 <StyledLabel>Wybierz podgrupę: </StyledLabel>
                 <StyledSelectBox>
-                  <SelectBoxOneVariable
+                  <SelectOneVariable
                     dataType={teritorialUnitSubGroup}
                     setValue={setTeritorialUnitSubGroupName}
                   />
@@ -133,7 +133,7 @@ function TeritorialUnit() {
                     Wybierz zmienne: <StyledLabelText>max 10</StyledLabelText>
                   </StyledLabel>
                   <StyledMultiSelectBox>
-                    <SelectBoxManyVariables
+                    <SelectManyVariables
                       dataType={teritorialUnitVariables}
                       setValue={setTeritorialUnitVariablesNames}
                     />

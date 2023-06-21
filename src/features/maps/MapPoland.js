@@ -21,7 +21,7 @@ import {
 import {usePoland} from './province/MapPoland'
 import {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {SelectBoxRegionNameDisplay} from '../../common/Select/select'
+import {SelectRegionName} from '../../common/Select/select'
 import {setProvinceName} from '../teritorialUnit/teritorialUnitSlice'
 import {ReactComponent as Check} from '../../common/images/check.svg'
 import {ReactComponent as NoCheck} from '../../common/images/noCheck.svg'
@@ -144,12 +144,12 @@ export const MapPoland = () => {
           <StyledRegionNameLabel>
             Wybierz jednostkę terytorialną - POWIATY
           </StyledRegionNameLabel>
-          <SelectBoxRegionNameDisplay
+          <SelectRegionName
             poland={poland}
             handleMouseOut={handleMouseOut}
             handleMouseOver={handleMouseOver}
             isHovering={isHovering}
-            setProvinceName={setProvinceName}></SelectBoxRegionNameDisplay>
+            setProvinceName={setProvinceName}></SelectRegionName>
         </StyledSelect>
       </StyledBoxPoland>
     </Container>

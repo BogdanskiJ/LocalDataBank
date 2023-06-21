@@ -15,8 +15,8 @@ import {
   setManyVariablesVariablesNames,
 } from '../manyVariablesSlice'
 import {
-  SelectBoxManyVariables,
-  SelectBoxOneVariable,
+  SelectManyVariables,
+  SelectOneVariable,
 } from '../../../common/Select/select'
 import LoadingPage from '../../../common/LoadingPage'
 import {
@@ -56,7 +56,7 @@ function ManyVariables() {
           <StyledLabelBox>
             <StyledLabel>Wybierz kategorię: </StyledLabel>
             <StyledSelectBox>
-              <SelectBoxOneVariable
+              <SelectOneVariable
                 dataType={manyVariables}
                 setValue={setManyVariablesCategoryName}
               />
@@ -76,7 +76,7 @@ function ManyVariables() {
               <StyledLabelBox>
                 <StyledLabel>Wybierz grupę: </StyledLabel>
                 <StyledSelectBox>
-                  <SelectBoxOneVariable
+                  <SelectOneVariable
                     dataType={manyVariablesGroup}
                     setValue={setManyVariablesGroupName}
                   />
@@ -101,7 +101,7 @@ function ManyVariables() {
               <StyledLabelBox>
                 <StyledLabel>Wybierz podgrupę: </StyledLabel>
                 <StyledSelectBox>
-                  <SelectBoxOneVariable
+                  <SelectOneVariable
                     dataType={manyVariablesSubGroup}
                     setValue={setManyVariablesSubGroupName}
                   />
@@ -126,7 +126,7 @@ function ManyVariables() {
               <StyledLabelBox>
                 <StyledLabel>Wybierz zmienną: </StyledLabel>
                 <StyledSelectBox>
-                  <SelectBoxOneVariable
+                  <SelectOneVariable
                     dataType={manyVariablesVariables}
                     setValue={setManyVariablesVariablesNames}
                   />
@@ -159,7 +159,7 @@ export default ManyVariables
 //                     Wybierz zmienne: <StyledLabelText>max 10</StyledLabelText>
 //                   </StyledLabel>
 //                   <StyledMultiSelectBox>
-//                     <SelectBoxManyVariables
+//                     <SelectManyVariables
 //                       dataType={manyVariablesVariables}
 //                       setValue={setManyVariablesVariablesNames}
 //                     />
