@@ -105,7 +105,7 @@ export default function Results() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      teritorialUnitAutoScrollSwitcher ? scrollToResults() : console.log()
+      teritorialUnitAutoScrollSwitcher ? scrollToResults() : ''
     }, 200)
     return () => clearTimeout(timer)
   }, [valuesArray, yearsArray])

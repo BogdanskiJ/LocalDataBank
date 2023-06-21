@@ -80,9 +80,7 @@ export const SelectOneVariable = ({dataType, setValue}) => {
             ? unit.n1
             : unit.name,
         }))}
-        onChange={target =>
-          dispatch(setValue(target)) && console.log(target)
-        }></Select>
+        onChange={target => dispatch(setValue(target))}></Select>
     </StyledSelect>
   )
 }
