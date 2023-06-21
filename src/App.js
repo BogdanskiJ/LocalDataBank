@@ -1,5 +1,5 @@
 import {HashRouter, Redirect, Route, Switch} from 'react-router-dom'
-import {Navigation} from './common/Navigation'
+import Navigation from './common/Navigation'
 import TeritorialUnitManyVariables from './features/teritorialUnit'
 import BDL from './features/bdl'
 import ManyVariablesOneUnit from './features/manyVariables'

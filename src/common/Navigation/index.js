@@ -1,18 +1,12 @@
-import {
-  Container,
-  StyledNavButton,
-  StyledNavLink,
-  StyledNavText,
-  StyledNavigation,
-} from './styled'
 import {ReactComponent as IconPoland} from './images/iconPoland.svg'
 import {ReactComponent as IconCategory} from './images/iconCategory.svg'
+import {StyledNavBox, StyledNavLink, StyledNavUl} from './styled'
 
-export const Navigation = () => {
+export default function Navigation() {
   return (
     <nav>
-      <StyledNavigation>
-        <Container>
+      <StyledNavUl>
+        <StyledNavBox>
           <StyledNavLink to="/jednostki-terytorialne">
             <IconPoland />
             Jednostki terytorialne
@@ -22,8 +16,8 @@ export const Navigation = () => {
             Dziedziny tematyczne
           </StyledNavLink>
           <StyledNavLink to="/bdl">BDL</StyledNavLink>
-        </Container>
-      </StyledNavigation>
+        </StyledNavBox>
+      </StyledNavUl>
     </nav>
   )
 }
