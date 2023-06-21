@@ -1,7 +1,7 @@
 import {ReactComponent as ErrorIcon} from './errorIcon.svg'
 import {Error, IconContainer, Info} from './styled'
 
-function ErrorPage() {
+export default function ErrorPage() {
   return (
     <>
       <IconContainer>
@@ -14,4 +14,3 @@ function ErrorPage() {
     </>
   )
 }
-export default ErrorPage
