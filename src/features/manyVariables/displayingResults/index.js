@@ -10,7 +10,7 @@ import {
   selectManyVariablesVariablesName,
 } from '../manyVariablesSlice'
 import {useSelector} from 'react-redux'
-import {Table} from './Table'
+import Table from './Table'
 import {useEffect} from 'react'
 import {
   StyledResultHeader,
@@ -35,37 +35,37 @@ export const Results = () => {
   const manyVariablesAutoScrollSwitcher = useSelector(
     selectManyVariablesAutoScrollSwitcher,
   )
-  const [data, setData] = useState(manyVariablesFinalData)
-  const [newArray, setNewArray] = useState([])
-  const [newArray2, setNewArray2] = useState([])
-  const [data1, setData1] = useState(manyVariablesFinalValues)
+  const [finalData, setFinalData] = useState(manyVariablesFinalData)
+  const [valuesArray, setValuesArray] = useState([])
+  const [yearsArray, setYearsArray] = useState([])
+  const [finalValues] = useState(manyVariablesFinalValues)
 
   const manyVariablesVariablesName = useSelector(
     selectManyVariablesVariablesName,
   )
 
   useEffect(() => {
-    setData(manyVariablesFinalData)
+    setFinalData(manyVariablesFinalData)
   }, [manyVariablesFinalData])
 
   const addNewYearToArray = () => {
     let namesArray = []
-    data.results.map(result => (namesArray = [...namesArray, result.id]))
+    finalData.results.map(result => (namesArray = [...namesArray, result.id]))
     let temporaryArray = []
-    data1.map(values =>
+    finalValues.map(values =>
       values.map(value => (temporaryArray = [...temporaryArray, value.year])),
     )
     const uniqueArray = [...new Set(temporaryArray)]
     const finalArray = uniqueArray.map(element => ({year: element}))
-    setNewArray2(finalArray)
+    setYearsArray(finalArray)
   }
 
   const addValuesToArray = () => {
-    let valuesArray = [...newArray2]
-    let valuesArray2 = [...newArray2]
+    let valuesArray = [...yearsArray]
+    let valuesArray2 = [...yearsArray]
     let index = ''
 
-    data.results.map(results =>
+    finalData.results.map(results =>
       results.values.map(
         values => (
           (index = valuesArray.findIndex(
@@ -80,7 +80,7 @@ export const Results = () => {
         ),
       ),
     )
-    setNewArray(valuesArray2)
+    setValuesArray(valuesArray2)
   }
 
   useEffect(() => {
@@ -89,7 +89,7 @@ export const Results = () => {
 
   useEffect(() => {
     addValuesToArray()
-  }, [newArray2, manyVariablesFinalData, manyVariablesFinalValues])
+  }, [yearsArray, manyVariablesFinalData, manyVariablesFinalValues])
 
   const measure = `[${
     measures.results.find(
@@ -111,7 +111,7 @@ export const Results = () => {
       manyVariablesAutoScrollSwitcher ? scrollToResults() : console.log()
     }, 200)
     return () => clearTimeout(timer)
-  }, [newArray, newArray2])
+  }, [valuesArray, yearsArray])
 
   return (
     <StyledResultsPage>
@@ -129,9 +129,9 @@ export const Results = () => {
       </StyledResultHeader>
       <StyledResultsBox>
         {manyVariablesDisplayResultsSwitcher ? (
-          <LineGraph measure={measure} newArray={newArray} />
+          <LineGraph measure={measure} valuesArray={valuesArray} />
         ) : (
-          <Table measure={measure} newArray2={newArray} />
+          <Table measure={measure} valuesArray={valuesArray} />
         )}
       </StyledResultsBox>
     </StyledResultsPage>

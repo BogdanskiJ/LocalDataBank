@@ -9,7 +9,7 @@ import windowSize from '../../../../common/WindowSize'
 Chart.register(CategoryScale)
 Chart.register(...registerables)
 
-export default function LineGraph({measure, newArray}) {
+export default function LineGraph({measure, valuesArray}) {
   const manyVariablesFinalData = useSelector(selectManyVariablesFinalData)
 
   const [finalDataResults, setFinalDataResults] = useState(
@@ -21,7 +21,7 @@ export default function LineGraph({measure, newArray}) {
     setFinalDataResults(manyVariablesFinalData.results)
   }, [manyVariablesFinalData])
 
-  const xAxis = newArray.map(value => value.year)
+  const xAxis = valuesArray.map(value => value.year)
 
   const dataForLabel = data => {
     let array = []

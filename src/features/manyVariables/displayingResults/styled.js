@@ -180,21 +180,6 @@ export const StyledTable = styled.table`
  */
 `
 
-export const StyledTbody = styled.tbody`
-  display: table-row-group;
-`
-
-export const StyledThead = styled.thead`
-  display: table-header-group;
-  background-color: rgba(0, 0, 0, 0.04);
-`
-
-export const StyledArrow = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-`
-
 export const StyledTableName = styled.h3`
   margin: auto;
   display: flex;

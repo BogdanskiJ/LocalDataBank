@@ -1,65 +1,63 @@
-import React, {useRef} from 'react'
 import {useState} from 'react'
 import {useEffect} from 'react'
 import {useSelector} from 'react-redux'
 import {
-  selectManyVariablesFinalData,
-  selectManyVariablesFinalValues,
-  selectManyVariablesVariablesName,
-} from '../../manyVariablesSlice'
-import {
-  StyledArrow,
-  StyledTable,
-  StyledTbody,
-  StyledTd,
-  StyledTdYear,
-  StyledTh,
+  StyledTr,
+  StyledThead,
   StyledThArrow,
   StyledThYear,
-  StyledThead,
-  StyledTr,
-} from '../styled'
-import {StyledTablePage, StyledTrThead} from './styled'
-import {Arrow} from './Arrow'
+  StyledTh,
+  StyledTd,
+  StyledTdYear,
+  StyledTbody,
+  StyledTable,
+  StyledTablePage,
+  StyledTrThead,
+  StyledArrow,
+} from './styled'
+import {
+  selectManyVariablesFinalData,
+  selectManyVariablesFinalValues,
+} from '../../manyVariablesSlice'
+import {Arrow} from '../../../../common/Arrow'
 
-export const Table = ({measure, newArray2}) => {
+export default function Table({valuesArray}) {
   const manyVariablesFinalData = useSelector(selectManyVariablesFinalData)
   const manyVariablesFinalValues = useSelector(selectManyVariablesFinalValues)
-  const manyVariablesVariablesName = useSelector(
-    selectManyVariablesVariablesName,
+
+  const [sortedArray, setSortedArray] = useState(valuesArray)
+  const [order, setOrder] = useState(['year', 'ASC'])
+  const [sortBy, setSortBy] = useState('year')
+  const [finalDataResults, setFinalDataResults] = useState(
+    manyVariablesFinalData.results,
   )
 
-  const [newArray3, setNewArray3] = useState(newArray2)
-  const [order, setOrder] = useState(['year', 'ASC'])
-  const [data1, setData1] = useState(manyVariablesFinalData.results)
-  const [sort, setSort] = useState('year')
+  useEffect(() => {
+    setSortedArray(valuesArray)
+  }, [valuesArray, manyVariablesFinalValues])
 
   useEffect(() => {
-    setNewArray3(newArray2)
-  }, [newArray2, manyVariablesFinalValues])
-
-  useEffect(() => {
-    setData1(manyVariablesFinalData.results)
+    setFinalDataResults(manyVariablesFinalData.results)
   }, [manyVariablesFinalData])
 
   const sorting = col => {
-    setSort(col)
+    setSortBy(col)
     if (order[1] === 'DSC') {
-      const sorted = [...newArray3].sort((a, b) => (a[col] > b[col] ? 1 : -1))
-      setNewArray3(sorted)
+      const sorted = [...sortedArray].sort((a, b) => (a[col] > b[col] ? 1 : -1))
+      setSortedArray(sorted)
       setOrder([col, 'ASC'])
     }
 
     if (order[1] === 'ASC') {
-      const sorted = [...newArray3].sort((a, b) => (a[col] < b[col] ? 1 : -1))
-      setNewArray3(sorted)
+      const sorted = [...sortedArray].sort((a, b) => (a[col] < b[col] ? 1 : -1))
+      setSortedArray(sorted)
       setOrder([col, 'DSC'])
     }
   }
 
   const thead = data1 => (
     <StyledTrThead>
-      <StyledThYear active={sort === 'year'} onClick={() => sorting('year')}>
+      <StyledThYear active={sortBy === 'year'} onClick={() => sorting('year')}>
         <StyledThArrow style={{justifyContent: 'left'}}>
           {'Rok'}
           <StyledArrow>
@@ -69,7 +67,7 @@ export const Table = ({measure, newArray2}) => {
       </StyledThYear>
       {data1.map(results => (
         <StyledTh
-          active={sort === `${results.id}`}
+          active={sortBy === `${results.id}`}
           onClick={() => sorting(`${results.id}`)}>
           <StyledThArrow>
             <StyledArrow>
@@ -83,16 +81,16 @@ export const Table = ({measure, newArray2}) => {
   )
 
   const tbody = () => {
-    return newArray3.map(results => (
+    return sortedArray.map(results => (
       <StyledTr>
-        <StyledTdYear active={sort === 'year'}>{results.year}</StyledTdYear>
-        {data1.map(element =>
+        <StyledTdYear active={sortBy === 'year'}>{results.year}</StyledTdYear>
+        {finalDataResults.map(element =>
           results[element.id] ? (
-            <StyledTd active={sort === `${element.id}`}>
+            <StyledTd active={sortBy === `${element.id}`}>
               {results[element.id]}
             </StyledTd>
           ) : (
-            <StyledTd active={sort === `${element.id}`}>0</StyledTd>
+            <StyledTd active={sortBy === `${element.id}`}>0</StyledTd>
           ),
         )}
       </StyledTr>
@@ -102,7 +100,7 @@ export const Table = ({measure, newArray2}) => {
   return (
     <StyledTablePage>
       <StyledTable>
-        <StyledThead>{thead(data1)}</StyledThead>
+        <StyledThead>{thead(finalDataResults)}</StyledThead>
         <StyledTbody>{tbody()}</StyledTbody>
       </StyledTable>
     </StyledTablePage>
