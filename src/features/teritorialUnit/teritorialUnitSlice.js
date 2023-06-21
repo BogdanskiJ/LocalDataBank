@@ -55,6 +55,18 @@ const teritorialUnitSlice = createSlice({
     fetchTeritorialUnitError: state => {
       state.status = 'error'
     },
+
+    setTeritorialUnitBegin: state => {
+      state.categoryName = ''
+      state.status = 'loading'
+      state.groupData = ''
+      state.subGroupData = ''
+      state.variablesData = ''
+      state.groupName = ''
+      state.subGroupName = ''
+      state.variablesName = ''
+      state.finalData = ''
+    },
     setTeritorialUnitCategoryName: (state, {payload: name}) => {
       state.categoryName = name
       state.status = 'loading'
@@ -99,6 +111,9 @@ const teritorialUnitSlice = createSlice({
     setTeritorialUnitError: state => {
       state.status = 'error'
     },
+    setTeritorialUnitLoading: state => {
+      state.status = 'loading'
+    },
   },
 })
 
@@ -109,6 +124,7 @@ export const {
   fetchTeritorialUnitVariables,
   fetchTeritorialUnitFinalData,
   fetchTeritorialUnitError,
+  setTeritorialUnitBegin,
   setTeritorialUnitCategoryName,
   setTeritorialUnitGroupName,
   setTeritorialUnitSubGroupName,
@@ -117,6 +133,7 @@ export const {
   setTeritorialUnitDisplayResultsSwitcher,
   setTeritorialUnitAutoScrollSwitcher,
   setTeritorialUnitError,
+  setTeritorialUnitLoading,
 } = teritorialUnitSlice.actions
 
 export const selectTeritorialUnitState = state => state.teritorialUnit
