@@ -133,7 +133,6 @@ export default function MapPoland() {
             }}
           />
         </StyledMapPoland>
-
         <StyledSelect>
           <StyledRegionNameLabel>
             Wybierz jednostkę terytorialną - POWIATY

@@ -1,9 +1,5 @@
-import {useRef, useState} from 'react'
-import {
-  selectRegionAndProvincesMapsSelectedMap,
-  setSelectedMap,
-} from '../maps/mapsSlice'
-import {StyledLi, StyledSvg} from './styled'
+import {useState} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import useDolnoslaskie from './province/MapDolnoslaskie'
 import useKujawskoPomorskie from './province/MapKujawskopomorskie'
 import useLodzkie from './province/MapLodzkie'
@@ -20,11 +16,16 @@ import useSwietokrzyskie from './province/MapSwietokrzyskie'
 import useWarminskoMazurskie from './province/MapWarminsko-mazurskie'
 import useWielkopolskie from './province/MapWielkopolskie'
 import useZachodnioPomorskie from './province/MapZachodniopomorskie'
-import {useDispatch, useSelector} from 'react-redux'
+import {
+  selectRegionAndProvincesMapsSelectedMap,
+  setSelectedMap,
+} from '../maps/mapsSlice'
+import {StyledLi, StyledSvg} from './styled'
 
-export const useAllProvinces = () => {
+export default useAllProvinces = () => {
   const dispatch = useDispatch()
-
+  const [isHovering, setIsHovering] = useState(false)
+  const selectedMap = useSelector(selectRegionAndProvincesMapsSelectedMap)
   const swietokrzyskie = useSwietokrzyskie()
   const dolnoslaskie = useDolnoslaskie()
   const kujawskopomorskie = useKujawskoPomorskie()
@@ -41,11 +42,8 @@ export const useAllProvinces = () => {
   const warminskomazurskie = useWarminskoMazurskie()
   const wielkopolskie = useWielkopolskie()
   const zachodniopomorskie = useZachodnioPomorskie()
-  const selectedMap = useSelector(selectRegionAndProvincesMapsSelectedMap)
-
   const preserveAspectRatio = 'xMidYMid meet'
 
-  const [isHovering, setIsHovering] = useState(false)
   const handleMouseOver = region => {
     setIsHovering(region)
   }
@@ -103,23 +101,12 @@ export const useAllProvinces = () => {
     ))
   }
 
-  const regionList = province => {
-    const newProvince = [...province].map(region => ({
-      name: region.name,
-      id: region.id,
-    }))
-    return newProvince
-      .map(region => region)
-      .sort((a, b) => (a.name > b.name ? 1 : -1))
-  }
-
   const allProvinces = [
     {
       name: 'Dolnośląskie',
       id: 1,
       mapLink: displayMap(dolnoslaskie),
       mapProvincesName: displayProvincesName(dolnoslaskie),
-      regionNameList: regionList(dolnoslaskie),
       viewBox: '0 0 303 275',
       preserveAspectRatio: preserveAspectRatio,
     },

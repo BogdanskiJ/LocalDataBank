@@ -13,7 +13,6 @@ const RegionAndProvincesMapsSlice = createSlice({
     },
     setSelectedMapBegin: state => {
       state.selectedMap = ''
-      console.log('state.selectedMap', state.selectedMap)
     },
   },
 })
