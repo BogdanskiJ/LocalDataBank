@@ -119,37 +119,63 @@ function ManyVariables() {
         ''
       )}
 
-      <StyledBox>
-        {manyVariablesSubGroupName !== '' ? (
-          <div>
-            {manyVariablesVariables ? (
-              <div>
-                <StyledMultiSelectLabelBox>
-                  <StyledLabel>
-                    Wybierz zmienne: <StyledLabelText>max 10</StyledLabelText>
-                  </StyledLabel>
-                  <StyledMultiSelectBox>
-                    <SelectBoxManyVariables
-                      dataType={manyVariablesVariables}
-                      setValue={setManyVariablesVariablesNames}
-                    />
-
-                    <StyledCheckBox>
-                      {manyVariablesVariablesName ? <Check /> : <NoCheck />}
-                    </StyledCheckBox>
-                  </StyledMultiSelectBox>
-                  <AutoScrollSwitcher />
-                </StyledMultiSelectLabelBox>
-              </div>
-            ) : (
-              <LoadingPage title="Pobieram listę zmiennych" />
-            )}
-          </div>
-        ) : (
-          ''
-        )}
-      </StyledBox>
+      {manyVariablesSubGroupName !== '' ? (
+        <div>
+          {manyVariablesVariables ? (
+            <div>
+              <StyledLabelBox>
+                <StyledLabel>Wybierz zmienną: </StyledLabel>
+                <StyledSelectBox>
+                  <SelectBoxOneVariable
+                    dataType={manyVariablesVariables}
+                    setValue={setManyVariablesVariablesNames}
+                  />
+                  <StyledCheckBox>
+                    {manyVariablesVariablesName ? <Check /> : <NoCheck />}
+                  </StyledCheckBox>
+                </StyledSelectBox>
+                <AutoScrollSwitcher />
+              </StyledLabelBox>
+            </div>
+          ) : (
+            <LoadingPage title="Pobieram listę zmiennych" />
+          )}
+        </div>
+      ) : (
+        ''
+      )}
     </StyledManyVariables>
   )
 }
 export default ManyVariables
+
+// <StyledBox>
+//         {manyVariablesSubGroupName !== '' ? (
+//           <div>
+//             {manyVariablesVariables ? (
+//               <div>
+//                 <StyledMultiSelectLabelBox>
+//                   <StyledLabel>
+//                     Wybierz zmienne: <StyledLabelText>max 10</StyledLabelText>
+//                   </StyledLabel>
+//                   <StyledMultiSelectBox>
+//                     <SelectBoxManyVariables
+//                       dataType={manyVariablesVariables}
+//                       setValue={setManyVariablesVariablesNames}
+//                     />
+
+//                     <StyledCheckBox>
+//                       {manyVariablesVariablesName ? <Check /> : <NoCheck />}
+//                     </StyledCheckBox>
+//                   </StyledMultiSelectBox>
+//                   <AutoScrollSwitcher />
+//                 </StyledMultiSelectLabelBox>
+//               </div>
+//             ) : (
+//               <LoadingPage title="Pobieram listę zmiennych" />
+//             )}
+//           </div>
+//         ) : (
+//           ''
+//         )}
+//       </StyledBox>
