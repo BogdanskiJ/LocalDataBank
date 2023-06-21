@@ -75,10 +75,7 @@ export const Table = ({measure, newArray2}) => {
             <StyledArrow>
               <Arrow order={order} sort={`${results.id}`} />
             </StyledArrow>
-            {
-              manyVariablesVariablesName.find(name => name.value === results.id)
-                .label
-            }
+            {results.name}
           </StyledThArrow>
         </StyledTh>
       ))}
