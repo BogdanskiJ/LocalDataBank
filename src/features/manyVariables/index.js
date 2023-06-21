@@ -1,17 +1,27 @@
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import ManyVariables from './manyVariables'
 import {MapPoland} from '../maps/MapPoland'
 import {StyledHead, StyledPageBody, StyledResults} from './styled'
 import {
-  selectProvinceName,
   selectManyVariablesFinalData,
   selectManyVariablesStatus,
+  selectManyVariablesSubGroupData,
+  selectManyVariablesSubGroupName,
   selectManyVariablesVariablesName,
+  setProvinceNameBegin,
 } from './manyVariablesSlice'
+import {
+  selectProvinceName,
+  setProvinceNameUnitBegin,
+  setTeritorialUnitBegin,
+} from '../teritorialUnit/teritorialUnitSlice'
 import {Results} from './displayingResults'
 import NoDataPage from '../../common/NoDataPage'
 import {MapProvinces} from '../maps/MapProvinces'
 import ErrorPage from '../../common/ErrorPage'
+import {useLocation} from 'react-router-dom'
+import {useEffect} from 'react'
+import {setSelectedMapBegin} from '../maps/mapsSlice'
 
 function ManyVariablesOneUnit() {
   const manyVariablesFinalData = useSelector(selectManyVariablesFinalData)
@@ -20,6 +30,18 @@ function ManyVariablesOneUnit() {
   )
   const provinceName = useSelector(selectProvinceName)
   const status = useSelector(selectManyVariablesStatus)
+  console.log('provinceName', provinceName)
+
+  const manyVariablesSubGroupName = useSelector(selectManyVariablesSubGroupName)
+  const manyVariablesSubGroupData = useSelector(selectManyVariablesSubGroupData)
+
+  const dispatch = useDispatch()
+  const {pathname} = useLocation()
+  useEffect(() => {
+    pathname === '/dziedziny-tematyczne'
+      ? dispatch(setTeritorialUnitBegin()) && dispatch(setSelectedMapBegin())
+      : ''
+  }, [])
 
   return (
     <StyledPageBody>
@@ -27,7 +49,7 @@ function ManyVariablesOneUnit() {
         <ErrorPage />
       ) : (
         <>
-          <StyledHead>Dane dla wybranej jednostki terytorialnej</StyledHead>
+          <StyledHead>Dane według wybranej dziedziny tematycznej</StyledHead>
           <StyledResults>
             <ManyVariables />
             {provinceName === '' ? <MapPoland /> : <MapProvinces />}
@@ -38,7 +60,10 @@ function ManyVariablesOneUnit() {
               {manyVariablesFinalData !== '' ? (
                 <div>
                   {manyVariablesFinalData.totalRecords === 0 ? (
-                    <NoDataPage />
+                    <NoDataPage
+                      data={manyVariablesSubGroupData}
+                      names={manyVariablesSubGroupName}
+                    />
                   ) : (
                     <Results />
                   )}
