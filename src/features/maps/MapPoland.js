@@ -4,6 +4,7 @@ import {
   Container,
   Header,
   StyledBoxPoland,
+  StyledButtonBox,
   StyledCheck,
   StyledMapPoland,
   StyledRegionNameLabel,
@@ -26,12 +27,16 @@ import {ReactComponent as Check} from '../../common/images/check.svg'
 import {ReactComponent as NoCheck} from '../../common/images/noCheck.svg'
 import Button from '@mui/material/Button'
 import {useWindowSize} from '../../common/WindowSize'
+import {useParams} from 'react-router-dom'
+import {useLocation} from 'react-router-dom'
 
 export const MapPoland = () => {
   const dispatch = useDispatch()
   const selectedMap = useSelector(selectRegionAndProvincesMapsSelectedMap)
   const poland = usePoland()
+  console.log('selectedMap', selectedMap)
 
+  const {pathname} = useLocation()
   const [isHovering, setIsHovering] = useState(false)
 
   const handleMouseOver = province => {
@@ -39,7 +44,7 @@ export const MapPoland = () => {
   }
 
   const handleMouseDown = province => {
-    dispatch(setSelectedMap([province.name, province.id]))
+    dispatch(setSelectedMap([province.name, province.id, province.level]))
   }
 
   const handleMouseOut = () => {
@@ -50,7 +55,7 @@ export const MapPoland = () => {
 
   const buttonSx = () => {
     let style = {
-      padding: 0,
+      padding: '0 5px',
       maxWidth: 'fit-content',
       marginLeft: 'auto',
     }
@@ -65,15 +70,30 @@ export const MapPoland = () => {
       <StyledBoxPoland>
         <StyledMapPoland>
           <Header>Wybierz jednostkę terytorialną - WOJEWÓDZTWA </Header>
-          <Button
-            variant="contained"
-            size="small"
-            sx={buttonSx()}
-            onClick={() =>
-              dispatch(setSelectedMap(['POLSKA', '000000000000']))
-            }>
-            Polska
-          </Button>
+          <StyledButtonBox>
+            <Button
+              variant="contained"
+              size="small"
+              sx={buttonSx()}
+              onClick={() =>
+                dispatch(setSelectedMap(['POLSKA', '000000000000', '0']))
+              }>
+              Polska
+            </Button>
+            {pathname === '/jednostki-terytorialne' ? (
+              ''
+            ) : (
+              <Button
+                variant="contained"
+                size="small"
+                sx={buttonSx()}
+                onClick={() =>
+                  dispatch(setSelectedMap(['WOJEWÓDZTWA', '000000000000', '2']))
+                }>
+                Województwa
+              </Button>
+            )}
+          </StyledButtonBox>
           <StyledUnitBox>
             <StyledSvg
               version="1"
@@ -92,6 +112,8 @@ export const MapPoland = () => {
                         ? '#8e0b23'
                         : selectedMap[0] === 'POLSKA'
                         ? '#f03356'
+                        : selectedMap[0] === 'WOJEWÓDZTWA'
+                        ? '#20d9ab'
                         : isHovering === province.name
                         ? 'crimson'
                         : 'teal',
