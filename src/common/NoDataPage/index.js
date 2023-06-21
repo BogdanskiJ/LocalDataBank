@@ -1,18 +1,15 @@
-import {useSelector} from 'react-redux'
-import {StyledHeader, Wrapper} from './styled'
-import {
-  selectTeritorialUnitAutoScrollSwitcher,
-  selectTeritorialUnitSubGroupData,
-  selectTeritorialUnitSubGroupName,
-} from '../../features/teritorialUnit/teritorialUnitSlice'
-import {selectRegionAndProvincesMapsSelectedMap} from '../../features/maps/mapsSlice'
 import {useRef} from 'react'
 import {useEffect} from 'react'
-import {selectManyVariablesAutoScrollSwitcher} from '../../features/manyVariables/manyVariablesSlice'
 import {useLocation} from 'react-router-dom/cjs/react-router-dom.min'
+import {useSelector} from 'react-redux'
+import {StyledHeader, Wrapper} from './styled'
+import {selectTeritorialUnitAutoScrollSwitcher} from '../../features/teritorialUnit/teritorialUnitSlice'
+import {selectRegionAndProvincesMapsSelectedMap} from '../../features/maps/mapsSlice'
+import {selectManyVariablesAutoScrollSwitcher} from '../../features/manyVariables/manyVariablesSlice'
 
-function NoDataPage({data, names}) {
+export default function NoDataPage({data, names}) {
   const {pathname} = useLocation()
+  const resultsRef = useRef(null)
   const provinceName = useSelector(selectRegionAndProvincesMapsSelectedMap)
   const manyVariablesAutoScrollSwitcher = useSelector(
     selectManyVariablesAutoScrollSwitcher,
@@ -22,7 +19,6 @@ function NoDataPage({data, names}) {
   )
 
   const categoryName = data.results.find(element => element.id === names).name
-  const resultsRef = useRef(null)
 
   const scrollToResults = () => {
     resultsRef.current.scrollIntoView({
@@ -31,7 +27,7 @@ function NoDataPage({data, names}) {
       inline: 'center',
     })
   }
-  console.log('pathname', pathname)
+
   useEffect(() => {
     const timer = setTimeout(() => {
       ;(
@@ -53,4 +49,3 @@ function NoDataPage({data, names}) {
     </Wrapper>
   )
 }
-export default NoDataPage

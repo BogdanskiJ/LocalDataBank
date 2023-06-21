@@ -28,31 +28,3 @@ export const StyledHeader = styled.header`
     margin: 24px 16px;
   }
 `
-
-export const Container = styled.div`
-  margin-top: 120px;
-  display: flex;
-  justify-content: center;
-
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  animation: rotate 2s linear infinite;
-
-  @media (max-width: 767px) {
-    margin-top: 24px;
-  }
-`
-
-export const LoadingIcon = styled.img`
-  @media (max-width: 767px) {
-    width: 35px;
-    height: 35px;
-  }
-`
