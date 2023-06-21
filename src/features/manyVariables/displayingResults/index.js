@@ -1,5 +1,10 @@
-import React from 'react'
 import {useState} from 'react'
+import {useEffect} from 'react'
+import {useRef} from 'react'
+import {useSelector} from 'react-redux'
+import Table from './Table'
+import LineGraph from './LineGraph'
+import DisplayResultsSwitcher from './Switchers/DisplayResultsSwitcher'
 import {
   selectManyVariablesAutoScrollSwitcher,
   selectManyVariablesDisplayResultsSwitcher,
@@ -9,9 +14,6 @@ import {
   selectManyVariablesSubGroupName,
   selectManyVariablesVariablesName,
 } from '../manyVariablesSlice'
-import {useSelector} from 'react-redux'
-import Table from './Table'
-import {useEffect} from 'react'
 import {
   StyledResultHeader,
   StyledSwitcher,
@@ -19,10 +21,7 @@ import {
   StyledResultsBox,
   StyledResultsPage,
 } from './styled'
-import DisplayResultsSwitcher from '../../manyVariables/displayingResults/Switchers/DisplayResultsSwitcher'
-import {useRef} from 'react'
 import {measures} from '../../../common/Measures'
-import LineGraph from './LineGraph'
 
 export const Results = () => {
   const manyVariablesFinalData = useSelector(selectManyVariablesFinalData)
@@ -35,18 +34,14 @@ export const Results = () => {
   const manyVariablesAutoScrollSwitcher = useSelector(
     selectManyVariablesAutoScrollSwitcher,
   )
-  const [finalData, setFinalData] = useState(manyVariablesFinalData)
-  const [valuesArray, setValuesArray] = useState([])
-  const [yearsArray, setYearsArray] = useState([])
-  const [finalValues] = useState(manyVariablesFinalValues)
-
   const manyVariablesVariablesName = useSelector(
     selectManyVariablesVariablesName,
   )
 
-  useEffect(() => {
-    setFinalData(manyVariablesFinalData)
-  }, [manyVariablesFinalData])
+  const [valuesArray, setValuesArray] = useState([])
+  const [yearsArray, setYearsArray] = useState([])
+  const [finalData, setFinalData] = useState(manyVariablesFinalData)
+  const [finalValues] = useState(manyVariablesFinalValues)
 
   const addNewYearToArray = () => {
     let namesArray = []
@@ -83,14 +78,6 @@ export const Results = () => {
     setValuesArray(valuesArray2)
   }
 
-  useEffect(() => {
-    addNewYearToArray()
-  }, [manyVariablesFinalValues])
-
-  useEffect(() => {
-    addValuesToArray()
-  }, [yearsArray, manyVariablesFinalData, manyVariablesFinalValues])
-
   const measure = `[${
     measures.results.find(
       measure => measure.id === manyVariablesFinalData.measureUnitId,
@@ -107,8 +94,20 @@ export const Results = () => {
   }
 
   useEffect(() => {
+    setFinalData(manyVariablesFinalData)
+  }, [manyVariablesFinalData])
+
+  useEffect(() => {
+    addNewYearToArray()
+  }, [manyVariablesFinalValues])
+
+  useEffect(() => {
+    addValuesToArray()
+  }, [yearsArray, manyVariablesFinalData, manyVariablesFinalValues])
+
+  useEffect(() => {
     const timer = setTimeout(() => {
-      manyVariablesAutoScrollSwitcher ? scrollToResults() : console.log()
+      manyVariablesAutoScrollSwitcher ? scrollToResults() : ''
     }, 200)
     return () => clearTimeout(timer)
   }, [valuesArray, yearsArray])
