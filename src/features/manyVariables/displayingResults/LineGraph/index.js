@@ -1,12 +1,9 @@
 import React, {useEffect, useState} from 'react'
+import {useSelector} from 'react-redux'
 import {Line} from 'react-chartjs-2'
 import {CategoryScale, Chart, registerables} from 'chart.js'
-import {useSelector} from 'react-redux'
-import {
-  selectManyVariablesFinalData,
-  selectManyVariablesVariablesName,
-} from '../../manyVariablesSlice'
 import {StyledLine} from './styled'
+import {selectManyVariablesFinalData} from '../../manyVariablesSlice'
 import windowSize from '../../../../common/WindowSize'
 
 Chart.register(CategoryScale)
@@ -14,36 +11,37 @@ Chart.register(...registerables)
 
 export const LineGraph = ({measure, newArray}) => {
   const manyVariablesFinalData = useSelector(selectManyVariablesFinalData)
-  const manyVariablesVariablesName = useSelector(
-    selectManyVariablesVariablesName,
-  )
 
-  const [data1, setData1] = useState(manyVariablesFinalData.results)
+  const [finalDataResults, setFinalDataResults] = useState(
+    manyVariablesFinalData.results,
+  )
+  const [widthSize] = windowSize()
 
   useEffect(() => {
-    setData1(manyVariablesFinalData.results)
+    setFinalDataResults(manyVariablesFinalData.results)
   }, [manyVariablesFinalData])
 
   const xAxis = newArray.map(value => value.year)
 
-  const dataForLabel = data1 => {
+  const dataForLabel = data => {
     let array = []
-    data1.map(
+    data.map(
       results =>
         (array = [
           ...array,
           results.values.map(value => ({x: `${value.year}`, y: value.val})),
         ]),
     )
+
     return array
   }
 
-  const datasetsValue = data1.map(results => ({
+  const datasetsValue = finalDataResults.map(results => ({
     label:
       `${results.name}`.length > 58
         ? `${results.name}`.slice(0, 57) + '...'
         : `${results.name}`,
-    data: dataForLabel(data1)[data1.indexOf(results)],
+    data: dataForLabel(finalDataResults)[finalDataResults.indexOf(results)],
     fill: false,
     borderWidth: 4,
     borderColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
@@ -60,9 +58,8 @@ export const LineGraph = ({measure, newArray}) => {
       }
     },
   }
-  const [widthSize] = windowSize()
 
-  const fontSize = () => {
+  const optionsPluginsLegend = () => {
     let legend = {
       align: 'center',
       display: true,
@@ -93,28 +90,26 @@ export const LineGraph = ({measure, newArray}) => {
 
   const optionsPlugins = {
     colors: {forceOverride: false},
-    legend: fontSize(),
+    legend: optionsPluginsLegend(),
   }
 
   return (
-    <>
-      <StyledLine>
-        <Line
-          data={{
-            labels: xAxis,
-            datasets: datasetsValue,
-          }}
-          options={{
-            responsive: true,
-            maintainAspectRatio: false,
-            layout: {
-              padding: 15,
-            },
-            plugins: optionsPlugins,
-          }}
-          plugins={[plugin]}
-        />
-      </StyledLine>
-    </>
+    <StyledLine>
+      <Line
+        data={{
+          labels: xAxis,
+          datasets: datasetsValue,
+        }}
+        options={{
+          responsive: true,
+          maintainAspectRatio: false,
+          layout: {
+            padding: 15,
+          },
+          plugins: optionsPlugins,
+        }}
+        plugins={[plugin]}
+      />
+    </StyledLine>
   )
 }
