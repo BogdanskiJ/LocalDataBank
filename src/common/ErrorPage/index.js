@@ -1,12 +1,12 @@
 import {ReactComponent as ErrorIcon} from './errorIcon.svg'
-import {Container, Error, Info} from './styled'
+import {Error, IconContainer, Info} from './styled'
 
 function ErrorPage() {
   return (
     <>
-      <Container icon>
+      <IconContainer>
         <ErrorIcon />
-      </Container>
+      </IconContainer>
       <Error>Ooops! Something went wrong...</Error>
       <Info>
         Please check your network connection <br /> and try again

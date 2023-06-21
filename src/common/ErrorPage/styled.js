@@ -1,22 +1,15 @@
 import styled, {css} from 'styled-components'
 
-export const Container = styled.div`
+export const IconContainer = styled.div`
   display: flex;
   justify-content: center;
-
-  ${({icon}) =>
-    icon &&
-    css`
-      margin-top: 180px;
-
-      @media (max-width: 767px) {
-        width: 50px;
-        height: 45px;
-        margin: auto;
-      }
-    `};
+  margin-top: 180px;
+  @media (max-width: 767px) {
+    width: 50px;
+    height: 45px;
+    margin: auto;
+  }
 `
-
 export const Error = styled.p`
   font-weight: 600;
   font-size: 36px;
