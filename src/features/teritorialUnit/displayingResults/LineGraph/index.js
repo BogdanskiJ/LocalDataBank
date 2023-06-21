@@ -86,7 +86,12 @@ export const LineGraph = ({measure, newArray}) => {
           size: 12,
         },
       },
-      tooltip: {enabled: true},
+      onHover: event => {
+        event.native.target.style.cursor = 'pointer'
+      },
+      onLeave: event => {
+        event.native.target.style.cursor = 'default'
+      },
     }
     if (widthSize <= 1200) {
       legend.labels.boxWidth = 30
@@ -103,9 +108,29 @@ export const LineGraph = ({measure, newArray}) => {
     return legend
   }
 
+  const optionsPluginsTooltipFontSize = () => {
+    let legend = {
+      enabled: true,
+      displayColors: true,
+      bodyFont: {
+        size: 12,
+      },
+    }
+    if (widthSize <= 1200) {
+      legend.bodyFont.size = 11
+    }
+    if (widthSize <= 768) {
+      legend.bodyFont.size = 10
+    }
+    if (widthSize <= 576) {
+      legend.bodyFont.size = 8
+    }
+    return legend
+  }
   const optionsPlugins = {
     colors: {forceOverride: false},
     legend: fontSize(),
+    tooltip: optionsPluginsTooltipFontSize(),
   }
 
   return (
@@ -119,9 +144,16 @@ export const LineGraph = ({measure, newArray}) => {
           options={{
             responsive: true,
             maintainAspectRatio: false,
+
             layout: {
               padding: 15,
             },
+            onHover: (event, chartElement) => {
+              event.native.target.style.cursor = chartElement[0]
+                ? 'pointer'
+                : 'default'
+            },
+
             plugins: optionsPlugins,
           }}
           plugins={[plugin]}
