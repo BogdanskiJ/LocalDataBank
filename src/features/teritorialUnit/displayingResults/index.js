@@ -10,7 +10,7 @@ import {
 } from '../teritorialUnitSlice'
 import {useSelector} from 'react-redux'
 import {Table} from './Table'
-import {LineGraph} from './LineGraph/index'
+import LineGraph from './LineGraph/index'
 import {useEffect} from 'react'
 import {
   StyledResultHeader,

@@ -1,27 +1,29 @@
 import React, {useEffect, useState} from 'react'
+import {useSelector} from 'react-redux'
 import {Line} from 'react-chartjs-2'
 import {CategoryScale, Chart, registerables} from 'chart.js'
-import {useSelector} from 'react-redux'
+import windowSize from '../../../../common/WindowSize'
+import {StyledLine} from './styled'
 import {
   selectTeritorialUnitFinalData,
   selectTeritorialUnitVariablesName,
 } from '../../teritorialUnitSlice'
-import {StyledLine} from './styled'
-import windowSize from '../../../../common/WindowSize'
 
 Chart.register(CategoryScale)
 Chart.register(...registerables)
 
-export const LineGraph = ({measure, newArray}) => {
+export default LineGraph = ({measure, newArray}) => {
   const teritorialUnitFinalData = useSelector(selectTeritorialUnitFinalData)
   const teritorialUnitVariablesName = useSelector(
     selectTeritorialUnitVariablesName,
   )
 
-  const [data1, setData1] = useState(teritorialUnitFinalData.results)
+  const [finalDataResults, setFinalDataResults] = useState(
+    teritorialUnitFinalData.results,
+  )
 
   useEffect(() => {
-    setData1(teritorialUnitFinalData.results)
+    setFinalDataResults(teritorialUnitFinalData.results)
   }, [teritorialUnitFinalData])
 
   const xAxis = newArray.map(value => value.year)
@@ -38,7 +40,7 @@ export const LineGraph = ({measure, newArray}) => {
     return array
   }
 
-  const datasetsValue = data1.map(results => ({
+  const datasetsValue = finalDataResults.map(results => ({
     label:
       `${
         teritorialUnitVariablesName.find(
@@ -55,7 +57,7 @@ export const LineGraph = ({measure, newArray}) => {
               variable => variable.value === results.id,
             ).label
           } - wartość ${measure}`,
-    data: dataForLabel(data1)[data1.indexOf(results)],
+    data: dataForLabel(finalDataResults)[finalDataResults.indexOf(results)],
     fill: false,
     borderWidth: 4,
     borderColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`,

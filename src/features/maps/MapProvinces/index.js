@@ -2,13 +2,12 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Tooltip} from 'react-tooltip'
 import 'react-tooltip/dist/react-tooltip.css'
 import Button from '@mui/material/Button'
-import useAllProvinces from './useAllProvinces'
-import usePoland from './province/MapPoland'
+import useAllProvinces from '../useAllProvinces'
+import usePoland from '../province/MapPoland'
 import {
   Box,
   Container,
   StyledHeaderText,
-  StyledLi,
   StyledList,
   StyledMapPoland,
   StyledProvinceButtonBox,
@@ -18,7 +17,7 @@ import {
 import {
   selectProvinceName,
   setProvinceName,
-} from '../teritorialUnit/teritorialUnitSlice'
+} from '../../teritorialUnit/teritorialUnitSlice'
 
 export const MapProvinces = () => {
   const dispatch = useDispatch()

@@ -4,11 +4,11 @@ import {useDispatch, useSelector} from 'react-redux'
 import 'react-tooltip/dist/react-tooltip.css'
 import Button from '@mui/material/Button'
 import {Tooltip} from 'react-tooltip'
-import {ReactComponent as Check} from '../../common/images/check.svg'
-import {ReactComponent as NoCheck} from '../../common/images/noCheck.svg'
-import windowSize from '../../common/WindowSize'
-import {SelectRegionName} from '../../common/Select'
-import usePoland from './province/MapPoland'
+import {ReactComponent as Check} from '../../../common/images/check.svg'
+import {ReactComponent as NoCheck} from '../../../common/images/noCheck.svg'
+import windowSize from '../../../common/WindowSize'
+import {SelectRegionName} from '../../../common/Select'
+import usePoland from '../province/MapPoland'
 import {
   Container,
   Header,
@@ -24,8 +24,8 @@ import {
 import {
   selectRegionAndProvincesMapsSelectedMap,
   setSelectedMap,
-} from '../maps/mapsSlice'
-import {setProvinceName} from '../teritorialUnit/teritorialUnitSlice'
+} from '../mapsSlice'
+import {setProvinceName} from '../../teritorialUnit/teritorialUnitSlice'
 
 export default function MapPoland() {
   const dispatch = useDispatch()
