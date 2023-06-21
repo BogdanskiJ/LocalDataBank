@@ -79,7 +79,12 @@ function* fetchManyVariablesFinalDataSaga() {
     const variablesName = yield select(selectManyVariablesVariablesName)
     const selectedUnit = yield select(selectRegionAndProvincesMapsSelectedMap)
     if ((variablesName !== '') & (selectedUnit !== '')) {
-      const data = yield call(getFinalData, variablesName, selectedUnit[1])
+      const data = yield call(
+        getFinalData,
+        variablesName,
+        selectedUnit[1],
+        selectedUnit[2],
+      )
       if (data !== '') {
         yield put(fetchManyVariablesFinalData(data))
       }
