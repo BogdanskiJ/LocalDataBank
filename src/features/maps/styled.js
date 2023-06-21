@@ -25,21 +25,6 @@ export const StyledBoxPoland = styled.div`
   flex-direction: column;
 `
 
-export const Box = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  gap: 10px;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-  max-height: 550px;
-  @media ((max-width: ${({theme}) => theme.breakpoint.lg})) {
-    flex-direction: column;
-    height: 100%;
-  }
-`
-
 export const StyledMapPoland = styled.div`
   display: flex;
   height: 100%;
@@ -59,58 +44,32 @@ export const Header = styled.span`
   text-align: center;
 `
 
-export const StyledMap = styled.div`
+export const StyledButtonBox = styled.div`
   display: flex;
-  flex: 0 0 50%;
-  // max-width: 500px;
-  //max-height: 500px;
-  justify-content: flex-end;
-  align-content: center;
+  gap: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  margin-left: auto;
+`
+
+export const StyledUnitBox = styled.div`
+  display: flex;
   flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 `
 
 export const StyledSvg = styled.svg`
   cursor: pointer;
+
   @media (max-width: ${({theme}) => theme.breakpoint.lg}) {
     max-height: 450px;
   }
-  @media ((max-width: ${({theme}) => theme.breakpoint.md})) {
-    // max-width: 400px;
-  }
-
-  /* @media ((min-width: ${({theme}) =>
-    theme.breakpoint.xl}) and (max-width:${({theme}) => theme.breakpoint.xxl})){
-           max-height:400px;
-        };
-
-@media ((min-width: ${({theme}) => theme.breakpoint.lg}) and (max-width:${({
-    theme,
-  }) => theme.breakpoint.xl})){
-           max-height:100px;
-        };
-
-@media ((min-width: ${({theme}) => theme.breakpoint.md}) and (max-width:${({
-    theme,
-  }) => theme.breakpoint.lg})){
-           max-height:100px;
-        };
-
-@media ((min-width: ${({theme}) => theme.breakpoint.sm}) and (max-width:${({
-    theme,
-  }) => theme.breakpoint.md})){
-           max-height:100px;
-        };
-
-@media ((max-width:${({theme}) => theme.breakpoint.sm})){
-           max-height:100px;
-        }; */
-
   & path:hover {
-    /* transform: scale(1.1); */
     transform-origin: 50% 50%;
     transform-box: fill-box;
-    /* position: relative;
-  z-index:4 */
   }
   & path:active {
     fill: #9d0c26;
@@ -121,9 +80,46 @@ export const StyledSvg = styled.svg`
   }
 `
 
-export const Link = styled(NavLink)`
+export const StyledCheck = styled.div`
+  max-width: 27px;
+
+  @media ((max-width: ${({theme}) => theme.breakpoint.md})) {
+    max-width: 20px;
+  }
+`
+
+export const StyledSelect = styled.div`
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  margin: 0 auto;
+  margin-top: 10px;
   text-decoration: none;
   text-decoration-line: none;
+  width: fit-content;
+`
+
+export const StyledRegionNameLabel = styled.div`
+  text-transform: uppercase;
+  text-align: center;
+`
+
+export const Box = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  max-height: 550px;
+
+  @media ((max-width: ${({theme}) => theme.breakpoint.lg})) {
+    flex-direction: column;
+    height: 100%;
+  }
 `
 
 export const StyledList = styled.div`
@@ -140,26 +136,13 @@ export const StyledList = styled.div`
   overflow-y: scroll;
   scrollbar-width: thin;
   word-break: break-word;
-  /*
-		xs: 0
-		sm: 576
-		md: 768p
-		lg: 992px
-		xl: 1200px
-		xxl: 1400px
-, */
+
   @media ((min-width: ${({theme}) => theme.breakpoint.xxl})) {
     width: 30%;
   }
   @media ((max-width: ${({theme}) => theme.breakpoint.xxl})) {
     font-size: 14px;
-    //max-height: 400px;
   }
-
-  @media ((max-width: ${({theme}) => theme.breakpoint.xl})) {
-    // max-height: 300px;
-  }
-
   @media ((max-width: ${({theme}) => theme.breakpoint.lg})) {
     font-size: 12px;
     max-width: 95%;
@@ -170,6 +153,7 @@ export const StyledList = styled.div`
     border-radius: 20px 20px 0 0;
     overflow-y: hidden;
     justify-content: center;
+
     &::-webkit-scrollbar {
       height: 8px;
     }
@@ -177,17 +161,6 @@ export const StyledList = styled.div`
       width: 100px;
     }
   }
-
-  /* &::-webkit-scrollbar {
-    width: 8px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: #cdcdcd;
-    border-radius: 10px;
-    border: 1px solid black;
-    height: 100px;
-  } */
-
   &::-webkit-scrollbar {
     width: 6px;
     height: 6px;
@@ -218,6 +191,7 @@ export const StyledUl = styled.ul`
   text-decoration: none;
   text-decoration-line: none;
   list-style-type: none;
+
   @media ((max-width: ${({theme}) => theme.breakpoint.lg})) {
     flex-direction: row;
     width: auto;
@@ -237,8 +211,8 @@ export const StyledLi = styled.li`
   padding: 5px;
   border: 0 solid black;
   border-radius: 10px;
+
   &:hover {
-    //font-weight: bold;
     cursor: pointer;
     background-color: rgb(240, 240, 240);
   }
@@ -250,7 +224,6 @@ export const StyledLi = styled.li`
     css`
        {
         fill: black;
-        /* font-weight: bold; */
         background-color: rgba(0, 0, 0, 0.17);
         &:hover {
           fill: black;
@@ -264,40 +237,6 @@ export const StyledLi = styled.li`
     width: auto;
     word-break: keep-all;
   }
-`
-
-export const StyledSelect = styled.div`
-  display: flex;
-  gap: 5px;
-  justify-content: center;
-  align-items: center;
-  color: black;
-  margin: 0 auto;
-  margin-top: 10px;
-  text-decoration: none;
-  text-decoration-line: none;
-  width: fit-content;
-`
-
-export const StyledUnitBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-`
-
-export const StyledCheck = styled.div`
-  max-width: 27px;
-  @media ((max-width: ${({theme}) => theme.breakpoint.md})) {
-    max-width: 20px;
-  }
-`
-
-export const StyledRegionNameLabel = styled.div`
-  text-transform: uppercase;
-  text-align: center;
 `
 
 export const StyledProvinceButtonBox = styled.div`
@@ -315,12 +254,4 @@ export const StyledHeaderText = styled.span`
   text-align: center;
   text-transform: uppercase;
   margin: auto;
-`
-
-export const StyledButtonBox = styled.div`
-  display: flex;
-  gap: 10px;
-  text-align: center;
-  text-transform: uppercase;
-  margin-left: auto;
 `
