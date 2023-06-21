@@ -1,5 +1,5 @@
-import {ReactComponent as ArrowUp} from '../../../../../common/images/arrowUp.svg'
-import {ReactComponent as ArrowDown} from '../../../../../common/images/arrowDown.svg'
+import {ReactComponent as ArrowUp} from './images/arrowUp.svg'
+import {ReactComponent as ArrowDown} from './images/arrowDown.svg'
 
 export const Arrow = ({order, sort}) =>
   order[0] === sort ? (

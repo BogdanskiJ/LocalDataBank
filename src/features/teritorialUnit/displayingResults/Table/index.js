@@ -20,7 +20,7 @@ import {
   StyledTr,
 } from '../styled'
 import {StyledTablePage, StyledTrThead} from './styled'
-import {Arrow} from './Arrow'
+import {Arrow} from '../../../../common/Arrow'
 
 export const Table = ({measure, newArray2}) => {
   const teritorialUnitFinalData = useSelector(selectTeritorialUnitFinalData)
