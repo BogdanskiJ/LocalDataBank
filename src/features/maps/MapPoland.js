@@ -26,7 +26,7 @@ import {setProvinceName} from '../teritorialUnit/teritorialUnitSlice'
 import {ReactComponent as Check} from '../../common/images/check.svg'
 import {ReactComponent as NoCheck} from '../../common/images/noCheck.svg'
 import Button from '@mui/material/Button'
-import {useWindowSize} from '../../common/WindowSize'
+import windowSize from '../../common/WindowSize'
 import {useParams} from 'react-router-dom'
 import {useLocation} from 'react-router-dom'
 
@@ -51,7 +51,7 @@ export const MapPoland = () => {
     setIsHovering()
   }
 
-  const [widthSize] = useWindowSize()
+  const [widthSize] = windowSize()
 
   const buttonSx = () => {
     let style = {

@@ -7,7 +7,7 @@ import {
   selectManyVariablesVariablesName,
 } from '../../manyVariablesSlice'
 import {StyledLine} from './styled'
-import {useWindowSize} from '../../../../common/WindowSize'
+import windowSize from '../../../../common/WindowSize'
 
 Chart.register(CategoryScale)
 Chart.register(...registerables)
@@ -60,7 +60,7 @@ export const LineGraph = ({measure, newArray}) => {
       }
     },
   }
-  const [widthSize] = useWindowSize()
+  const [widthSize] = windowSize()
 
   const fontSize = () => {
     let legend = {

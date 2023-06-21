@@ -20,7 +20,7 @@ import {
   setProvinceName,
 } from '../teritorialUnit/teritorialUnitSlice'
 import Button from '@mui/material/Button'
-import {useWindowSize} from '../../common/WindowSize'
+import windowSize from '../../common/WindowSize'
 import Select from 'react-select'
 import {usePoland} from './province/MapPoland'
 
@@ -29,7 +29,7 @@ export const MapProvinces = () => {
   const param = useParams()
   const allProvinces = useAllProvinces()
   const provinceName = useSelector(selectProvinceName)
-  const [widthSize] = useWindowSize()
+  const [widthSize] = windowSize()
   const poland = usePoland()
   const provinceNameList = province => {
     const data = province.mapProvincesName.map(region => region.key)
