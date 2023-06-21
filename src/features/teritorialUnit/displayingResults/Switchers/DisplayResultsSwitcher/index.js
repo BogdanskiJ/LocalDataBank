@@ -1,7 +1,6 @@
-import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import Switch from '@mui/material/Switch'
 import styled from 'styled-components'
+import Switch from '@mui/material/Switch'
 import {
   StyledResultSwitcheLabelBox,
   StyledResultSwitcherBox,
@@ -13,8 +12,9 @@ import {
   selectTeritorialUnitDisplayResultsSwitcher,
   setTeritorialUnitDisplayResultsSwitcher,
 } from '../../../teritorialUnitSlice'
+import {func} from 'prop-types'
 
-export const DisplayResultsSwitcher = () => {
+export default function DisplayResultsSwitcher() {
   const dispatch = useDispatch()
   const teritorialUnitToogleButton = useSelector(
     selectTeritorialUnitDisplayResultsSwitcher,
@@ -32,25 +32,23 @@ export const DisplayResultsSwitcher = () => {
   }))
 
   return (
-    <>
-      <StyledResultSwitcheLabelBox>
-        <StyledResultSwitcherText>
-          Wyświetl dane w postaci:
-        </StyledResultSwitcherText>
-        <StyledResultSwitcherBox>
-          <StyledResultSwitcherTextGraph active={teritorialUnitToogleButton}>
-            Wykres
-          </StyledResultSwitcherTextGraph>
-          <ColoredSwitch
-            checked={!teritorialUnitToogleButton}
-            size={'small'}
-            onChange={() => dispatch(setTeritorialUnitDisplayResultsSwitcher())}
-          />
-          <StyledResultSwitcherTextTable active={!teritorialUnitToogleButton}>
-            Tabela
-          </StyledResultSwitcherTextTable>
-        </StyledResultSwitcherBox>
-      </StyledResultSwitcheLabelBox>
-    </>
+    <StyledResultSwitcheLabelBox>
+      <StyledResultSwitcherText>
+        Wyświetl dane w postaci:
+      </StyledResultSwitcherText>
+      <StyledResultSwitcherBox>
+        <StyledResultSwitcherTextGraph active={teritorialUnitToogleButton}>
+          Wykres
+        </StyledResultSwitcherTextGraph>
+        <ColoredSwitch
+          checked={!teritorialUnitToogleButton}
+          size={'small'}
+          onChange={() => dispatch(setTeritorialUnitDisplayResultsSwitcher())}
+        />
+        <StyledResultSwitcherTextTable active={!teritorialUnitToogleButton}>
+          Tabela
+        </StyledResultSwitcherTextTable>
+      </StyledResultSwitcherBox>
+    </StyledResultSwitcheLabelBox>
   )
 }

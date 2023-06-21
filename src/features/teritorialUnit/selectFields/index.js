@@ -18,7 +18,7 @@ import {SelectManyVariables, SelectOneVariable} from '../../../common/Select'
 import LoadingPage from '../../../common/LoadingPage'
 import {
   StyledBox,
-  StyledCheck as StyledCheckBox,
+  StyledCheck,
   StyledLabel,
   StyledLabelBox,
   StyledLabelText,
@@ -29,14 +29,13 @@ import {
 } from './styled'
 import {ReactComponent as Check} from '../../../common/images/check.svg'
 import {ReactComponent as NoCheck} from '../../../common/images/noCheck.svg'
-import {AutoScrollSwitcher} from '../displayingResults/Switchers/AutoScrollSwitcher'
+import AutoScrollSwitcher from '../displayingResults/Switchers/AutoScrollSwitcher'
 
-function TeritorialUnit() {
+export default function SelectFields() {
   const teritorialUnit = useSelector(selectTeritorialUnitCategoryData)
   const teritorialUnitGroup = useSelector(selectTeritorialUnitGroupData)
   const teritorialUnitSubGroup = useSelector(selectTeritorialUnitSubGroupData)
   const teritorialUnitVariables = useSelector(selectTeritorialUnitVariablesData)
-
   const teritorialUnitCategoryName = useSelector(
     selectTeritorialUnitCategoryName,
   )
@@ -47,9 +46,7 @@ function TeritorialUnit() {
   const teritorialUnitVariablesName = useSelector(
     selectTeritorialUnitVariablesName,
   )
-
   const teritorialUnitStatus = useSelector(selectTeritorialUnitStatus)
-  console.log('teritorialUnitStatus', teritorialUnitStatus)
   return (
     <StyledTeritorialUnit>
       {teritorialUnit ? (
@@ -61,9 +58,9 @@ function TeritorialUnit() {
                 dataType={teritorialUnit}
                 setValue={setTeritorialUnitCategoryName}
               />
-              <StyledCheckBox>
+              <StyledCheck>
                 {teritorialUnitCategoryName ? <Check /> : <NoCheck />}
-              </StyledCheckBox>
+              </StyledCheck>
             </StyledSelectBox>
           </StyledLabelBox>
         </div>
@@ -81,9 +78,9 @@ function TeritorialUnit() {
                     dataType={teritorialUnitGroup}
                     setValue={setTeritorialUnitGroupName}
                   />
-                  <StyledCheckBox>
+                  <StyledCheck>
                     {teritorialUnitGroupName ? <Check /> : <NoCheck />}
-                  </StyledCheckBox>
+                  </StyledCheck>
                 </StyledSelectBox>
               </StyledLabelBox>
             </div>
@@ -106,9 +103,9 @@ function TeritorialUnit() {
                     dataType={teritorialUnitSubGroup}
                     setValue={setTeritorialUnitSubGroupName}
                   />
-                  <StyledCheckBox>
+                  <StyledCheck>
                     {teritorialUnitSubGroupName ? <Check /> : <NoCheck />}
-                  </StyledCheckBox>
+                  </StyledCheck>
                 </StyledSelectBox>
               </StyledLabelBox>
             </div>
@@ -135,9 +132,9 @@ function TeritorialUnit() {
                       setValue={setTeritorialUnitVariablesNames}
                     />
 
-                    <StyledCheckBox>
+                    <StyledCheck>
                       {teritorialUnitVariablesName ? <Check /> : <NoCheck />}
-                    </StyledCheckBox>
+                    </StyledCheck>
                   </StyledMultiSelectBox>
                   <AutoScrollSwitcher />
                 </StyledMultiSelectLabelBox>
@@ -153,4 +150,3 @@ function TeritorialUnit() {
     </StyledTeritorialUnit>
   )
 }
-export default TeritorialUnit

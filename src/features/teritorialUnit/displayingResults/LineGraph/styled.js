@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const StyledLine = styled.div`
-  //display: flex;
   width: auto;
   height: auto;
   aspect-ratio: 5/2;
@@ -10,9 +9,6 @@ export const StyledLine = styled.div`
   background-color: white;
   border: 1px solid rgb(203, 203, 203);
   border-radius: 20px;
-  //min-height: 400px;
-  //height: 100%;
-  //max-height: 700px;
 
   @media ((max-width: ${({theme}) => theme.breakpoint.xxl})) {
     aspect-ratio: 2/1;

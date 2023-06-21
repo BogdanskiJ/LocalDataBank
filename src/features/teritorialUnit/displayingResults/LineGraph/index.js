@@ -12,15 +12,16 @@ import {
 Chart.register(CategoryScale)
 Chart.register(...registerables)
 
-export default LineGraph = ({measure, newArray}) => {
+export default function LineGraph({measure, newArray}) {
   const teritorialUnitFinalData = useSelector(selectTeritorialUnitFinalData)
   const teritorialUnitVariablesName = useSelector(
     selectTeritorialUnitVariablesName,
   )
-
   const [finalDataResults, setFinalDataResults] = useState(
     teritorialUnitFinalData.results,
   )
+
+  const [widthSize] = windowSize()
 
   useEffect(() => {
     setFinalDataResults(teritorialUnitFinalData.results)
@@ -74,9 +75,8 @@ export default LineGraph = ({measure, newArray}) => {
       }
     },
   }
-  const [widthSize] = windowSize()
 
-  const fontSize = () => {
+  const optionsPluginsLegend = () => {
     let legend = {
       align: 'center',
       display: true,
@@ -131,7 +131,7 @@ export default LineGraph = ({measure, newArray}) => {
   }
   const optionsPlugins = {
     colors: {forceOverride: false},
-    legend: fontSize(),
+    legend: optionsPluginsLegend(),
     tooltip: optionsPluginsTooltipFontSize(),
   }
 

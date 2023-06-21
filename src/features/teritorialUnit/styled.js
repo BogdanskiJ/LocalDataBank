@@ -29,23 +29,18 @@ export const StyledHead = styled.h1`
   @media (min-width: ${({theme}) => theme.breakpoint.xxl}) {
     font-size: 30px;
   }
-
   @media ((max-width: ${({theme}) => theme.breakpoint.xxl})) {
     font-size: 28px;
   }
-
   @media ((max-width: ${({theme}) => theme.breakpoint.xl})) {
     font-size: 26px;
   }
-
   @media ((max-width: ${({theme}) => theme.breakpoint.lg})) {
     font-size: 24px;
   }
-
   @media ((max-width: ${({theme}) => theme.breakpoint.md})) {
     font-size: 22px;
   }
-
   @media ((max-width: ${({theme}) => theme.breakpoint.sm})) {
     font-size: 18px;
   }

@@ -1,5 +1,9 @@
-import React from 'react'
-import {useState} from 'react'
+import {useState, useEffect, useRef} from 'react'
+import {useSelector} from 'react-redux'
+import Table from './Table'
+import LineGraph from './LineGraph/index'
+import {measures} from '../../../common/Measures'
+import DisplayResultsSwitcher from './Switchers/DisplayResultsSwitcher'
 import {
   selectTeritorialUnitAutoScrollSwitcher,
   selectTeritorialUnitDisplayResultsSwitcher,
@@ -8,10 +12,6 @@ import {
   selectTeritorialUnitSubGroupData,
   selectTeritorialUnitSubGroupName,
 } from '../teritorialUnitSlice'
-import {useSelector} from 'react-redux'
-import {Table} from './Table'
-import LineGraph from './LineGraph/index'
-import {useEffect} from 'react'
 import {
   StyledResultHeader,
   StyledSwitcher,
@@ -19,11 +19,9 @@ import {
   StyledResultsBox,
   StyledResultsPage,
 } from './styled'
-import {DisplayResultsSwitcher} from '../../teritorialUnit/displayingResults/Switchers/DisplayResultsSwitcher'
-import {useRef} from 'react'
-import {measures} from '../../../common/Measures'
 
-export const Results = () => {
+export default function Results() {
+  const resultsRef = useRef(null)
   const teritorialUnitFinalData = useSelector(selectTeritorialUnitFinalData)
   const teritorialUnitFinalValues = useSelector(selectTeritorialUnitFinalValues)
   const teritorialUnitSubGroupName = useSelector(
@@ -38,33 +36,29 @@ export const Results = () => {
   const teritorialUnitAutoScrollSwitcher = useSelector(
     selectTeritorialUnitAutoScrollSwitcher,
   )
-  const [data, setData] = useState(teritorialUnitFinalData)
-  const [newArray, setNewArray] = useState([])
-  const [newArray2, setNewArray2] = useState([])
-  const [data1, setData1] = useState(teritorialUnitFinalValues)
-
-  useEffect(() => {
-    setData(teritorialUnitFinalData)
-  }, [teritorialUnitFinalData])
+  const [finalData, setFinalData] = useState(teritorialUnitFinalData)
+  const [valuesArray, setValuesArray] = useState([])
+  const [yearsArray, setYearsArray] = useState([])
+  const [finalValues] = useState(teritorialUnitFinalValues)
 
   const addNewYearToArray = () => {
     let namesArray = []
-    data.results.map(result => (namesArray = [...namesArray, result.id]))
+    finalData.results.map(result => (namesArray = [...namesArray, result.id]))
     let temporaryArray = []
-    data1.map(values =>
+    finalValues.map(values =>
       values.map(value => (temporaryArray = [...temporaryArray, value.year])),
     )
     const uniqueArray = [...new Set(temporaryArray)]
     const finalArray = uniqueArray.map(element => ({year: element}))
-    setNewArray2(finalArray)
+    setYearsArray(finalArray)
   }
 
   const addValuesToArray = () => {
-    let valuesArray = [...newArray2]
-    let valuesArray2 = [...newArray2]
+    let valuesArray = [...yearsArray]
+    let valuesArray2 = [...yearsArray]
     let index = ''
 
-    data.results.map(results =>
+    finalData.results.map(results =>
       results.values.map(
         values => (
           (index = valuesArray.findIndex(
@@ -79,16 +73,8 @@ export const Results = () => {
         ),
       ),
     )
-    setNewArray(valuesArray2)
+    setValuesArray(valuesArray2)
   }
-
-  useEffect(() => {
-    addNewYearToArray()
-  }, [teritorialUnitFinalValues])
-
-  useEffect(() => {
-    addValuesToArray()
-  }, [newArray2, teritorialUnitFinalData, teritorialUnitFinalValues])
 
   const measure = `[${
     measures.results.find(
@@ -96,7 +82,6 @@ export const Results = () => {
         measure.id === teritorialUnitFinalData.results[0].measureUnitId,
     ).name
   }]`
-  const resultsRef = useRef(null)
 
   const scrollToResults = () => {
     resultsRef.current.scrollIntoView({
@@ -107,11 +92,23 @@ export const Results = () => {
   }
 
   useEffect(() => {
+    setFinalData(teritorialUnitFinalData)
+  }, [teritorialUnitFinalData])
+
+  useEffect(() => {
+    addNewYearToArray()
+  }, [teritorialUnitFinalValues])
+
+  useEffect(() => {
+    addValuesToArray()
+  }, [yearsArray, teritorialUnitFinalData, teritorialUnitFinalValues])
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       teritorialUnitAutoScrollSwitcher ? scrollToResults() : console.log()
     }, 200)
     return () => clearTimeout(timer)
-  }, [newArray, newArray2])
+  }, [valuesArray, yearsArray])
 
   return (
     <StyledResultsPage>
@@ -129,9 +126,9 @@ export const Results = () => {
       </StyledResultHeader>
       <StyledResultsBox>
         {teritorialUnitDisplayResultsSwitcher ? (
-          <LineGraph measure={measure} newArray={newArray} />
+          <LineGraph measure={measure} valuesArray={valuesArray} />
         ) : (
-          <Table measure={measure} newArray2={newArray} />
+          <Table measure={measure} valuesArray={valuesArray} />
         )}
       </StyledResultsBox>
     </StyledResultsPage>

@@ -8,12 +8,10 @@ export const StyledTeritorialUnit = styled.div`
   background-color: #f0f0f0;
   border: 1px solid #cbcbcb;
   border-radius: 20px;
+
   @media ((max-width: ${({theme}) => theme.breakpoint.md})) {
     width: auto;
   }
-  /* @media ((max-width: 362px)){
-  max-width:276px;
-        };  */
 `
 
 export const StyledLabelBox = styled.div`
@@ -57,6 +55,7 @@ export const StyledMultiSelectBox = styled.div`
 export const StyledCheck = styled.div`
   max-width: 27px;
   min-width: 27px;
+
   @media ((max-width: ${({theme}) => theme.breakpoint.md})) {
     max-width: 20px;
     min-width: 20px;

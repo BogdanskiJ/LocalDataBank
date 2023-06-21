@@ -1,3 +1,15 @@
+import {call, delay, put, select, takeLatest} from '@redux-saga/core/effects'
+import {
+  getCategory,
+  getFinalData,
+  getGroup,
+  getSubGroup,
+  getVariables,
+} from './getApi'
+import {
+  selectRegionAndProvincesMapsSelectedMap,
+  setSelectedMap,
+} from '../maps/mapsSlice'
 import {
   fetchTeritorialUnitError,
   fetchTeritorialUnitGroup,
@@ -14,28 +26,16 @@ import {
   setTeritorialUnitVariablesNames,
   fetchTeritorialUnitFinalData,
 } from './teritorialUnitSlice'
-import {
-  getCategory,
-  getFinalData,
-  getGroup,
-  getSubGroup,
-  getVariables,
-} from './getApi'
-import {call, delay, put, select, takeLatest} from '@redux-saga/core/effects'
-import {
-  selectRegionAndProvincesMapsSelectedMap,
-  setSelectedMap,
-} from '../maps/mapsSlice'
+
 function* fetchTeritorialUnitSaga() {
   try {
     const data = yield call(getCategory)
-    console.log('data', data)
     data === ''
-      ? yield put(fetchTeritorialUnitError(1))
+      ? yield put(fetchTeritorialUnitError())
       : yield put(fetchTeritorialUnit(data))
   } catch (error) {
     yield delay(200)
-    yield put(fetchTeritorialUnitError(1))
+    yield put(fetchTeritorialUnitError())
   }
 }
 
@@ -46,7 +46,7 @@ function* fetchTeritorialUnitGroupSaga() {
     yield put(fetchTeritorialUnitGroup(data))
   } catch (error) {
     yield delay(200)
-    yield put(fetchTeritorialUnitError(2))
+    yield put(fetchTeritorialUnitError())
   }
 }
 
@@ -57,7 +57,7 @@ function* fetchTeritorialUnitSubGroupSaga() {
     yield put(fetchTeritorialUnitSubGroup(data))
   } catch (error) {
     yield delay(200)
-    yield put(fetchTeritorialUnitError(3))
+    yield put(fetchTeritorialUnitError())
   }
 }
 
@@ -67,10 +67,10 @@ function* fetchTeritorialUnitVariablesSaga() {
     const data = yield call(getVariables, subGroupName)
     data
       ? yield put(fetchTeritorialUnitVariables(data))
-      : yield put(fetchTeritorialUnitError('variablesSaga'))
+      : yield put(fetchTeritorialUnitError())
   } catch (error) {
     yield delay(200)
-    yield put(fetchTeritorialUnitError(4))
+    yield put(fetchTeritorialUnitError())
   }
 }
 
@@ -84,14 +84,9 @@ function* fetchTeritorialUnitFinalDataSaga() {
         yield put(fetchTeritorialUnitFinalData(data))
       }
     }
-
-    // const data =
-    // 	variablesName !== "" && selectedUnit[0] !== ""
-    // 		? yield call(getFinalData, variablesName, selectedUnit[1])
-    // 		: "";
   } catch (error) {
     yield delay(200)
-    yield put(fetchTeritorialUnitError(5))
+    yield put(fetchTeritorialUnitError())
   }
 }
 
