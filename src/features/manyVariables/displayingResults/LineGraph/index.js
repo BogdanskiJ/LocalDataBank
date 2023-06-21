@@ -40,21 +40,9 @@ export const LineGraph = ({measure, newArray}) => {
 
   const datasetsValue = data1.map(results => ({
     label:
-      `${
-        manyVariablesVariablesName.find(
-          variable => variable.value === results.id,
-        ).label
-      } - wartość ${measure}`.length > 58
-        ? `${
-            manyVariablesVariablesName.find(
-              variable => variable.value === results.id,
-            ).label
-          } - wartość ${measure}`.slice(0, 57) + '...'
-        : `${
-            manyVariablesVariablesName.find(
-              variable => variable.value === results.id,
-            ).label
-          } - wartość ${measure}`,
+      `${results.name}`.length > 58
+        ? `${results.name}`.slice(0, 57) + '...'
+        : `${results.name}`,
     data: dataForLabel(data1)[data1.indexOf(results)],
     fill: false,
     borderWidth: 4,
