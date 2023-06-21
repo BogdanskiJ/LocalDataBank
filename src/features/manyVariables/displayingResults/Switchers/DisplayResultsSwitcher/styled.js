@@ -7,6 +7,7 @@ export const StyledResultSwitcheLabelBox = styled.div`
   justify-content: center;
   gap: 5px;
   font-size: 14px;
+
   @media ((max-width: ${({theme}) => theme.breakpoint.lg})) {
     font-size: 12px;
   }
@@ -21,6 +22,12 @@ export const StyledResultSwitcherText = styled.span`
   @media ((max-width: ${({theme}) => theme.breakpoint.sm})) {
     display: none;
   }
+`
+export const StyledResultSwitcherBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
 `
 
 export const StyledResultSwitcherTextGraph = styled.span`
@@ -45,11 +52,4 @@ export const StyledResultSwitcherTextTable = styled.span`
         font-size: 18px;
       }
     `};
-`
-
-export const StyledResultSwitcherBox = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
 `

@@ -1,4 +1,3 @@
-import React, {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import Switch from '@mui/material/Switch'
 import Stack from '@mui/material/Stack'
@@ -8,9 +7,10 @@ import {
   setManyVariablesAutoScrollSwitcher,
 } from '../../../manyVariablesSlice'
 
-export const AutoScrollSwitcher = () => {
+export default function AutoScrollSwitcher() {
   const dispatch = useDispatch()
   const state = useSelector(selectManyVariablesAutoScrollSwitcher)
+
   return (
     <Stack
       direction="row"

@@ -28,7 +28,7 @@ import {
 } from './styled'
 import {ReactComponent as Check} from '../../../common/images/check.svg'
 import {ReactComponent as NoCheck} from '../../../common/images/noCheck.svg'
-import {AutoScrollSwitcher} from '../displayingResults/Switchers/AutoScrollSwitcher'
+import AutoScrollSwitcher from '../displayingResults/Switchers/AutoScrollSwitcher'
 import {SelectOneVariable} from '../../../common/Select'
 
 function ManyVariables() {

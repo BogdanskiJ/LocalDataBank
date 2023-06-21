@@ -19,7 +19,7 @@ import {
   StyledResultsBox,
   StyledResultsPage,
 } from './styled'
-import {DisplayResultsSwitcher} from '../../manyVariables/displayingResults/Switchers/DisplayResultsSwitcher'
+import DisplayResultsSwitcher from '../../manyVariables/displayingResults/Switchers/DisplayResultsSwitcher'
 import {useRef} from 'react'
 import {measures} from '../../../common/Measures'
 import LineGraph from './LineGraph'

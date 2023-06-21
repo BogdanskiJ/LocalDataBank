@@ -1,4 +1,3 @@
-import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import Switch from '@mui/material/Switch'
 import styled from 'styled-components'
@@ -14,11 +13,12 @@ import {
   setManyVariablesDisplayResultsSwitcher,
 } from '../../../manyVariablesSlice'
 
-export const DisplayResultsSwitcher = () => {
+export default function DisplayResultsSwitcher() {
   const dispatch = useDispatch()
   const manyVariablesToogleButton = useSelector(
     selectManyVariablesDisplayResultsSwitcher,
   )
+
   const ColoredSwitch = styled(Switch)(() => ({
     '& MuiSwitch-switchBase.Mui-checked': {
       color: '#1976d2',
@@ -32,25 +32,23 @@ export const DisplayResultsSwitcher = () => {
   }))
 
   return (
-    <>
-      <StyledResultSwitcheLabelBox>
-        <StyledResultSwitcherText>
-          Wyświetl dane w postaci:
-        </StyledResultSwitcherText>
-        <StyledResultSwitcherBox>
-          <StyledResultSwitcherTextGraph active={manyVariablesToogleButton}>
-            Wykres
-          </StyledResultSwitcherTextGraph>
-          <ColoredSwitch
-            checked={!manyVariablesToogleButton}
-            size={'small'}
-            onChange={() => dispatch(setManyVariablesDisplayResultsSwitcher())}
-          />
-          <StyledResultSwitcherTextTable active={!manyVariablesToogleButton}>
-            Tabela
-          </StyledResultSwitcherTextTable>
-        </StyledResultSwitcherBox>
-      </StyledResultSwitcheLabelBox>
-    </>
+    <StyledResultSwitcheLabelBox>
+      <StyledResultSwitcherText>
+        Wyświetl dane w postaci:
+      </StyledResultSwitcherText>
+      <StyledResultSwitcherBox>
+        <StyledResultSwitcherTextGraph active={manyVariablesToogleButton}>
+          Wykres
+        </StyledResultSwitcherTextGraph>
+        <ColoredSwitch
+          checked={!manyVariablesToogleButton}
+          size={'small'}
+          onChange={() => dispatch(setManyVariablesDisplayResultsSwitcher())}
+        />
+        <StyledResultSwitcherTextTable active={!manyVariablesToogleButton}>
+          Tabela
+        </StyledResultSwitcherTextTable>
+      </StyledResultSwitcherBox>
+    </StyledResultSwitcheLabelBox>
   )
 }
