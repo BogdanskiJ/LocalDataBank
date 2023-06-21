@@ -19,6 +19,33 @@ export const SelectBoxOneVariable = ({dataType, setValue}) => {
       margin: 'auto',
       flexDirection: 'row',
     }),
+    option: styles => ({
+      ...styles,
+      cursor: 'pointer',
+    }),
+    menuList: styles => ({
+      ...styles,
+      overflowY: 'scroll',
+      maxHeight: '250px',
+      '&::-webkit-scrollbar': {
+        width: '6px',
+        height: '6px',
+      },
+      '&::-webkit-scrollbar-track': {
+        borderRadius: '10px',
+        background: 'rgba(0, 0, 0, 0.1)',
+      },
+      '&::-webkit-scrollbar-thumb': {
+        borderRadius: '10px',
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+      },
+      '&::-webkit-scrollbar-thumb:hover': {
+        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+      },
+      '&::-webkit-scrollbar-thumb:active': {
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      },
+    }),
     dropdownIndicator: styles => ({
       ...styles,
       width: '100%',
@@ -39,12 +66,14 @@ export const SelectBoxOneVariable = ({dataType, setValue}) => {
         classNamePrefix="select"
         defaultValue={{
           value: '',
-          label: 'wybierz',
+          label: 'Wybierz',
         }}
         isClearable={false}
+        openMenuOnFocus={true}
         isSearchable={true}
         autoFocus={true}
         styles={style}
+        noOptionsMessage={() => 'Brak dostępnych zmiennych'}
         options={dataType.results.map(unit => ({
           value: unit.id,
           label: unit.n3
@@ -55,7 +84,9 @@ export const SelectBoxOneVariable = ({dataType, setValue}) => {
             ? unit.n1
             : unit.name,
         }))}
-        onChange={target => dispatch(setValue(target.value))}></Select>
+        onChange={target =>
+          dispatch(setValue(target)) && console.log(target)
+        }></Select>
     </StyledSelect>
   )
 }
@@ -68,11 +99,39 @@ export const SelectBoxManyVariables = ({dataType, setValue}) => {
       ...styles,
       display: 'flex',
       width: '100%',
+      maxHeight: '300px',
       cursor: 'pointer',
       flexDirection: 'row',
       '@media (max-width: 576px)': {
         ...styles[`@media ((max-width:${({theme}) => theme.breakpoint.md}))`],
         flexDirection: 'column',
+      },
+    }),
+    option: styles => ({
+      ...styles,
+      cursor: 'pointer',
+    }),
+    menuList: styles => ({
+      ...styles,
+      overflowY: 'scroll',
+      maxHeight: '250px',
+      '&::-webkit-scrollbar': {
+        width: '6px',
+        height: '6px',
+      },
+      '&::-webkit-scrollbar-track': {
+        borderRadius: '10px',
+        background: 'rgba(0, 0, 0, 0.1)',
+      },
+      '&::-webkit-scrollbar-thumb': {
+        borderRadius: '10px',
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+      },
+      '&::-webkit-scrollbar-thumb:hover': {
+        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+      },
+      '&::-webkit-scrollbar-thumb:active': {
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
       },
     }),
     multiValue: styles => ({
@@ -100,6 +159,26 @@ export const SelectBoxManyVariables = ({dataType, setValue}) => {
       flexDirection: 'row',
       width: 'auto',
       maxWidth: '100%',
+      overflowY: 'scroll',
+      maxHeight: '250px',
+      '&::-webkit-scrollbar': {
+        width: '6px',
+        height: '6px',
+      },
+      '&::-webkit-scrollbar-track': {
+        borderRadius: '10px',
+        background: 'rgba(0, 0, 0, 0.1)',
+      },
+      '&::-webkit-scrollbar-thumb': {
+        borderRadius: '10px',
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+      },
+      '&::-webkit-scrollbar-thumb:hover': {
+        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+      },
+      '&::-webkit-scrollbar-thumb:active': {
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      },
     }),
     indicatorsContainer: styles => ({
       ...styles,
@@ -143,9 +222,14 @@ export const SelectBoxManyVariables = ({dataType, setValue}) => {
         className="basic-multi-select"
         classNamePrefix="select"
         defaultValue={null}
+        openMenuOnFocus={true}
+        closeMenuOnSelect={false}
+        placeholder="Wybierz"
         isMulti
         isClearable={true}
         isSearchable={true}
+        noOptionsMessage={() => 'Brak dostępnych zmiennych'}
+        isFocused={true}
         autoFocus={true}
         styles={style}
         options={dataType.results.map(unit => ({
@@ -173,10 +257,69 @@ export const SelectBoxRegionNameDisplay = ({
   setProvinceName,
 }) => {
   const dispatch = useDispatch()
+  const style = {
+    control: styles => ({
+      ...styles,
+      cursor: 'pointer',
+      minWidth: '100px',
+    }),
+    option: styles => ({
+      ...styles,
+      cursor: 'pointer',
+    }),
+    dropdownIndicator: styles => ({
+      ...styles,
+      color: 'green',
+      justifyContent: 'center',
+      backgroundColor: 'hsl(120 100% 95% / 1)',
+      borderRadius: '5px',
+      border: '1px hsl(120 100% 95% / 1) solid',
+      '&:hover': {
+        ...styles[`:hover`],
+        backgroundColor: 'hsl(120 100% 85% / 1)',
+        color: 'green',
+        border: '1px hsl(120 100% 95% / 1) solid',
+      },
+    }),
+    menuList: styles => ({
+      ...styles,
+      overflowY: 'scroll',
+      maxHeight: '250px',
+      // '&::-webkit-scrollbar': {
+      //   width: '8px',
+      // },
+      // '&::-webkit-scrollbar-thumb': {
+      //   width: '20px',
+      //   backgroundColor: '#cdcdcd',
+      //   border: '1px solid black',
+      //   borderRadius: '10px',
+      // },
+
+      '&::-webkit-scrollbar': {
+        width: '6px',
+        height: '6px',
+      },
+      '&::-webkit-scrollbar-track': {
+        borderRadius: '10px',
+        background: 'rgba(0, 0, 0, 0.1)',
+      },
+      '&::-webkit-scrollbar-thumb': {
+        borderRadius: '10px',
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+      },
+      '&::-webkit-scrollbar-thumb:hover': {
+        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+      },
+      '&::-webkit-scrollbar-thumb:active': {
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      },
+    }),
+  }
   return (
     <Select
       className="basic-single"
       classNamePrefix="select"
+      styles={style}
       defaultValue={{
         value: '',
         label: 'Wybierz województwo',
