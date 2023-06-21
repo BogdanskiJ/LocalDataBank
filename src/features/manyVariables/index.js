@@ -5,7 +5,7 @@ import Results from './displayingResults'
 import NoDataPage from '../../common/NoDataPage'
 import ErrorPage from '../../common/ErrorPage'
 import SelectFields from './selectFields'
-import {MapPoland} from '../maps/MapPoland'
+import MapPoland from '../maps/MapPoland'
 import {MapProvinces} from '../maps/MapProvinces'
 import {StyledHead, StyledPageBody, StyledResults} from './styled'
 import {

@@ -1,4 +1,4 @@
-export default useSlaskie = () => {
+export default function useSlaskie() {
   const slaskie = [
     {
       name: 'Miasto Tychy',

@@ -1,4 +1,4 @@
-export default useWielkopolskie = () => {
+export default function useWielkopolskie() {
   const wielkopolskie = [
     {
       name: 'Powiat Chodzieski',

@@ -1,4 +1,4 @@
-export default usePodlaskie = () => {
+export default function usePodlaskie() {
   const podlaskie = [
     {
       name: 'Powiat Siemiatycki',

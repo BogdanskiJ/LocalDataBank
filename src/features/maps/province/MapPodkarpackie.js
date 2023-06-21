@@ -1,4 +1,4 @@
-export default usePodkarpackie = () => {
+export default function usePodkarpackie() {
   const podkarpackie = [
     {
       name: 'Powiat Lubaczowski',

@@ -1,4 +1,4 @@
-export default usePomorskie = () => {
+export default function usePomorskie() {
   const pomorskie = [
     {
       name: 'Powiat Słupski',

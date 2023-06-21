@@ -22,7 +22,7 @@ import {
 import Button from '@mui/material/Button'
 import windowSize from '../../common/WindowSize'
 import Select from 'react-select'
-import {usePoland} from './province/MapPoland'
+import usePoland from './province/MapPoland'
 
 export const MapProvinces = () => {
   const dispatch = useDispatch()

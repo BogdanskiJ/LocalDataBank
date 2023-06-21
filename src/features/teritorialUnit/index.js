@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from 'react-redux'
 import TeritorialUnit from './teritorialUnit'
-import {MapPoland} from '../maps/MapPoland'
+import MapPoland from '../maps/MapPoland'
 import {StyledHead, StyledPageBody, StyledResults} from './styled'
 import {
   selectProvinceName,

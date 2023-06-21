@@ -1,4 +1,4 @@
-export default useSwietokrzyskie = () => {
+export default function useSwietokrzyskie() {
   const swietokrzyskie = [
     {
       name: 'Powiat Kazimierski',

@@ -1,5 +1,14 @@
+import {useState} from 'react'
+import {useLocation} from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux'
 import 'react-tooltip/dist/react-tooltip.css'
+import Button from '@mui/material/Button'
 import {Tooltip} from 'react-tooltip'
+import {ReactComponent as Check} from '../../common/images/check.svg'
+import {ReactComponent as NoCheck} from '../../common/images/noCheck.svg'
+import windowSize from '../../common/WindowSize'
+import {SelectRegionName} from '../../common/Select'
+import usePoland from './province/MapPoland'
 import {
   Container,
   Header,
@@ -9,7 +18,6 @@ import {
   StyledMapPoland,
   StyledRegionNameLabel,
   StyledSelect,
-  StyledSelectedPolandButton,
   StyledSvg,
   StyledUnitBox,
 } from './styled'
@@ -17,27 +25,15 @@ import {
   selectRegionAndProvincesMapsSelectedMap,
   setSelectedMap,
 } from '../maps/mapsSlice'
-
-import {usePoland} from './province/MapPoland'
-import {useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-import {SelectRegionName} from '../../common/Select'
 import {setProvinceName} from '../teritorialUnit/teritorialUnitSlice'
-import {ReactComponent as Check} from '../../common/images/check.svg'
-import {ReactComponent as NoCheck} from '../../common/images/noCheck.svg'
-import Button from '@mui/material/Button'
-import windowSize from '../../common/WindowSize'
-import {useParams} from 'react-router-dom'
-import {useLocation} from 'react-router-dom'
 
-export const MapPoland = () => {
+export default function MapPoland() {
   const dispatch = useDispatch()
-  const selectedMap = useSelector(selectRegionAndProvincesMapsSelectedMap)
-  const poland = usePoland()
-  console.log('selectedMap', selectedMap)
-
   const {pathname} = useLocation()
   const [isHovering, setIsHovering] = useState(false)
+  const [widthSize] = windowSize()
+  const poland = usePoland()
+  const selectedMap = useSelector(selectRegionAndProvincesMapsSelectedMap)
 
   const handleMouseOver = province => {
     setIsHovering(province.name)
@@ -50,8 +46,6 @@ export const MapPoland = () => {
   const handleMouseOut = () => {
     setIsHovering()
   }
-
-  const [widthSize] = windowSize()
 
   const buttonSx = () => {
     let style = {
