@@ -1,5 +1,6 @@
 import {
   Container,
+  StyledNavButton,
   StyledNavLink,
   StyledNavText,
   StyledNavigation,
@@ -14,11 +15,11 @@ export const Navigation = () => {
         <Container>
           <StyledNavLink to="/jednostki-terytorialne">
             <IconPoland />
-            Dane dla jednostki terytorialnej
+            Jednostki terytorialne
           </StyledNavLink>
-          <StyledNavLink to="/dane-tematyczne">
+          <StyledNavLink to="/dziedziny-tematyczne">
             <IconCategory />
-            Dane według dziedzin
+            Dziedziny tematyczne
           </StyledNavLink>
           <StyledNavLink to="/bdl">BDL</StyledNavLink>
         </Container>
