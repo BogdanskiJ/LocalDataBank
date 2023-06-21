@@ -1,10 +1,9 @@
-import {useDispatch} from 'react-redux'
 import {
   apiLinkCategory,
   apiLinkGroup,
   apiLinkHead,
   apiLinkVariables,
-} from '../links'
+} from '../../common/Links'
 
 export const getCategory = async () => {
   try {
