@@ -1,7 +1,7 @@
 import {NavLink} from 'react-router-dom'
 import styled from 'styled-components'
 
-export const StyledNavigation = styled.ul`
+export const StyledNavUl = styled.ul`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,7 +14,7 @@ export const StyledNavigation = styled.ul`
   padding: 0px;
 `
 
-export const Container = styled.div`
+export const StyledNavBox = styled.div`
   max-width: 1368px;
   width: 100%;
   display: flex;
@@ -24,6 +24,7 @@ export const Container = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   color: white;
+
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
@@ -44,30 +45,9 @@ export const StyledNavLink = styled(NavLink)`
   display: flex;
   gap: 10px;
   align-items: center;
-  &.active {
-    border: 1px solid white;
-    border-radius: 10px;
-  }
-  @media (max-width: 768px) {
-  }
-`
-export const StyledNavText = styled.span`
-  text-transform: uppercase;
-  text-decoration: none;
-  color: white;
-  font-size: 28px;
-  padding: 15px 20px;
 
   &.active {
     border: 1px solid white;
     border-radius: 10px;
   }
-  @media (max-width: 768px) {
-  }
-`
-export const StyledNavButton = styled.button`
-  margin: 0;
-  padding: 0;
-  background-color: transparent;
-  border: none;
 `
