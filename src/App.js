@@ -4,11 +4,10 @@ import TeritorialUnitManyVariables from './features/teritorialUnit'
 import BDL from './features/bdl'
 import ManyVariablesOneUnit from './features/manyVariables'
 
-export function App() {
+function App() {
   return (
     <HashRouter>
       <Navigation />
-      {/* <TeritorialUnit /> */}
       <Switch>
         <Route path="/jednostki-terytorialne">
           <TeritorialUnitManyVariables />
@@ -16,7 +15,7 @@ export function App() {
         <Route path="/bdl">
           <BDL />
         </Route>
-        <Route path="/dane-tematyczne">
+        <Route path="/dziedziny-tematyczne">
           <ManyVariablesOneUnit />
         </Route>
         <Route path="/">
