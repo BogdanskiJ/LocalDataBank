@@ -14,10 +14,6 @@ import {
   setManyVariablesSubGroupName,
   setManyVariablesVariablesNames,
 } from '../manyVariablesSlice'
-import {
-  SelectManyVariables,
-  SelectOneVariable,
-} from '../../../common/Select/select'
 import LoadingPage from '../../../common/LoadingPage'
 import {
   StyledBox,
@@ -33,6 +29,7 @@ import {
 import {ReactComponent as Check} from '../../../common/images/check.svg'
 import {ReactComponent as NoCheck} from '../../../common/images/noCheck.svg'
 import {AutoScrollSwitcher} from '../displayingResults/Switchers/AutoScrollSwitcher'
+import {SelectOneVariable} from '../../../common/Select'
 
 function ManyVariables() {
   const manyVariables = useSelector(selectManyVariablesCategoryData)

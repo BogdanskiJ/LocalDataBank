@@ -21,7 +21,7 @@ import {
 import {usePoland} from './province/MapPoland'
 import {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {SelectRegionName} from '../../common/Select/select'
+import {SelectRegionName} from '../../common/Select'
 import {setProvinceName} from '../teritorialUnit/teritorialUnitSlice'
 import {ReactComponent as Check} from '../../common/images/check.svg'
 import {ReactComponent as NoCheck} from '../../common/images/noCheck.svg'

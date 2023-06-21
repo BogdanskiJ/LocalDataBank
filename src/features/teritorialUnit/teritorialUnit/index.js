@@ -14,10 +14,7 @@ import {
   setTeritorialUnitSubGroupName,
   setTeritorialUnitVariablesNames,
 } from '../teritorialUnitSlice'
-import {
-  SelectManyVariables,
-  SelectOneVariable,
-} from '../../../common/Select/select'
+import {SelectManyVariables, SelectOneVariable} from '../../../common/Select'
 import LoadingPage from '../../../common/LoadingPage'
 import {
   StyledBox,
