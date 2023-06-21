@@ -7,6 +7,7 @@ import {
   selectManyVariablesFinalValues,
   selectManyVariablesSubGroupData,
   selectManyVariablesSubGroupName,
+  selectManyVariablesVariablesName,
 } from '../manyVariablesSlice'
 import {useSelector} from 'react-redux'
 import {measures} from '../../../common/measures'
@@ -38,6 +39,10 @@ export const Results = () => {
   const [newArray, setNewArray] = useState([])
   const [newArray2, setNewArray2] = useState([])
   const [data1, setData1] = useState(manyVariablesFinalValues)
+
+  const manyVariablesVariablesName = useSelector(
+    selectManyVariablesVariablesName,
+  )
 
   useEffect(() => {
     setData(manyVariablesFinalData)
@@ -88,7 +93,7 @@ export const Results = () => {
 
   const measure = `[${
     measures.results.find(
-      measure => measure.id === manyVariablesFinalData.results[0].measureUnitId,
+      measure => measure.id === manyVariablesFinalData.measureUnitId,
     ).name
   }]`
   const resultsRef = useRef(null)
@@ -115,11 +120,11 @@ export const Results = () => {
       </StyledSwitcher>
       <StyledResultHeader ref={resultsRef}>
         <StyledResultsTitle>
-          {
+          {`${
             manyVariablesSubGroupData.results.find(
               element => element.id === manyVariablesSubGroupName,
             ).name
-          }
+          } - ${manyVariablesVariablesName.label} - wartość ${measure}`}
         </StyledResultsTitle>
       </StyledResultHeader>
       <StyledResultsBox>
