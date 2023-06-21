@@ -12,7 +12,7 @@ import {
 Chart.register(CategoryScale)
 Chart.register(...registerables)
 
-export default function LineGraph({measure, newArray}) {
+export default function LineGraph({measure, valuesArray}) {
   const teritorialUnitFinalData = useSelector(selectTeritorialUnitFinalData)
   const teritorialUnitVariablesName = useSelector(
     selectTeritorialUnitVariablesName,
@@ -27,7 +27,7 @@ export default function LineGraph({measure, newArray}) {
     setFinalDataResults(teritorialUnitFinalData.results)
   }, [teritorialUnitFinalData])
 
-  const xAxis = newArray.map(value => value.year)
+  const xAxis = valuesArray.map(value => value.year)
 
   const dataForLabel = data1 => {
     let array = []

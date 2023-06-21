@@ -9,7 +9,7 @@ import windowSize from '../../../../common/WindowSize'
 Chart.register(CategoryScale)
 Chart.register(...registerables)
 
-export default function LineGraph({measure, valuesArray}) {
+export default function LineGraph({valuesArray}) {
   const manyVariablesFinalData = useSelector(selectManyVariablesFinalData)
 
   const [finalDataResults, setFinalDataResults] = useState(

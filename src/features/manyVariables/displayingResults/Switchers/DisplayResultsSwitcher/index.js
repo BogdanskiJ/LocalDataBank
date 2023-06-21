@@ -1,6 +1,5 @@
 import {useDispatch, useSelector} from 'react-redux'
-import Switch from '@mui/material/Switch'
-import styled from 'styled-components'
+import {Switch} from '@mui/material'
 import {
   StyledResultSwitcheLabelBox,
   StyledResultSwitcherBox,
@@ -19,18 +18,6 @@ export default function DisplayResultsSwitcher() {
     selectManyVariablesDisplayResultsSwitcher,
   )
 
-  const ColoredSwitch = styled(Switch)(() => ({
-    '& MuiSwitch-switchBase.Mui-checked': {
-      color: '#1976d2',
-    },
-    '& .MuiSwitch-switchBase': {
-      color: 'green',
-    },
-    '& .MuiSwitch-track': {
-      backgroundColor: '#49ad26',
-    },
-  }))
-
   return (
     <StyledResultSwitcheLabelBox>
       <StyledResultSwitcherText>
@@ -40,7 +27,7 @@ export default function DisplayResultsSwitcher() {
         <StyledResultSwitcherTextGraph active={manyVariablesToogleButton}>
           Wykres
         </StyledResultSwitcherTextGraph>
-        <ColoredSwitch
+        <Switch
           checked={!manyVariablesToogleButton}
           size={'small'}
           onChange={() => dispatch(setManyVariablesDisplayResultsSwitcher())}
