@@ -1,5 +1,12 @@
+import {useEffect} from 'react'
+import {useLocation} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
+import Results from './displayingResults'
+import NoDataPage from '../../common/NoDataPage'
+import ErrorPage from '../../common/ErrorPage'
+import SelectFields from './selectFields'
 import {MapPoland} from '../maps/MapPoland'
+import {MapProvinces} from '../maps/MapProvinces'
 import {StyledHead, StyledPageBody, StyledResults} from './styled'
 import {
   selectManyVariablesFinalData,
@@ -7,36 +14,26 @@ import {
   selectManyVariablesSubGroupData,
   selectManyVariablesSubGroupName,
   selectManyVariablesVariablesName,
-  setProvinceNameBegin,
 } from './manyVariablesSlice'
 import {
   selectProvinceName,
-  setProvinceNameUnitBegin,
   setTeritorialUnitBegin,
 } from '../teritorialUnit/teritorialUnitSlice'
-import Results from './displayingResults'
-import NoDataPage from '../../common/NoDataPage'
-import {MapProvinces} from '../maps/MapProvinces'
-import ErrorPage from '../../common/ErrorPage'
-import {useLocation} from 'react-router-dom'
-import {useEffect} from 'react'
 import {setSelectedMapBegin} from '../maps/mapsSlice'
-import SelectFields from './selectFields'
 
-function ManyVariablesOneUnit() {
+export default function ManyVariables() {
+  const dispatch = useDispatch()
+  const {pathname} = useLocation()
+
+  const provinceName = useSelector(selectProvinceName)
+  const status = useSelector(selectManyVariablesStatus)
   const manyVariablesFinalData = useSelector(selectManyVariablesFinalData)
+  const manyVariablesSubGroupName = useSelector(selectManyVariablesSubGroupName)
+  const manyVariablesSubGroupData = useSelector(selectManyVariablesSubGroupData)
   const manyVariablesVariablesName = useSelector(
     selectManyVariablesVariablesName,
   )
-  const provinceName = useSelector(selectProvinceName)
-  const status = useSelector(selectManyVariablesStatus)
-  console.log('provinceName', provinceName)
 
-  const manyVariablesSubGroupName = useSelector(selectManyVariablesSubGroupName)
-  const manyVariablesSubGroupData = useSelector(selectManyVariablesSubGroupData)
-
-  const dispatch = useDispatch()
-  const {pathname} = useLocation()
   useEffect(() => {
     pathname === '/dziedziny-tematyczne'
       ? dispatch(setTeritorialUnitBegin()) && dispatch(setSelectedMapBegin())
@@ -80,4 +77,3 @@ function ManyVariablesOneUnit() {
     </StyledPageBody>
   )
 }
-export default ManyVariablesOneUnit

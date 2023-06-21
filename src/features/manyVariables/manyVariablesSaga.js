@@ -1,3 +1,11 @@
+import {call, delay, put, select, takeLatest} from '@redux-saga/core/effects'
+import {
+  getCategory,
+  getFinalData,
+  getGroup,
+  getSubGroup,
+  getVariables,
+} from './getApi'
 import {
   fetchManyVariablesError,
   fetchManyVariablesGroup,
@@ -15,27 +23,19 @@ import {
   fetchManyVariablesFinalData,
 } from './manyVariablesSlice'
 import {
-  getCategory,
-  getFinalData,
-  getGroup,
-  getSubGroup,
-  getVariables,
-} from './getApi'
-import {call, delay, put, select, takeLatest} from '@redux-saga/core/effects'
-import {
   selectRegionAndProvincesMapsSelectedMap,
   setSelectedMap,
 } from '../maps/mapsSlice'
+
 function* fetchManyVariablesSaga() {
   try {
     const data = yield call(getCategory)
-    console.log('data', data)
     data === ''
-      ? yield put(fetchManyVariablesError(1))
+      ? yield put(fetchManyVariablesError())
       : yield put(fetchManyVariables(data))
   } catch (error) {
     yield delay(200)
-    yield put(fetchManyVariablesError(1))
+    yield put(fetchManyVariablesError())
   }
 }
 
@@ -46,7 +46,7 @@ function* fetchManyVariablesGroupSaga() {
     yield put(fetchManyVariablesGroup(data))
   } catch (error) {
     yield delay(200)
-    yield put(fetchManyVariablesError(2))
+    yield put(fetchManyVariablesError())
   }
 }
 
@@ -57,7 +57,7 @@ function* fetchManyVariablesSubGroupSaga() {
     yield put(fetchManyVariablesSubGroup(data))
   } catch (error) {
     yield delay(200)
-    yield put(fetchManyVariablesError(3))
+    yield put(fetchManyVariablesError())
   }
 }
 
@@ -67,10 +67,10 @@ function* fetchManyVariablesVariablesSaga() {
     const data = yield call(getVariables, subGroupName)
     data
       ? yield put(fetchManyVariablesVariables(data))
-      : yield put(fetchManyVariablesError('variablesSaga'))
+      : yield put(fetchManyVariablesError())
   } catch (error) {
     yield delay(200)
-    yield put(fetchManyVariablesError(4))
+    yield put(fetchManyVariablesError())
   }
 }
 
@@ -89,14 +89,9 @@ function* fetchManyVariablesFinalDataSaga() {
         yield put(fetchManyVariablesFinalData(data))
       }
     }
-
-    // const data =
-    // 	variablesName !== "" && selectedUnit[0] !== ""
-    // 		? yield call(getFinalData, variablesName, selectedUnit[1])
-    // 		: "";
   } catch (error) {
     yield delay(200)
-    yield put(fetchManyVariablesError(5))
+    yield put(fetchManyVariablesError())
   }
 }
 
