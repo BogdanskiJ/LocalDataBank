@@ -15,7 +15,7 @@ import {
   setProvinceNameUnitBegin,
   setTeritorialUnitBegin,
 } from '../teritorialUnit/teritorialUnitSlice'
-import {Results} from './displayingResults'
+import Results from './displayingResults'
 import NoDataPage from '../../common/NoDataPage'
 import {MapProvinces} from '../maps/MapProvinces'
 import ErrorPage from '../../common/ErrorPage'

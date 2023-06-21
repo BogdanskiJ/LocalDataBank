@@ -23,7 +23,7 @@ import {
 } from './styled'
 import {measures} from '../../../common/Measures'
 
-export const Results = () => {
+export default function Results() {
   const manyVariablesFinalData = useSelector(selectManyVariablesFinalData)
   const manyVariablesFinalValues = useSelector(selectManyVariablesFinalValues)
   const manyVariablesSubGroupName = useSelector(selectManyVariablesSubGroupName)
