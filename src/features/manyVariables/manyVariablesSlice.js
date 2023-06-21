@@ -55,8 +55,19 @@ const manyVariablesSlice = createSlice({
     fetchManyVariablesError: state => {
       state.status = 'error'
     },
+    setManyVariablesBegin: state => {
+      state.categoryName = ''
+      state.status = 'loading'
+      state.groupData = ''
+      state.subGroupData = ''
+      state.variablesData = ''
+      state.groupName = ''
+      state.subGroupName = ''
+      state.variablesName = ''
+      state.finalData = ''
+    },
     setManyVariablesCategoryName: (state, {payload: name}) => {
-      state.categoryName = name
+      state.categoryName = name.value
       state.status = 'loading'
       state.groupData = ''
       state.subGroupData = ''
@@ -67,7 +78,7 @@ const manyVariablesSlice = createSlice({
       state.finalData = ''
     },
     setManyVariablesGroupName: (state, {payload: name}) => {
-      state.groupName = name
+      state.groupName = name.value
       state.status = 'loading'
       state.subGroupData = ''
       state.variablesData = ''
@@ -76,7 +87,7 @@ const manyVariablesSlice = createSlice({
       state.finalData = ''
     },
     setManyVariablesSubGroupName: (state, {payload: name}) => {
-      state.subGroupName = name
+      state.subGroupName = name.value
       state.status = 'loading'
       state.variablesData = ''
       state.variablesName = ''
@@ -109,6 +120,7 @@ export const {
   fetchManyVariablesVariables,
   fetchManyVariablesFinalData,
   fetchManyVariablesError,
+  setManyVariablesBegin,
   setManyVariablesCategoryName,
   setManyVariablesGroupName,
   setManyVariablesSubGroupName,
