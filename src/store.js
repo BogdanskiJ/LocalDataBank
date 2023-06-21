@@ -12,11 +12,6 @@ const store = configureStore({
     teritorialUnit: teritorialUnitReducer,
     manyVariables: manyVariablesReducer,
     RegionAndProvincesMaps: RegionAndProvincesMapsReducer,
-    // movieList: movieListReducer,
-    // movieDetails: movieDetailsReducer,
-    // peopleList: peopleListReducer,
-    // peopleDetails: peopleDetailsReducer,
-    // projects: projectsReducer,
   },
   middleware: [sagaMiddleWare],
 })

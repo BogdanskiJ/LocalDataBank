@@ -21,8 +21,9 @@ import {
   setSelectedMap,
 } from '../mapsSlice'
 import {StyledLi, StyledSvg} from './styled'
+import {func} from 'prop-types'
 
-export default useAllProvinces = () => {
+export default function useAllProvinces() {
   const dispatch = useDispatch()
   const [isHovering, setIsHovering] = useState(false)
   const selectedMap = useSelector(selectRegionAndProvincesMapsSelectedMap)

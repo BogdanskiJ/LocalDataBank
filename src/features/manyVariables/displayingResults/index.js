@@ -24,6 +24,7 @@ import {
 import {measures} from '../../../common/Measures'
 
 export default function Results() {
+  const resultsRef = useRef(null)
   const manyVariablesFinalData = useSelector(selectManyVariablesFinalData)
   const manyVariablesFinalValues = useSelector(selectManyVariablesFinalValues)
   const manyVariablesSubGroupName = useSelector(selectManyVariablesSubGroupName)
@@ -83,7 +84,6 @@ export default function Results() {
       measure => measure.id === manyVariablesFinalData.measureUnitId,
     ).name
   }]`
-  const resultsRef = useRef(null)
 
   const scrollToResults = () => {
     resultsRef.current.scrollIntoView({

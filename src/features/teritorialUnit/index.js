@@ -1,7 +1,15 @@
+import {useEffect} from 'react'
+import {useLocation} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
-import TeritorialUnit from './teritorialUnit'
+import Results from './displayingResults'
+import SelectFields from './selectFields'
+import NoDataPage from '../../common/NoDataPage'
+import {MapProvinces} from '../maps/MapProvinces'
+import ErrorPage from '../../common/ErrorPage'
 import MapPoland from '../maps/MapPoland'
 import {StyledHead, StyledPageBody, StyledResults} from './styled'
+import {setManyVariablesBegin} from '../manyVariables/manyVariablesSlice'
+import {setSelectedMapBegin} from '../maps/mapsSlice'
 import {
   selectProvinceName,
   selectTeritorialUnitFinalData,
@@ -9,38 +17,24 @@ import {
   selectTeritorialUnitSubGroupData,
   selectTeritorialUnitSubGroupName,
   selectTeritorialUnitVariablesName,
-  setProvinceNameBegin,
-  setTeritorialUnitCategoryName,
 } from './teritorialUnitSlice'
-import {Results} from './displayingResults'
-import NoDataPage from '../../common/NoDataPage'
-import {MapProvinces} from '../maps/MapProvinces'
-import ErrorPage from '../../common/ErrorPage'
-import {useState} from 'react'
-import {useEffect} from 'react'
-import {useLocation} from 'react-router-dom'
-import {
-  setManyVariablesBegin,
-  setProvinceNameVariablesBegin,
-} from '../manyVariables/manyVariablesSlice'
-import {setSelectedMapBegin} from '../maps/mapsSlice'
 
-function TeritorialUnitManyVariables() {
+export default function TeritorialUnitManyVariables() {
+  const dispatch = useDispatch()
+  const {pathname} = useLocation()
   const teritorialUnitFinalData = useSelector(selectTeritorialUnitFinalData)
   const teritorialUnitVariablesName = useSelector(
     selectTeritorialUnitVariablesName,
   )
   const provinceName = useSelector(selectProvinceName)
   const status = useSelector(selectTeritorialUnitStatus)
-
   const teritorialUnitSubGroupName = useSelector(
     selectTeritorialUnitSubGroupName,
   )
   const teritorialUnitSubGroupData = useSelector(
     selectTeritorialUnitSubGroupData,
   )
-  const dispatch = useDispatch()
-  const {pathname} = useLocation()
+
   useEffect(() => {
     pathname === '/jednostki-terytorialne'
       ? dispatch(setManyVariablesBegin()) && dispatch(setSelectedMapBegin())
@@ -55,7 +49,7 @@ function TeritorialUnitManyVariables() {
         <>
           <StyledHead>Dane dla wybranej jednostki terytorialnej</StyledHead>
           <StyledResults>
-            <TeritorialUnit />
+            <SelectFields />
             {provinceName === '' ? <MapPoland /> : <MapProvinces />}
           </StyledResults>
 
@@ -84,4 +78,3 @@ function TeritorialUnitManyVariables() {
     </StyledPageBody>
   )
 }
-export default TeritorialUnitManyVariables

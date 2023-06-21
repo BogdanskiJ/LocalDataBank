@@ -3,7 +3,6 @@ import {Tooltip} from 'react-tooltip'
 import 'react-tooltip/dist/react-tooltip.css'
 import Button from '@mui/material/Button'
 import useAllProvinces from '../useAllProvinces'
-import usePoland from '../province/MapPoland'
 import {
   Box,
   Container,

@@ -13,7 +13,7 @@ export const getCategory = async () => {
     }
     return await response.json()
   } catch (error) {
-    return console.log('error in getCategory', error)
+    return console.log('error', error)
   }
 }
 
@@ -27,7 +27,7 @@ export const getGroup = async categoryName => {
     }
     return await response.json()
   } catch (error) {
-    return console.log('error in getGroup', error)
+    return console.log('error', error)
   }
 }
 
@@ -41,7 +41,7 @@ export const getSubGroup = async groupName => {
     }
     return await response.json()
   } catch (error) {
-    return console.log('error in getSubGroup', error)
+    return console.log('error', error)
   }
 }
 
@@ -55,7 +55,7 @@ export const getVariables = async subGroupName => {
     }
     return await response.json()
   } catch (error) {
-    return console.log('error in getVariables', error)
+    return console.log('error', error)
   }
 }
 
@@ -73,6 +73,6 @@ export const getFinalData = async (variablesName, selectedUnit) => {
     }
     return await response.json()
   } catch (error) {
-    return console.log('error in getFinalData', error)
+    return console.log('error', error)
   }
 }
