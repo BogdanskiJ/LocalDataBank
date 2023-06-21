@@ -4,7 +4,7 @@ import {
   setSelectedMap,
 } from '../maps/mapsSlice'
 import {StyledLi, StyledSvg} from './styled'
-import {useDolnoslaskie} from './province/MapDolnoslaskie'
+import useDolnoslaskie from './province/MapDolnoslaskie'
 import {useKujawskoPomorskie} from './province/MapKujawskopomorskie'
 import {useLodzkie} from './province/MapLodzkie'
 import {useLubelskie} from './province/MapLubelskie'

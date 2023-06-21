@@ -1,4 +1,4 @@
-export const useZachodnioPomorskie = () => {
+export default useZachodnioPomorskie = () => {
   const zachodniopomorskie = [
     {
       name: 'Miasto Świnoujście',

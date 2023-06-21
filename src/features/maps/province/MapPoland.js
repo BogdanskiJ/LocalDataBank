@@ -1,4 +1,4 @@
-export const usePoland = () => {
+export default usePoland = () => {
   const poland = [
     {
       name: 'Dolnośląskie',

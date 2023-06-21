@@ -1,4 +1,4 @@
-export const useLubuskie = () => {
+export default useLubuskie = () => {
   const lubuskie = [
     {
       name: 'Powiat Słubicki',

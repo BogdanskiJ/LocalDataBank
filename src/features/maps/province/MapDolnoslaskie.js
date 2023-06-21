@@ -1,4 +1,4 @@
-export const useDolnoslaskie = () => {
+export default useDolnoslaskie = () => {
   const dolnoslaskie = [
     {
       name: 'Powiat Zgorzelecki',

@@ -1,4 +1,4 @@
-export const useLodzkie = () => {
+export default useLodzkie = () => {
   const lodzkie = [
     {
       name: 'Powiat Radomszczański',

@@ -1,4 +1,4 @@
-export const useMazowieckie = () => {
+export default useMazowieckie = () => {
   const mazowieckie = [
     {
       name: 'Powiat Ostrołęcki',

@@ -1,4 +1,4 @@
-export const useMalopolskie = () => {
+export default useMalopolskie = () => {
   const malopolskie = [
     {
       name: 'Powiat Dąbrowski',

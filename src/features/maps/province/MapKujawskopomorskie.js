@@ -1,4 +1,4 @@
-export const useKujawskoPomorskie = () => {
+export default useKujawskoPomorskie = () => {
   const kujawskopomorskie = [
     {
       name: 'Powiat Żniński',

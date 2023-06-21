@@ -1,4 +1,4 @@
-export const useWarminskoMazurskie = () => {
+export default useWarminskoMazurskie = () => {
   const warminskomazurskie = [
     {
       name: 'Powiat Elbląski',

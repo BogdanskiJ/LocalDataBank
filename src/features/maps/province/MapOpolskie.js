@@ -1,4 +1,4 @@
-export const useOpolskie = () => {
+export default useOpolskie = () => {
   const opolskie = [
     {
       name: 'Powiat Opolski',
