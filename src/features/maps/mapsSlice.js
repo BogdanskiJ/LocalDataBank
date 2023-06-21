@@ -1,23 +1,28 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice} from '@reduxjs/toolkit'
 
 const RegionAndProvincesMapsSlice = createSlice({
-  name: "RegionAndProvincesMaps",
+  name: 'RegionAndProvincesMaps',
   initialState: {
-    selectedMap: "",
+    selectedMap: '',
   },
   reducers: {
     setSelectedMap: (state, {payload: data}) => {
       state.selectedMap[0] === data[0]
-        ? (state.selectedMap = "")
-        : (state.selectedMap = data);
+        ? (state.selectedMap = '')
+        : (state.selectedMap = data)
+    },
+    setSelectedMapBegin: state => {
+      state.selectedMap = ''
+      console.log('state.selectedMap', state.selectedMap)
     },
   },
-});
+})
 
-export const {setSelectedMap} = RegionAndProvincesMapsSlice.actions;
+export const {setSelectedMap, setSelectedMapBegin} =
+  RegionAndProvincesMapsSlice.actions
 
 export const selectRegionAndProvincesMapsState = state =>
-  state.RegionAndProvincesMaps;
+  state.RegionAndProvincesMaps
 export const selectRegionAndProvincesMapsSelectedMap = state =>
-  selectRegionAndProvincesMapsState(state).selectedMap;
-export default RegionAndProvincesMapsSlice.reducer;
+  selectRegionAndProvincesMapsState(state).selectedMap
+export default RegionAndProvincesMapsSlice.reducer
