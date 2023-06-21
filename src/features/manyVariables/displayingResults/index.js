@@ -11,7 +11,6 @@ import {
 } from '../manyVariablesSlice'
 import {useSelector} from 'react-redux'
 import {Table} from './Table'
-import {LineGraph} from './LineGraph/index'
 import {useEffect} from 'react'
 import {
   StyledResultHeader,
@@ -23,6 +22,7 @@ import {
 import {DisplayResultsSwitcher} from '../../manyVariables/displayingResults/Switchers/DisplayResultsSwitcher'
 import {useRef} from 'react'
 import {measures} from '../../../common/Measures'
+import LineGraph from './LineGraph'
 
 export const Results = () => {
   const manyVariablesFinalData = useSelector(selectManyVariablesFinalData)
