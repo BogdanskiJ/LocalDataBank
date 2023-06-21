@@ -1,5 +1,4 @@
 import {useDispatch, useSelector} from 'react-redux'
-import ManyVariables from './manyVariables'
 import {MapPoland} from '../maps/MapPoland'
 import {StyledHead, StyledPageBody, StyledResults} from './styled'
 import {
@@ -22,6 +21,7 @@ import ErrorPage from '../../common/ErrorPage'
 import {useLocation} from 'react-router-dom'
 import {useEffect} from 'react'
 import {setSelectedMapBegin} from '../maps/mapsSlice'
+import SelectFields from './selectFields'
 
 function ManyVariablesOneUnit() {
   const manyVariablesFinalData = useSelector(selectManyVariablesFinalData)
@@ -51,7 +51,7 @@ function ManyVariablesOneUnit() {
         <>
           <StyledHead>Dane według wybranej dziedziny tematycznej</StyledHead>
           <StyledResults>
-            <ManyVariables />
+            <SelectFields />
             {provinceName === '' ? <MapPoland /> : <MapProvinces />}
           </StyledResults>
 

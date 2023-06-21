@@ -1,10 +1,14 @@
 import {useSelector} from 'react-redux'
+import {ReactComponent as Check} from '../../../common/images/check.svg'
+import {ReactComponent as NoCheck} from '../../../common/images/noCheck.svg'
+import LoadingPage from '../../../common/LoadingPage'
+import AutoScrollSwitcher from '../displayingResults/Switchers/AutoScrollSwitcher'
+import {SelectOneVariable} from '../../../common/Select'
 import {
   selectManyVariablesCategoryData,
   selectManyVariablesCategoryName,
   selectManyVariablesGroupData,
   selectManyVariablesGroupName,
-  selectManyVariablesStatus,
   selectManyVariablesSubGroupData,
   selectManyVariablesSubGroupName,
   selectManyVariablesVariablesData,
@@ -14,24 +18,15 @@ import {
   setManyVariablesSubGroupName,
   setManyVariablesVariablesNames,
 } from '../manyVariablesSlice'
-import LoadingPage from '../../../common/LoadingPage'
 import {
-  StyledBox,
-  StyledCheck as StyledCheckBox,
+  StyledCheck,
   StyledLabel,
   StyledLabelBox,
-  StyledLabelText,
-  StyledMultiSelectBox,
-  StyledMultiSelectLabelBox,
   StyledSelectBox,
-  StyledManyVariables,
+  StyledSelectFieldsBox,
 } from './styled'
-import {ReactComponent as Check} from '../../../common/images/check.svg'
-import {ReactComponent as NoCheck} from '../../../common/images/noCheck.svg'
-import AutoScrollSwitcher from '../displayingResults/Switchers/AutoScrollSwitcher'
-import {SelectOneVariable} from '../../../common/Select'
 
-function ManyVariables() {
+export default function SelectFields() {
   const manyVariables = useSelector(selectManyVariablesCategoryData)
   const manyVariablesGroup = useSelector(selectManyVariablesGroupData)
   const manyVariablesSubGroup = useSelector(selectManyVariablesSubGroupData)
@@ -44,10 +39,8 @@ function ManyVariables() {
     selectManyVariablesVariablesName,
   )
 
-  const manyVariablesStatus = useSelector(selectManyVariablesStatus)
-  console.log('manyVariablesStatus', manyVariablesStatus)
   return (
-    <StyledManyVariables>
+    <StyledSelectFieldsBox>
       {manyVariables ? (
         <div>
           <StyledLabelBox>
@@ -57,9 +50,9 @@ function ManyVariables() {
                 dataType={manyVariables}
                 setValue={setManyVariablesCategoryName}
               />
-              <StyledCheckBox>
+              <StyledCheck>
                 {manyVariablesCategoryName ? <Check /> : <NoCheck />}
-              </StyledCheckBox>
+              </StyledCheck>
             </StyledSelectBox>
           </StyledLabelBox>
         </div>
@@ -77,9 +70,9 @@ function ManyVariables() {
                     dataType={manyVariablesGroup}
                     setValue={setManyVariablesGroupName}
                   />
-                  <StyledCheckBox>
+                  <StyledCheck>
                     {manyVariablesGroupName ? <Check /> : <NoCheck />}
-                  </StyledCheckBox>
+                  </StyledCheck>
                 </StyledSelectBox>
               </StyledLabelBox>
             </div>
@@ -102,9 +95,9 @@ function ManyVariables() {
                     dataType={manyVariablesSubGroup}
                     setValue={setManyVariablesSubGroupName}
                   />
-                  <StyledCheckBox>
+                  <StyledCheck>
                     {manyVariablesSubGroupName ? <Check /> : <NoCheck />}
-                  </StyledCheckBox>
+                  </StyledCheck>
                 </StyledSelectBox>
               </StyledLabelBox>
             </div>
@@ -127,9 +120,9 @@ function ManyVariables() {
                     dataType={manyVariablesVariables}
                     setValue={setManyVariablesVariablesNames}
                   />
-                  <StyledCheckBox>
+                  <StyledCheck>
                     {manyVariablesVariablesName ? <Check /> : <NoCheck />}
-                  </StyledCheckBox>
+                  </StyledCheck>
                 </StyledSelectBox>
                 <AutoScrollSwitcher />
               </StyledLabelBox>
@@ -141,38 +134,6 @@ function ManyVariables() {
       ) : (
         ''
       )}
-    </StyledManyVariables>
+    </StyledSelectFieldsBox>
   )
 }
-export default ManyVariables
-
-// <StyledBox>
-//         {manyVariablesSubGroupName !== '' ? (
-//           <div>
-//             {manyVariablesVariables ? (
-//               <div>
-//                 <StyledMultiSelectLabelBox>
-//                   <StyledLabel>
-//                     Wybierz zmienne: <StyledLabelText>max 10</StyledLabelText>
-//                   </StyledLabel>
-//                   <StyledMultiSelectBox>
-//                     <SelectManyVariables
-//                       dataType={manyVariablesVariables}
-//                       setValue={setManyVariablesVariablesNames}
-//                     />
-
-//                     <StyledCheckBox>
-//                       {manyVariablesVariablesName ? <Check /> : <NoCheck />}
-//                     </StyledCheckBox>
-//                   </StyledMultiSelectBox>
-//                   <AutoScrollSwitcher />
-//                 </StyledMultiSelectLabelBox>
-//               </div>
-//             ) : (
-//               <LoadingPage title="Pobieram listę zmiennych" />
-//             )}
-//           </div>
-//         ) : (
-//           ''
-//         )}
-//       </StyledBox>
