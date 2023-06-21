@@ -1,3 +1,4 @@
+import {useDispatch} from 'react-redux'
 import {
   StyledAnchor,
   StyledBDLPage,
@@ -10,22 +11,28 @@ import {
   StyledTh,
   StyledTr,
 } from './styled'
-
+import {useLocation} from 'react-router-dom'
+import {
+  setProvinceNameBegin,
+  setProvinceNameUnitBegin,
+  setTeritorialUnitBegin,
+} from '../teritorialUnit/teritorialUnitSlice'
+import {
+  setManyVariablesBegin,
+  setProvinceNameVariablesBegin,
+} from '../manyVariables/manyVariablesSlice'
+import {useEffect} from 'react'
+import {setSelectedMapBegin} from '../maps/mapsSlice'
 function BDL() {
-  // const provinceName = useSelector(selectProvinceName);
-
-  // const resultsRef = useRef(null);
-
-  // const scrollToResults = () => {
-  // 	resultsRef.current.scrollIntoView({
-  // 		behavior: "smooth",
-  // 		block: "start",
-  // 	});
-  // };
-
-  // useEffect(() => {
-  // 	scrollToResults();
-  // }, [teritorialUnitFinalData]);
+  const dispatch = useDispatch()
+  const {pathname} = useLocation()
+  useEffect(() => {
+    pathname === '/bdl'
+      ? dispatch(setTeritorialUnitBegin()) &&
+        dispatch(setManyVariablesBegin()) &&
+        dispatch(setSelectedMapBegin())
+      : ''
+  }, [])
 
   return (
     <StyledBDLPage>
