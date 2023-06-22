@@ -1,7 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "homepage": "https://Kubabogd.github.io/strateg",
+  "homepage": "https://kubabogd.github.io/LocalDataBank/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.0",
@@ -64,12 +64,12 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Kubabogd/strateg.git"
+    "url": "git+https://kubabogd.github.io/LocalDataBank.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Kubabogd/strateg/issues"
+    "url": "https://kubabogd.github.io/LocalDataBank/issues"
   }
 }
