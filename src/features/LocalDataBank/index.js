@@ -57,6 +57,21 @@ export default function LocalDataBank() {
           Cyfryzacji. Projekt jest współfinansowany ze środków Unii Europejskiej
           z Programu Operacyjnego Polska Cyfrowa.
         </StyledParagraph>
+        <StyledParagraph>
+          Aplikacja pozwala na przeglądanie danych w dwóch trybach:
+        </StyledParagraph>
+        <ul>
+          <li>jedna jednostka terytorialna dla wielu dziedzin tematycznych </li>
+          <li>jedna dziedzina tematyczna dla wielu jednostek terytorialnych</li>
+        </ul>
+        <StyledParagraph>
+          Podczas wyboru jednostki terytorialnej w zakładce Dziedziny Tematyczne
+          wyniki będą wyświetlone dla wszystkich jednostek terytorialnych
+          niższego szczebla.
+        </StyledParagraph>
+        <StyledParagraph>
+          Wyniki mogą być wyświetlone w postaci wykresu lub tabeli.
+        </StyledParagraph>
       </StyledSection>
       <StyledSection>
         <StyledSectionHeader>Limity zapytań</StyledSectionHeader>
