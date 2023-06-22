@@ -18,11 +18,11 @@ export const StyledNavBox = styled.div`
   max-width: 1368px;
   width: 100%;
   display: flex;
+  flex-wrap: nowrap;
   margin: auto;
   padding: 0 1% 0 1%;
   flex-direction: row;
   justify-content: space-between;
-  flex-wrap: wrap;
   color: ${({theme}) => theme.color.white};
 
   @media ((max-width: ${({theme}) => theme.breakpoint.md})) {
@@ -46,6 +46,12 @@ export const StyledNavLink = styled(NavLink)`
   gap: 10px;
   align-items: center;
 
+  @media ((max-width: ${({theme}) => theme.breakpoint.lg})) {
+    font-size: 16px;
+  }
+  @media ((max-width: ${({theme}) => theme.breakpoint.md})) {
+    font-size: 14px;
+  }
   &.active {
     border: 1px solid ${({theme}) => theme.color.white};
     border-radius: 10px;
