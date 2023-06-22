@@ -5,7 +5,8 @@ import {
   IconContainer,
   Info,
   StyledErrorPage,
-  StyledNavLink,
+  StyledLink,
+  StyledReturnButton,
 } from './styled'
 import windowSize from '../WindowSize'
 
@@ -17,6 +18,7 @@ export default function ErrorPage() {
       padding: '0 5px',
       maxWidth: 'fit-content',
       marginLeft: 'auto',
+      textDecoration: 'none',
     }
     if (widthSize <= 768) {
       style.fontSize = '12px'
@@ -39,11 +41,11 @@ export default function ErrorPage() {
         Jeżeli Twoje połączenie sieciowe jest poprawne niestety błąd leży po
         stronie serwera API.
       </Info>
-      <StyledNavLink to="https://kubabogd.github.io/strateg/#/jednostki-terytorialne">
+      <StyledLink to="/">
         <Button variant="contained" size="medium" sx={buttonSx()}>
-          Załaduj stronę ponownie
+          Przejdz do strony główej
         </Button>
-      </StyledNavLink>
+      </StyledLink>
     </StyledErrorPage>
   )
 }
