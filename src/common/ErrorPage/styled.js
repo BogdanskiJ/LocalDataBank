@@ -1,10 +1,19 @@
-import styled, {css} from 'styled-components'
+import {NavLink} from 'react-router-dom'
+import styled from 'styled-components'
+
+export const StyledErrorPage = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 56px;
+`
 
 export const IconContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 180px;
-  @media (max-width: 767px) {
+
+  @media ((max-width: ${({theme}) => theme.breakpoint.md})) {
     width: 50px;
     height: 45px;
     margin: auto;
@@ -18,7 +27,7 @@ export const Error = styled.p`
   text-align: center;
   color: ${({theme}) => theme.color.gray};
 
-  @media (max-width: 767px) {
+  @media ((max-width: ${({theme}) => theme.breakpoint.md})) {
     font-weight: 500;
     font-size: 14px;
     line-height: 130%;
@@ -35,7 +44,7 @@ export const Info = styled.p`
   color: ${({theme}) => theme.color.gray};
   margin-top: 24px;
 
-  @media (max-width: 767px) {
+  @media ((max-width: ${({theme}) => theme.breakpoint.md})) {
     font-weight: 400;
     font-size: 10px;
     line-height: 140%;
@@ -43,3 +52,5 @@ export const Info = styled.p`
     margin-top: 12px;
   }
 `
+
+export const StyledNavLink = styled(NavLink)``
