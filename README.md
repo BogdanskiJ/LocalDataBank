@@ -1,4 +1,4 @@
-# Local Data Bank <img alt="Local Data Bank" src="/src/common/images/LocalDataBank.svg" width="50%" />
+# Local Data Bank <img alt="Local Data Bank" src="/public/LocalDataBank.svg" width="50%" />
 
 Local Data Bank is the largest database on economy, society and snvironment in Poland. It offers over 40,000 statistical features grouped thematically. The first data comes from 1995.
 
@@ -29,7 +29,7 @@ The results can be displayed in the form of a graph or a table.
 
 ## How it works
 
-![Movies Browser](/src/common/images/LocalDataBank.gif)
+![Movies Browser](/public/LocalDataBank.gif)
 
 ## Technologies
 
