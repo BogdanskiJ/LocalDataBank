@@ -13,16 +13,16 @@ export const StyledHeader = styled.header`
   margin: 56px 20px;
   text-align: center;
 
-  @media (max-width: 1420px) {
+  @media ((max-width: ${({theme}) => theme.breakpoint.xxl})) {
     margin-left: 60px;
   }
 
-  @media (max-width: 1050px) {
+  @media ((max-width: ${({theme}) => theme.breakpoint.xl})) {
     font-size: 30px;
     margin-left: 40px;
   }
 
-  @media (max-width: 767px) {
+  @media ((max-width: ${({theme}) => theme.breakpoint.md})) {
     font-size: 24px;
     line-height: 130%;
     margin: 24px 16px;

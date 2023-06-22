@@ -18,7 +18,7 @@ export const StyledHeader = styled.header`
   margin-top: 10px;
   text-align: center;
 
-  @media (max-width: 767px) {
+  @media ((max-width: ${({theme}) => theme.breakpoint.md})) {
     font-weight: 500;
     font-size: 14px;
     line-height: 130%;

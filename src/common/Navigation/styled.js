@@ -25,7 +25,7 @@ export const StyledNavBox = styled.div`
   flex-wrap: wrap;
   color: ${({theme}) => theme.color.white};
 
-  @media (max-width: 768px) {
+  @media ((max-width: ${({theme}) => theme.breakpoint.md})) {
     display: flex;
     flex-direction: column;
     align-items: center;
