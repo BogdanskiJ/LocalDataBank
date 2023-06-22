@@ -20,16 +20,16 @@ export const GlobalStyle = createGlobalStyle`
     }
     body::-webkit-scrollbar-track {
         border-radius: 10px;
-        background: rgba(0,0,0,0.1);
+        background: ${({theme}) => theme.color.blackOpacity01};
     }
     body::-webkit-scrollbar-thumb{
         border-radius: 10px;
-        background: rgba(0,0,0,0.2);
+        background: ${({theme}) => theme.color.blackOpacity02};
     }
     body::-webkit-scrollbar-thumb:hover{
-  	    background: rgba(0,0,0,0.4);
+  	    background: ${({theme}) => theme.color.blackOpacity04};
     }
     body::-webkit-scrollbar-thumb:active{
-  	    background: rgba(0,0,0,0.5);
+  	    background: ${({theme}) => theme.color.blackOpacity05};
     }
 `

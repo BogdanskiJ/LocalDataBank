@@ -9,7 +9,7 @@ export const StyledHeader = styled.header`
   font-weight: 600;
   font-size: 36px;
   line-height: 120%;
-  color: gray;
+  color: ${({theme}) => theme.color.gray};
   margin: 56px 20px;
   text-align: center;
 

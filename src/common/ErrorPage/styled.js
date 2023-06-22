@@ -16,7 +16,7 @@ export const Error = styled.p`
   line-height: 120%;
   margin-top: 38px;
   text-align: center;
-  color: gray;
+  color: ${({theme}) => theme.color.gray};
 
   @media (max-width: 767px) {
     font-weight: 500;
@@ -32,7 +32,7 @@ export const Info = styled.p`
   font-size: 22px;
   line-height: 130%;
   text-align: center;
-  color: gray;
+  color: ${({theme}) => theme.color.gray};
   margin-top: 24px;
 
   @media (max-width: 767px) {

@@ -9,8 +9,8 @@ export const Container = styled.div`
   padding: 20px;
   flex-direction: column;
   width: 50%;
-  background-color: rgb(240, 240, 240);
-  border: 1px solid rgb(203, 203, 203);
+  background-color: ${({theme}) => theme.color.gallery};
+  border: 1px solid ${({theme}) => theme.color.silver};
   border-radius: 20px;
   @media ((max-width: ${({theme}) => theme.breakpoint.md})) {
     width: auto;
@@ -40,7 +40,7 @@ export const StyledSvg = styled.svg`
     transform-box: fill-box;
   }
   & path:active {
-    fill: #9d0c26;
+    fill: ${({theme}) => theme.color.monarch};
   }
   & a:hover {
     outline: none;
@@ -69,9 +69,9 @@ export const StyledList = styled.div`
   max-width: 35%;
   width: 100%;
   height: 100%;
-  background-color: white;
+  background-color: ${({theme}) => theme.color.white};
   padding: 10px;
-  border: 1px solid rgb(203, 203, 203);
+  border: 1px solid ${({theme}) => theme.color.silver};
   border-radius: 20px 0 0 20px;
   height: auto;
   max-height: 100%;
@@ -109,17 +109,17 @@ export const StyledList = styled.div`
   }
   &::-webkit-scrollbar-track {
     border-radius: 10px;
-    background: rgba(0, 0, 0, 0.1);
+    background: ${({theme}) => theme.color.blackOpacity01};
   }
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background: rgba(0, 0, 0, 0.2);
+    background: ${({theme}) => theme.color.blackOpacity02};
   }
   &::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 0, 0, 0.4);
+    background: ${({theme}) => theme.color.blackOpacity04};
   }
   &::-webkit-scrollbar-thumb:active {
-    background: rgba(0, 0, 0, 0.5);
+    background: ${({theme}) => theme.color.blackOpacity05};
   }
 `
 
@@ -151,27 +151,26 @@ export const StyledLi = styled.li`
   text-decoration: none;
   text-decoration-line: none;
   padding: 5px;
-  border: 0 solid black;
+  border: 0 solid ${({theme}) => theme.color.black};
   border-radius: 10px;
 
   &:hover {
     cursor: pointer;
-    background-color: rgb(240, 240, 240);
+    background-color: ${({theme}) => theme.color.gallery};
   }
   &:active {
-    color: #808080;
+    color: ${({theme}) => theme.color.gray};
   }
   ${({active}) =>
     active &&
     css`
        {
-        fill: black;
-        background-color: rgba(0, 0, 0, 0.17);
+        fill: ${({theme}) => theme.color.black};
+        background-color: ${({theme}) => theme.color.blackOpacity017};
         &:hover {
-          fill: black;
-          color: black;
-          background-color: rgba(0, 0, 0, 0.27);
-        }
+          fill: ${({theme}) => theme.color.black};
+          color: ${({theme}) => theme.color.black};
+          background-color: ${({theme}) => theme.color.blackOpacity027};
       }
     `};
   @media ((max-width: ${({theme}) => theme.breakpoint.lg})) {

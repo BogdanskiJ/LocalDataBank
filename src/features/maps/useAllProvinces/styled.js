@@ -12,7 +12,7 @@ export const StyledSvg = styled.svg`
     transform-box: fill-box;
   }
   & path:active {
-    fill: #9d0c26;
+    fill: ${({theme}) => theme.color.monarch};
   }
   & a:hover {
     outline: none;
@@ -25,26 +25,26 @@ export const StyledLi = styled.li`
   text-decoration: none;
   text-decoration-line: none;
   padding: 5px;
-  border: 0 solid black;
+  border: 0 solid ${({theme}) => theme.color.black};
   border-radius: 10px;
 
   &:hover {
     cursor: pointer;
-    background-color: rgb(240, 240, 240);
+    background-color: ${({theme}) => theme.color.gallery};
   }
   &:active {
-    color: #808080;
+    color: ${({theme}) => theme.color.gray};
   }
   ${({active}) =>
     active &&
     css`
        {
-        fill: black;
-        background-color: rgba(0, 0, 0, 0.17);
+        fill: ${({theme}) => theme.color.black};
+        background-color: ${({theme}) => theme.color.blackOpacity017};
         &:hover {
-          fill: black;
-          color: black;
-          background-color: rgba(0, 0, 0, 0.27);
+          fill: ${({theme}) => theme.color.black};
+          color: ${({theme}) => theme.color.black};
+          background-color: ${({theme}) => theme.color.blackOpacity027};
         }
       }
     `};

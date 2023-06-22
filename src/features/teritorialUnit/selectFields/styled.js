@@ -5,8 +5,8 @@ export const StyledTeritorialUnit = styled.div`
   padding: 20px;
   flex-direction: column;
   width: 50%;
-  background-color: #f0f0f0;
-  border: 1px solid #cbcbcb;
+  background-color: ${({theme}) => theme.color.gallery};
+  border: 1px solid ${({theme}) => theme.color.silver};
   border-radius: 20px;
 
   @media ((max-width: ${({theme}) => theme.breakpoint.md})) {
@@ -67,5 +67,5 @@ export const StyledBox = styled.div`
 `
 export const StyledLabelText = styled.span`
   font-size: 10px;
-  color: gray;
+  color: ${({theme}) => theme.color.gray};
 `

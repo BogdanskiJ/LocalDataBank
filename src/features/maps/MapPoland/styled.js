@@ -9,8 +9,8 @@ export const Container = styled.div`
   padding: 20px;
   flex-direction: column;
   width: 50%;
-  background-color: rgb(240, 240, 240);
-  border: 1px solid rgb(203, 203, 203);
+  background-color: ${({theme}) => theme.color.gallery};
+  border: 1px solid ${({theme}) => theme.color.silver};
   border-radius: 20px;
   @media ((max-width: ${({theme}) => theme.breakpoint.md})) {
     width: auto;
@@ -72,7 +72,7 @@ export const StyledSvg = styled.svg`
     transform-box: fill-box;
   }
   & path:active {
-    fill: #9d0c26;
+    fill: ${({theme}) => theme.color.monarch};
   }
   & a:hover {
     outline: none;
@@ -93,7 +93,7 @@ export const StyledSelect = styled.div`
   gap: 5px;
   justify-content: center;
   align-items: center;
-  color: black;
+  color: ${({theme}) => theme.color.black};
   margin: 0 auto;
   margin-top: 10px;
   text-decoration: none;

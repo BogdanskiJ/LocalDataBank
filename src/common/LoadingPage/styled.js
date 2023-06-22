@@ -14,7 +14,7 @@ export const StyledHeader = styled.header`
   line-height: 120%;
   width: 100%;
   text-transform: uppercase;
-  color: black;
+  color: ${({theme}) => theme.color.black};
   margin-top: 10px;
   text-align: center;
 

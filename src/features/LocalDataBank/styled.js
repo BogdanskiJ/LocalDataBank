@@ -41,9 +41,9 @@ export const StyledHead = styled.h1`
 `
 
 export const StyledSection = styled.section`
-  background-color: white;
+  background-color: ${({theme}) => theme.color.white};
   margin: 0 20px;
-  border: 1px solid rgb(203, 203, 203);
+  border: 1px solid ${({theme}) => theme.color.silver};
   border-radius: 10px;
   padding: 20px 40px;
 
@@ -121,30 +121,30 @@ export const StyledTbody = styled.tbody`
   border-collapse: collapse;
 
   tr:nth-child(odd) {
-    background-color: #f2f2f2;
+    background-color: ${({theme}) => theme.color.concrete};
   }
 `
 
 export const StyledTh = styled.th`
   padding: 10px;
-  border: 1px solid #dee2e6;
+  border: 1px solid ${({theme}) => theme.color.alto};
 `
 
 export const StyledTd = styled.td`
   padding: 10px;
-  border: 1px solid #dee2e6;
+  border: 1px solid ${({theme}) => theme.color.alto};
 `
 
 export const StyledAnchor = styled.a`
-  color: blue;
+  color: ${({theme}) => theme.color.blue};
 
   &:hover {
-    color: blue;
+    color: ${({theme}) => theme.color.blue};
   }
   &:visited {
-    color: #6827ff;
+    color: ${({theme}) => theme.color.electricViolet};
   }
   &:active {
-    color: red;
+    color: ${({theme}) => theme.color.red};
   }
 `

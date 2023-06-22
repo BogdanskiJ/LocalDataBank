@@ -8,7 +8,7 @@ export const StyledNavUl = styled.ul`
   flex-wrap: wrap;
   min-height: 94px;
   width: 100%;
-  background: black;
+  background: ${({theme}) => theme.color.black};
   margin: 0;
   list-style-type: none;
   padding: 0px;
@@ -23,7 +23,7 @@ export const StyledNavBox = styled.div`
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
-  color: white;
+  color: ${({theme}) => theme.color.white};
 
   @media (max-width: 768px) {
     display: flex;
@@ -39,7 +39,7 @@ export const StyledNavLink = styled(NavLink)`
   text-align: center;
   text-transform: uppercase;
   text-decoration: none;
-  color: white;
+  color: ${({theme}) => theme.color.white};
   font-size: 20px;
   padding: 15px 20px;
   display: flex;
@@ -47,7 +47,7 @@ export const StyledNavLink = styled(NavLink)`
   align-items: center;
 
   &.active {
-    border: 1px solid white;
+    border: 1px solid ${({theme}) => theme.color.white};
     border-radius: 10px;
   }
 `

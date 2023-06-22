@@ -3,10 +3,10 @@ import styled, {css} from 'styled-components'
 export const StyledTablePage = styled.div`
   display: block;
   margin: auto;
-  background-color: white;
+  background-color: ${({theme}) => theme.color.white};
   padding: 4%;
   max-width: 100%;
-  border: 1px solid rgb(203, 203, 203);
+  border: 1px solid ${({theme}) => theme.color.silver};
   border-radius: 20px;
   overflow: auto;
 `
@@ -25,10 +25,10 @@ export const StyledArrow = styled.div`
 export const StyledThYear = styled.th`
   padding: 10px;
   fill: none;
-  border: 1px solid rgb(224, 224, 224);
+  border: 1px solid ${({theme}) => theme.color.alto};
   &:hover {
-    fill: gray;
-    color: gray;
+    fill: ${({theme}) => theme.color.gray};
+    color: ${({theme}) => theme.color.gray};
   }
   text-align: left;
   display: table-cell;
@@ -38,11 +38,11 @@ export const StyledThYear = styled.th`
     active &&
     css`
        {
-        fill: black;
-        background-color: rgba(0, 0, 0, 0.07);
+        fill: ${({theme}) => theme.color.black};
+        background-color: ${({theme}) => theme.color.blackOpacity007};
         &:hover {
-          fill: black;
-          color: black;
+          fill: ${({theme}) => theme.color.black};
+          color: ${({theme}) => theme.color.black};
         }
       }
     `};
@@ -61,33 +61,33 @@ export const StyledThArrow = styled.div`
 
 export const StyledTh = styled.th`
   fill: none;
-  border: 1px solid rgb(224, 224, 224);
+  border: 1px solid ${({theme}) => theme.color.alto};
   padding: 10px;
   text-align: right;
   display: table-cell;
   outline: 0;
 
   &:hover {
-    fill: gray;
-    color: gray;
-    background-color: rgba(0, 0, 0, 0.05);
+    fill: ${({theme}) => theme.color.gray};
+    color: ${({theme}) => theme.color.gray};
+    background-color: ${({theme}) => theme.color.blackOpacity005};
   }
   ${({active}) =>
     active &&
     css`
        {
-        fill: black;
-        background-color: rgba(0, 0, 0, 0.07);
+        fill: ${({theme}) => theme.color.black};
+        background-color: ${({theme}) => theme.color.blackOpacity007};
         &:hover {
-          fill: black;
-          color: black;
+          fill: ${({theme}) => theme.color.black};
+          color: ${({theme}) => theme.color.black};
         }
       }
     `};
 `
 
 export const StyledTr = styled.tr`
-  border: 1px solid rgba(224, 224, 224, 1);
+  border: 1px solid ${({theme}) => theme.color.alto};
   text-align: left;
   display: table-row;
   outline: 0;
@@ -97,7 +97,7 @@ export const StyledTr = styled.tr`
   &:hover {
     margin: 10px;
     padding: 0px;
-    background-color: rgba(0, 0, 0, 0.07);
+    background-color: ${({theme}) => theme.color.blackOpacity007};
   }
 `
 
@@ -106,27 +106,27 @@ export const StyledTdYear = styled.td`
   text-align: left;
   display: table-cell;
   outline: 0;
-  background-color: rgba(0, 0, 0, 0.04);
+  background-color: ${({theme}) => theme.color.blackOpacity004};
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.07);
+    background-color: ${({theme}) => theme.color.blackOpacity007};
   }
   ${({active}) =>
     active &&
     css`
        {
-        fill: black;
-        background-color: rgba(0, 0, 0, 0.07);
+        fill: ${({theme}) => theme.color.black};
+        background-color: ${({theme}) => theme.color.blackOpacity007};
         &:hover {
-          fill: black;
-          color: black;
+          fill: ${({theme}) => theme.color.black};
+          color: ${({theme}) => theme.color.black};
         }
       }
     `};
 `
 
 export const StyledTd = styled.td`
-  border-right: 1px solid rgb(224, 224, 224);
+  border-right: 1px solid ${({theme}) => theme.color.alto};
   text-align: right;
   display: table-cell;
   outline: 0;
@@ -135,17 +135,17 @@ export const StyledTd = styled.td`
   vertical-align: top;
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.07);
+    background-color: ${({theme}) => theme.color.blackOpacity007};
   }
   ${({active}) =>
     active &&
     css`
        {
-        fill: black;
-        background-color: rgba(0, 0, 0, 0.07);
+        fill: ${({theme}) => theme.color.black};
+        background-color: ${({theme}) => theme.color.blackOpacity007};
         &:hover {
-          fill: black;
-          color: black;
+          fill: ${({theme}) => theme.color.black};
+          color: ${({theme}) => theme.color.black};
         }
       }
     `};
@@ -173,7 +173,7 @@ export const StyledTable = styled.table`
 
 export const StyledThead = styled.thead`
   display: table-header-group;
-  background-color: rgba(0, 0, 0, 0.04);
+  background-color: ${({theme}) => theme.color.blackOpacity004};
 `
 
 export const StyledTbody = styled.tbody`
