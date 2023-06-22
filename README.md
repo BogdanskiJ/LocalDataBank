@@ -45,4 +45,4 @@ The results can be displayed in the form of a graph or a table.
 
 Project is based on the API BDL provided by the Central Statistical Office. The data can be used based on the Creative Commens by 4.0 international license - Arrtibution.
 
-[Local Data Bank](https://api.stat.gov.pl/)
+[Local Data Bank - API BDL - CSO](https://api.stat.gov.pl/)
