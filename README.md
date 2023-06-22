@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# Local Data Bank <img alt="Local Data Bank" src="/src/common/images/LocalDataBank.svg" width="50%" />
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Local Data Bank is the largest database on economy, society and snvironment in Poland. It offers over 40,000 statistical features grouped thematically. The first data comes from 1995.
 
-## Available Scripts
+## Table of content
 
-In the project directory, you can run:
+- [Local Data Bank Demo](#Local-Data-Bank)
+- [General Info](#General-Info)
+- [How it works](#How-it-works)
+- [Technologies](#Technologies)
+- [Local Data Bank License](#Local-Data-Bank-License)
 
-### `npm start`
+## Local Data Bank Demo
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+[Local Data Bank](https://kubabogd.github.io/strateg/)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## General Info
 
-### `npm test`
+Data is made available through the API in two alternative ways:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- For one variable and many territorial units
+- For one territorial unit and many variables
 
-### `npm run build`
+The webstie allows you to use both methods in individual tabs. The first tab of the page allows you to select many thematic areas and one territorial unit. The second tab of the page allows you to select one thematic areas and one teritorual unit. The results in the second tab will be displayed for all territorial units subordinated to the selected unit.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The teritorial unit you can choose are Poland, province and county.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The results can be displayed in the form of a graph or a table.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## How it works
 
-### `npm run eject`
+![Movies Browser](/src/common/images/LocalDataBank.gif)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Technologies
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- HTML
+- CSS
+- JS
+- ES6
+- BEM
+- React
+- Redux
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Local Data Bank License
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Project is based on the API BDL provided by the Central Statistical Office. The data can be used based on the Creative Commens by 4.0 international license - Arrtibution.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[Local Data Bank](https://api.stat.gov.pl/)
