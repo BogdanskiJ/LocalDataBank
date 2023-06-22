@@ -39,7 +39,7 @@ export default function ErrorPage() {
         Jeżeli Twoje połączenie sieciowe jest poprawne niestety błąd leży po
         stronie serwera API.
       </Info>
-      <StyledNavLink to="/jednostki-terytorialne">
+      <StyledNavLink to="https://kubabogd.github.io/strateg/#/jednostki-terytorialne">
         <Button variant="contained" size="medium" sx={buttonSx()}>
           Załaduj stronę ponownie
         </Button>
