@@ -57,6 +57,7 @@ export default function useAllProvinces() {
   const displayMap = province => {
     return province.map(region => (
       <StyledSvg
+        key={region.id}
         data-tooltip-id="my-tooltip"
         place="bottom"
         data-tooltip-content={`${region.name}`}
