@@ -1,5 +1,6 @@
 import {useDispatch, useSelector} from 'react-redux'
 import {Switch} from '@mui/material'
+import {createTheme, ThemeProvider} from '@mui/material/styles'
 import {
   StyledResultSwitcheLabelBox,
   StyledResultSwitcherBox,
@@ -18,6 +19,21 @@ export default function DisplayResultsSwitcher() {
     selectTeritorialUnitDisplayResultsSwitcher,
   )
 
+  const theme = createTheme({
+    components: {
+      MuiSwitch: {
+        styleOverrides: {
+          switchBase: {
+            color: '#006100',
+          },
+          track: {
+            backgroundColor: '#006100',
+          },
+        },
+      },
+    },
+  })
+
   return (
     <StyledResultSwitcheLabelBox>
       <StyledResultSwitcherText>
@@ -27,11 +43,13 @@ export default function DisplayResultsSwitcher() {
         <StyledResultSwitcherTextGraph active={teritorialUnitToogleButton}>
           Wykres
         </StyledResultSwitcherTextGraph>
-        <Switch
-          checked={!teritorialUnitToogleButton}
-          size={'small'}
-          onChange={() => dispatch(setTeritorialUnitDisplayResultsSwitcher())}
-        />
+        <ThemeProvider theme={theme}>
+          <Switch
+            checked={!teritorialUnitToogleButton}
+            size={'small'}
+            onChange={() => dispatch(setTeritorialUnitDisplayResultsSwitcher())}
+          />
+        </ThemeProvider>
         <StyledResultSwitcherTextTable active={!teritorialUnitToogleButton}>
           Tabela
         </StyledResultSwitcherTextTable>
