@@ -24,6 +24,7 @@ export const StyledMapPoland = styled.div`
   min-width: 65%;
   width: 85%;
   max-width: 600px;
+  max-height: 550px;
   align-content: center;
   flex-direction: column;
   place-content: center;
@@ -55,8 +56,8 @@ export const Box = styled.div`
   gap: 10px;
   justify-content: space-between;
   align-items: center;
-  flex-direction: row;
-  max-height: 550px;
+  flex-direction: column;
+  //max-height: 550px;
 
   @media ((max-width: ${({theme}) => theme.breakpoint.lg})) {
     flex-direction: column;
@@ -195,4 +196,23 @@ export const StyledHeaderText = styled.span`
   text-align: center;
   text-transform: uppercase;
   margin: auto;
+`
+
+export const StyledSelect = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  color: ${({theme}) => theme.color.black};
+  margin: 0 auto;
+  margin-top: 10px;
+  text-decoration: none;
+  text-decoration-line: none;
+  width: fit-content;
+`
+
+export const StyledRegionNameLabel = styled.div`
+  text-transform: uppercase;
+  text-align: center;
 `
