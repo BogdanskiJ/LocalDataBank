@@ -23,6 +23,20 @@ export default function LineGraph({measure, valuesArray}) {
 
   const [widthSize] = windowSize()
 
+  const labelTextLength = results => {
+    let length = 58
+    if (widthSize <= 1200) {
+      length = 58
+    }
+    if (widthSize <= 768) {
+      length = 45
+    }
+    if (widthSize <= 576) {
+      length = 20
+    }
+    return length
+  }
+
   useEffect(() => {
     setFinalDataResults(teritorialUnitFinalData.results)
   }, [teritorialUnitFinalData])
@@ -47,12 +61,12 @@ export default function LineGraph({measure, valuesArray}) {
         teritorialUnitVariablesName.find(
           variable => variable.value === results.id,
         ).label
-      } - wartość ${measure}`.length > 58
+      } - wartość ${measure}`.length > labelTextLength()
         ? `${
             teritorialUnitVariablesName.find(
               variable => variable.value === results.id,
             ).label
-          } - wartość ${measure}`.slice(0, 57) + '...'
+          } - wartość ${measure}`.slice(0, labelTextLength() - 1) + '...'
         : `${
             teritorialUnitVariablesName.find(
               variable => variable.value === results.id,
