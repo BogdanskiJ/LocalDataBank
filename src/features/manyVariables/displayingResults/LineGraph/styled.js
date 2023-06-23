@@ -26,3 +26,14 @@ export const StyledLine = styled.div`
     aspect-ratio: 1/1.5;
   }
 `
+
+export const StyledCheckbox = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 5px;
+  align-items: center;
+
+  @media ((max-width: ${({theme}) => theme.breakpoint.lg})) {
+    font-size: 12px;
+  }
+`

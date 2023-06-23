@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import {useSelector} from 'react-redux'
 import {Line} from 'react-chartjs-2'
+import Checkbox from '@mui/material/Checkbox'
 import {CategoryScale, Chart, registerables} from 'chart.js'
 import windowSize from '../../../../common/WindowSize'
-import {StyledLine} from './styled'
+import {StyledCheckbox, StyledLine} from './styled'
 import {
   selectTeritorialUnitFinalData,
   selectTeritorialUnitVariablesName,
@@ -22,6 +23,8 @@ export default function LineGraph({measure, valuesArray}) {
   )
 
   const [widthSize] = windowSize()
+
+  const [checked, setChecked] = useState(false)
 
   const labelTextLength = results => {
     let length = 58
@@ -74,6 +77,7 @@ export default function LineGraph({measure, valuesArray}) {
           } - wartość ${measure}`,
     data: dataForLabel(finalDataResults)[finalDataResults.indexOf(results)],
     fill: false,
+    hidden: checked,
     borderWidth: 4,
     borderColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
     responsive: true,
@@ -149,8 +153,20 @@ export default function LineGraph({measure, valuesArray}) {
     tooltip: optionsPluginsTooltipFontSize(),
   }
 
+  const handleChange = event => {
+    setChecked(event.target.checked)
+  }
+
   return (
     <>
+      <StyledCheckbox>
+        {checked ? 'Włącz wszystkie' : 'Wyłącz wszystkie'}
+        <Checkbox
+          checked={checked}
+          onChange={handleChange}
+          inputProps={{'aria-label': 'controlled'}}
+        />
+      </StyledCheckbox>
       <StyledLine>
         <Line
           data={{

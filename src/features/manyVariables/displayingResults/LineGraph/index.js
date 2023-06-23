@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import {useSelector} from 'react-redux'
 import {Line} from 'react-chartjs-2'
+import Checkbox from '@mui/material/Checkbox'
 import {CategoryScale, Chart, registerables} from 'chart.js'
-import {StyledLine} from './styled'
+import {StyledButton, StyledCheckbox, StyledLine} from './styled'
 import {selectManyVariablesFinalData} from '../../manyVariablesSlice'
 import windowSize from '../../../../common/WindowSize'
 
@@ -16,6 +17,8 @@ export default function LineGraph({valuesArray}) {
     manyVariablesFinalData.results,
   )
   const [widthSize] = windowSize()
+
+  const [checked, setChecked] = useState(false)
 
   useEffect(() => {
     setFinalDataResults(manyVariablesFinalData.results)
@@ -43,6 +46,7 @@ export default function LineGraph({valuesArray}) {
         : `${results.name}`,
     data: dataForLabel(finalDataResults)[finalDataResults.indexOf(results)],
     fill: false,
+    hidden: checked,
     borderWidth: 4,
     borderColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
     responsive: true,
@@ -93,23 +97,38 @@ export default function LineGraph({valuesArray}) {
     legend: optionsPluginsLegend(),
   }
 
+  const handleChange = event => {
+    setChecked(event.target.checked)
+  }
+
   return (
-    <StyledLine>
-      <Line
-        data={{
-          labels: xAxis,
-          datasets: datasetsValue,
-        }}
-        options={{
-          responsive: true,
-          maintainAspectRatio: false,
-          layout: {
-            padding: 15,
-          },
-          plugins: optionsPlugins,
-        }}
-        plugins={[plugin]}
-      />
-    </StyledLine>
+    <>
+      <StyledCheckbox>
+        {checked ? 'Włącz wszystkie' : 'Wyłącz wszystkie'}
+        <Checkbox
+          checked={checked}
+          onChange={handleChange}
+          inputProps={{'aria-label': 'controlled'}}
+        />
+      </StyledCheckbox>
+      <StyledLine>
+        <Line
+          data={{
+            labels: xAxis,
+            datasets: datasetsValue,
+            hidden: checked,
+          }}
+          options={{
+            responsive: true,
+            maintainAspectRatio: false,
+            layout: {
+              padding: 15,
+            },
+            plugins: optionsPlugins,
+          }}
+          plugins={[plugin]}
+        />
+      </StyledLine>
+    </>
   )
 }
