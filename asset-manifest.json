@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/LocalDataBank/static/css/main.96051b1d.css",
-    "main.js": "/LocalDataBank/static/js/main.7fcf8e8f.js",
+    "main.js": "/LocalDataBank/static/js/main.336d71cd.js",
     "static/js/787.28cb0dcd.chunk.js": "/LocalDataBank/static/js/787.28cb0dcd.chunk.js",
     "static/media/noCheck.svg": "/LocalDataBank/static/media/noCheck.6921428c8f4c28a502713b968cf18f39.svg",
     "static/media/check.svg": "/LocalDataBank/static/media/check.697e3e554774b50b70f259bb6230ebd7.svg",
@@ -12,11 +12,11 @@
     "static/media/arrowUp.svg": "/LocalDataBank/static/media/arrowUp.71c8a67d0e37a98bcd6fee0e43e604f2.svg",
     "static/media/arrowDown.svg": "/LocalDataBank/static/media/arrowDown.10e05b3ba011e5ffdf33541382f8ff19.svg",
     "main.96051b1d.css.map": "/LocalDataBank/static/css/main.96051b1d.css.map",
-    "main.7fcf8e8f.js.map": "/LocalDataBank/static/js/main.7fcf8e8f.js.map",
+    "main.336d71cd.js.map": "/LocalDataBank/static/js/main.336d71cd.js.map",
     "787.28cb0dcd.chunk.js.map": "/LocalDataBank/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.96051b1d.css",
-    "static/js/main.7fcf8e8f.js"
+    "static/js/main.336d71cd.js"
   ]
 }
