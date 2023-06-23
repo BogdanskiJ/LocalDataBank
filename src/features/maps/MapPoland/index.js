@@ -7,6 +7,7 @@ import Button from '@mui/material/Button'
 import {Tooltip} from 'react-tooltip'
 import {ReactComponent as Check} from '../../../common/images/check.svg'
 import {ReactComponent as NoCheck} from '../../../common/images/noCheck.svg'
+import {ReactComponent as Tips} from '../../../common/images/tips.svg'
 import windowSize from '../../../common/WindowSize'
 import {SelectRegionName} from '../../../common/Select'
 import usePoland from '../province/MapPoland'
@@ -89,7 +90,27 @@ export default function MapPoland() {
     <Container ref={resultsRef}>
       <StyledBoxPoland>
         <StyledMapPoland>
-          <Header>Wybierz jednostkę terytorialną - WOJEWÓDZTWA </Header>
+          <Header>
+            {pathname === '/jednostki-terytorialne' ? (
+              'Wybierz jednostkę terytorialną'
+            ) : (
+              <>
+                Wybierz jednostkę terytorialną
+                <Tips
+                  data-tooltip-id="my-tooltip2"
+                  data-tooltip-content="Zostaną pobrane dane dla powiatów"
+                />
+              </>
+            )}
+            <Tooltip
+              id="my-tooltip2"
+              style={{
+                backgroundColor: 'black',
+                color: 'white',
+                padding: '5px 10px',
+              }}
+            />
+          </Header>
           <StyledButtonBox>
             <Button
               variant="contained"
@@ -161,7 +182,7 @@ export default function MapPoland() {
         </StyledMapPoland>
         <StyledSelect>
           <StyledRegionNameLabel>
-            Wybierz jednostkę terytorialną - POWIATY
+            Przejdź do mapy województwa
           </StyledRegionNameLabel>
           <SelectRegionName
             poland={poland}
