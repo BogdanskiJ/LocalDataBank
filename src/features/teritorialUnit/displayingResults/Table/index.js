@@ -20,6 +20,7 @@ import {
   selectTeritorialUnitFinalValues,
   selectTeritorialUnitVariablesName,
 } from '../../teritorialUnitSlice'
+import {nanoid} from '@reduxjs/toolkit'
 
 export default function Table({valuesArray}) {
   const teritorialUnitFinalData = useSelector(selectTeritorialUnitFinalData)
@@ -59,8 +60,11 @@ export default function Table({valuesArray}) {
   }
 
   const thead = data1 => (
-    <StyledTrThead>
-      <StyledThYear active={sortBy === 'year'} onClick={() => sorting('year')}>
+    <StyledTrThead key={nanoid()}>
+      <StyledThYear
+        active={sortBy === 'year'}
+        onClick={() => sorting('year')}
+        key={nanoid()}>
         <StyledThArrow style={{justifyContent: 'left'}}>
           {'Rok'}
           <StyledArrow>
@@ -71,7 +75,8 @@ export default function Table({valuesArray}) {
       {data1.map(results => (
         <StyledTh
           active={sortBy === `${results.id}`}
-          onClick={() => sorting(`${results.id}`)}>
+          onClick={() => sorting(`${results.id}`)}
+          key={nanoid()}>
           <StyledThArrow>
             <StyledArrow>
               <Arrow order={order} sort={`${results.id}`} />
@@ -89,15 +94,19 @@ export default function Table({valuesArray}) {
 
   const tbody = () => {
     return sortedArray.map(results => (
-      <StyledTr>
-        <StyledTdYear active={sortBy === 'year'}>{results.year}</StyledTdYear>
+      <StyledTr key={nanoid()}>
+        <StyledTdYear active={sortBy === 'year'} key={nanoid()}>
+          {results.year}
+        </StyledTdYear>
         {finalDataResults.map(element =>
           results[element.id] ? (
-            <StyledTd active={sortBy === `${element.id}`}>
+            <StyledTd active={sortBy === `${element.id}`} key={nanoid()}>
               {results[element.id]}
             </StyledTd>
           ) : (
-            <StyledTd active={sortBy === `${element.id}`}>0</StyledTd>
+            <StyledTd active={sortBy === `${element.id}`} key={nanoid()}>
+              0
+            </StyledTd>
           ),
         )}
       </StyledTr>
