@@ -9,6 +9,25 @@ export const StyledTablePage = styled.div`
   border: 1px solid ${({theme}) => theme.color.silver};
   border-radius: 20px;
   overflow: auto;
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+    margin: 10px;
+    background: rgba(0, 0, 0, 0.1);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  ::-webkit-scrollbar-thumb:active {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
 `
 
 export const StyledTrThead = styled.tr`
