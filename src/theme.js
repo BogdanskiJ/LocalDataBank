@@ -14,6 +14,7 @@ export const theme = {
     silver: '#cbcbcb',
     alto: '#E0E0E0',
     monarch: '#9D0C26',
+    camarone: '#006100',
     blackOpacity004: 'rgba(0, 0, 0, 0.04)',
     blackOpacity005: 'rgba(0, 0, 0, 0.05)',
     blackOpacity007: 'rgba(0, 0, 0, 0.07)',
