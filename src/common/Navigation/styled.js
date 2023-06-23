@@ -7,7 +7,6 @@ export const StyledNavUl = styled.ul`
   justify-content: center;
   flex-wrap: wrap;
   min-height: 94px;
-  width: 100%;
   background: ${({theme}) => theme.color.black};
   margin: 0;
   list-style-type: none;
