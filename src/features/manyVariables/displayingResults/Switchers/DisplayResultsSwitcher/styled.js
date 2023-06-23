@@ -35,7 +35,7 @@ export const StyledResultSwitcherTextGraph = styled.span`
     active &&
     css`
        {
-        color: ${({theme}) => theme.color.green};
+        color: ${({theme}) => theme.color.camarone};
         font-weight: bold;
         font-size: 18px;
       }
