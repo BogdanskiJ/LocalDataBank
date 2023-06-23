@@ -113,6 +113,8 @@ export const StyledHeaderText = styled.span`
   text-align: center;
   text-transform: uppercase;
   margin: auto;
+  align-items: center;
+  gap: 5px;
 `
 
 export const StyledSelect = styled.div`
@@ -133,3 +135,5 @@ export const StyledRegionNameLabel = styled.div`
   text-transform: uppercase;
   text-align: center;
 `
+
+export const StyledTips = styled.span``

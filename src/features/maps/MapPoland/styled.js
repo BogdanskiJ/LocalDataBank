@@ -38,7 +38,10 @@ export const StyledMapPoland = styled.div`
 `
 
 export const Header = styled.span`
-  margin: 0 auto 10px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
   text-transform: uppercase;
   margin-bottom: 10px;
   text-align: center;
