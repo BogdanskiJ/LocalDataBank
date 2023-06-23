@@ -57,93 +57,10 @@ export const Box = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  //max-height: 550px;
 
   @media ((max-width: ${({theme}) => theme.breakpoint.lg})) {
     flex-direction: column;
     height: 100%;
-  }
-`
-
-export const StyledList = styled.div`
-  display: flex;
-  max-width: 35%;
-  width: 100%;
-  height: 100%;
-  background-color: ${({theme}) => theme.color.white};
-  padding: 10px;
-  border: 1px solid ${({theme}) => theme.color.silver};
-  border-radius: 20px 0 0 20px;
-  height: auto;
-  max-height: 100%;
-  overflow-y: scroll;
-  scrollbar-width: thin;
-  word-break: break-word;
-
-  @media ((min-width: ${({theme}) => theme.breakpoint.xxl})) {
-    width: 30%;
-  }
-  @media ((max-width: ${({theme}) => theme.breakpoint.xxl})) {
-    font-size: 14px;
-  }
-  @media ((max-width: ${({theme}) => theme.breakpoint.lg})) {
-    font-size: 12px;
-    max-width: 95%;
-    width: 100%;
-    height: auto;
-    min-height: 60px;
-    padding: 2px 10px;
-    border-radius: 20px 20px 0 0;
-    overflow-y: hidden;
-    justify-content: center;
-
-    &::-webkit-scrollbar {
-      height: 8px;
-    }
-    &::-webkit-scrollbar-thumb {
-      width: 100px;
-    }
-  }
-  &::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-  &::-webkit-scrollbar-track {
-    border-radius: 10px;
-    background: ${({theme}) => theme.color.blackOpacity01};
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background: ${({theme}) => theme.color.blackOpacity02};
-  }
-  &::-webkit-scrollbar-thumb:hover {
-    background: ${({theme}) => theme.color.blackOpacity04};
-  }
-  &::-webkit-scrollbar-thumb:active {
-    background: ${({theme}) => theme.color.blackOpacity05};
-  }
-`
-
-export const StyledUl = styled.ul`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  width: fit-content;
-  margin: auto;
-  padding: 0;
-  text-decoration: none;
-  text-decoration-line: none;
-  list-style-type: none;
-
-  @media ((max-width: ${({theme}) => theme.breakpoint.lg})) {
-    flex-direction: row;
-    width: auto;
-    min-width: 100px;
-    height: 100%;
-    justify-content: flex-start;
-    text-align: center;
-    align-items: center;
-    padding: 0;
   }
 `
 

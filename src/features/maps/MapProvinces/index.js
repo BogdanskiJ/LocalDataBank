@@ -8,19 +8,16 @@ import {
   Box,
   Container,
   StyledHeaderText,
-  StyledList,
   StyledMapPoland,
   StyledProvinceButtonBox,
   StyledRegionNameLabel,
   StyledSelect,
   StyledSvg,
-  StyledUl,
 } from './styled'
 import {
   selectProvinceName,
   setProvinceName,
 } from '../../teritorialUnit/teritorialUnitSlice'
-import usePoland from '../province/MapPoland'
 import {useState} from 'react'
 import {setSelectedMap} from '../mapsSlice'
 
@@ -29,7 +26,6 @@ export const MapProvinces = () => {
   const provinceName = useSelector(selectProvinceName)
 
   const allProvinces = useAllProvinces()
-  const poland = usePoland()
 
   const [isHovering, setIsHovering] = useState(false)
 
@@ -87,21 +83,12 @@ export const MapProvinces = () => {
             ),
           )}
         </StyledMapPoland>
-        {/* <StyledList>
-          {allProvinces.map(province =>
-            province.name === provinceName ? (
-              <StyledUl key={province.id}>{province.mapProvincesName}</StyledUl>
-            ) : (
-              ''
-            ),
-          )}
-        </StyledList> */}
         {allProvinces.map(province =>
           province.name === provinceName ? (
             <>
               <StyledSelect>
                 <StyledRegionNameLabel>
-                  Wybierz jednostkę terytorialną - POWIATY
+                  Wybierz jednostkę terytorialną
                 </StyledRegionNameLabel>
                 <SelectProvinceName
                   provinces={province.mapProvincesName}
@@ -115,17 +102,6 @@ export const MapProvinces = () => {
             ''
           ),
         )}
-        {/* <StyledSelect>
-          <StyledRegionNameLabel>
-            Wybierz jednostkę terytorialną - POWIATY
-          </StyledRegionNameLabel>
-          <SelectRegionName
-            poland={allProvinces.mapProvincesName}
-            handleMouseOut={handleMouseOut}
-            handleMouseOver={handleMouseOver}
-            isHovering={isHovering}
-            setProvinceName={setProvinceName}></SelectRegionName>
-        </StyledSelect> */}
       </Box>
     </Container>
   )
