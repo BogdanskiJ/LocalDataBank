@@ -53,4 +53,6 @@ export const Info = styled.p`
   }
 `
 
-export const StyledLink = styled(Link)``
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+`
