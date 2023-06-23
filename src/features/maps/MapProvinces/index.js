@@ -2,6 +2,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Tooltip} from 'react-tooltip'
 import 'react-tooltip/dist/react-tooltip.css'
 import Button from '@mui/material/Button'
+import {SelectProvinceName, SelectRegionName} from '../../../common/Select'
 import useAllProvinces from '../useAllProvinces'
 import {
   Box,
@@ -10,6 +11,8 @@ import {
   StyledList,
   StyledMapPoland,
   StyledProvinceButtonBox,
+  StyledRegionNameLabel,
+  StyledSelect,
   StyledSvg,
   StyledUl,
 } from './styled'
@@ -17,11 +20,30 @@ import {
   selectProvinceName,
   setProvinceName,
 } from '../../teritorialUnit/teritorialUnitSlice'
+import usePoland from '../province/MapPoland'
+import {useState} from 'react'
+import {setSelectedMap} from '../mapsSlice'
 
 export const MapProvinces = () => {
   const dispatch = useDispatch()
   const provinceName = useSelector(selectProvinceName)
+
   const allProvinces = useAllProvinces()
+  const poland = usePoland()
+
+  const [isHovering, setIsHovering] = useState(false)
+
+  const handleMouseOver = province => {
+    setIsHovering(province.name)
+  }
+
+  const handleMouseDown = province => {
+    dispatch(setSelectedMap([province.name, province.id, province.level]))
+  }
+
+  const handleMouseOut = () => {
+    setIsHovering()
+  }
 
   return (
     <Container>
@@ -65,7 +87,7 @@ export const MapProvinces = () => {
             ),
           )}
         </StyledMapPoland>
-        <StyledList>
+        {/* <StyledList>
           {allProvinces.map(province =>
             province.name === provinceName ? (
               <StyledUl key={province.id}>{province.mapProvincesName}</StyledUl>
@@ -73,7 +95,37 @@ export const MapProvinces = () => {
               ''
             ),
           )}
-        </StyledList>
+        </StyledList> */}
+        {allProvinces.map(province =>
+          province.name === provinceName ? (
+            <>
+              <StyledSelect>
+                <StyledRegionNameLabel>
+                  Wybierz jednostkę terytorialną - POWIATY
+                </StyledRegionNameLabel>
+                <SelectProvinceName
+                  provinces={province.mapProvincesName}
+                  handleMouseOut={handleMouseOut}
+                  handleMouseOver={handleMouseOver}
+                  isHovering={isHovering}
+                  setSelectedMap={setSelectedMap}></SelectProvinceName>
+              </StyledSelect>
+            </>
+          ) : (
+            ''
+          ),
+        )}
+        {/* <StyledSelect>
+          <StyledRegionNameLabel>
+            Wybierz jednostkę terytorialną - POWIATY
+          </StyledRegionNameLabel>
+          <SelectRegionName
+            poland={allProvinces.mapProvincesName}
+            handleMouseOut={handleMouseOut}
+            handleMouseOver={handleMouseOver}
+            isHovering={isHovering}
+            setProvinceName={setProvinceName}></SelectRegionName>
+        </StyledSelect> */}
       </Box>
     </Container>
   )

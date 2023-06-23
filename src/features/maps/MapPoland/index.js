@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import {useLocation} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
+import {useRef} from 'react'
 import 'react-tooltip/dist/react-tooltip.css'
 import Button from '@mui/material/Button'
 import {Tooltip} from 'react-tooltip'
@@ -25,15 +26,23 @@ import {
   selectRegionAndProvincesMapsSelectedMap,
   setSelectedMap,
 } from '../mapsSlice'
-import {setProvinceName} from '../../teritorialUnit/teritorialUnitSlice'
+import {selectManyVariablesVariablesName} from '../../manyVariables/manyVariablesSlice'
+import {
+  selectTeritorialUnitVariablesName,
+  setProvinceName,
+} from '../../teritorialUnit/teritorialUnitSlice'
+import {useEffect} from 'react'
 
 export default function MapPoland() {
   const dispatch = useDispatch()
   const {pathname} = useLocation()
+  const resultsRef = useRef(null)
   const [isHovering, setIsHovering] = useState(false)
   const [widthSize] = windowSize()
   const poland = usePoland()
   const selectedMap = useSelector(selectRegionAndProvincesMapsSelectedMap)
+  const variableName = useSelector(selectManyVariablesVariablesName)
+  const variablesName = useSelector(selectTeritorialUnitVariablesName)
 
   const handleMouseOver = province => {
     setIsHovering(province.name)
@@ -59,8 +68,25 @@ export default function MapPoland() {
     return style
   }
 
+  const scrollToResults = () => {
+    resultsRef.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'center',
+    })
+  }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      selectedMap === '' && (variableName !== '' || variablesName !== '')
+        ? scrollToResults()
+        : ''
+    }, 200)
+    return () => clearTimeout(timer)
+  }, [variableName, variablesName])
+
   return (
-    <Container>
+    <Container ref={resultsRef}>
       <StyledBoxPoland>
         <StyledMapPoland>
           <Header>Wybierz jednostkę terytorialną - WOJEWÓDZTWA </Header>

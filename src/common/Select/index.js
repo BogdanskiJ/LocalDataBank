@@ -26,8 +26,13 @@ export const SelectOneVariable = ({dataType, setValue}) => {
       ...styles,
       cursor: 'pointer',
     }),
+    menu: styles => ({
+      ...styles,
+      menuShouldBlockScroll: true,
+    }),
     menuList: styles => ({
       ...styles,
+      menuShouldScrollIntoView: true,
       overflowY: 'scroll',
       maxHeight: '250px',
       '&::-webkit-scrollbar': {
@@ -73,6 +78,7 @@ export const SelectOneVariable = ({dataType, setValue}) => {
         }}
         isClearable={false}
         openMenuOnFocus={true}
+        menuShouldScrollIntoView={true}
         isSearchable={isSearchable()}
         autoFocus={true}
         styles={style}
@@ -229,6 +235,7 @@ export const SelectManyVariables = ({dataType, setValue}) => {
         defaultValue={null}
         openMenuOnFocus={true}
         closeMenuOnSelect={false}
+        menuShouldScrollIntoView={true}
         placeholder="Wybierz"
         isMulti
         isClearable={true}
@@ -329,5 +336,89 @@ export const SelectRegionName = ({poland, setProvinceName}) => {
         label: province.name,
       }))}
       onChange={target => dispatch(setProvinceName(target.label))}></Select>
+  )
+}
+
+export const SelectProvinceName = ({provinces, setSelectedMap}) => {
+  const dispatch = useDispatch()
+
+  const isSearchable = () => {
+    let searchable = true
+    let windowOrientation = window.orientation
+    windowOrientation !== undefined ? (searchable = false) : (searchable = true)
+    return searchable
+  }
+
+  const options = ({provinces}) => {
+    return provinces.map(province => ({
+      value: province.id,
+      label: province.name,
+    }))
+  }
+
+  const style = {
+    control: styles => ({
+      ...styles,
+      cursor: 'pointer',
+      minWidth: '100px',
+    }),
+    option: styles => ({
+      ...styles,
+      cursor: 'pointer',
+    }),
+    dropdownIndicator: styles => ({
+      ...styles,
+      color: 'green',
+      justifyContent: 'center',
+      backgroundColor: 'hsl(120 100% 95% / 1)',
+      borderRadius: '5px',
+      border: '1px hsl(120 100% 95% / 1) solid',
+      '&:hover': {
+        ...styles[`:hover`],
+        backgroundColor: 'hsl(120 100% 85% / 1)',
+        color: 'green',
+        border: '1px hsl(120 100% 95% / 1) solid',
+      },
+    }),
+    menuList: styles => ({
+      ...styles,
+      overflowY: 'scroll',
+      maxHeight: '250px',
+      '&::-webkit-scrollbar': {
+        width: '6px',
+        height: '6px',
+      },
+      '&::-webkit-scrollbar-track': {
+        borderRadius: '10px',
+        background: 'rgba(0, 0, 0, 0.1)',
+      },
+      '&::-webkit-scrollbar-thumb': {
+        borderRadius: '10px',
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+      },
+      '&::-webkit-scrollbar-thumb:hover': {
+        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+      },
+      '&::-webkit-scrollbar-thumb:active': {
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      },
+    }),
+  }
+
+  return (
+    <Select
+      className="basic-single"
+      classNamePrefix="select"
+      styles={style}
+      defaultValue={{
+        value: '',
+        label: 'Wybierz powiat',
+      }}
+      isClearable={false}
+      isSearchable={isSearchable()}
+      options={options({provinces})}
+      onChange={target =>
+        dispatch(setSelectedMap([target.label, target.value, null]))
+      }></Select>
   )
 }
