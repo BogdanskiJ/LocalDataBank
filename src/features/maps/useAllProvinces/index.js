@@ -21,7 +21,6 @@ import {
   setSelectedMap,
 } from '../mapsSlice'
 import {StyledLi, StyledSvg} from './styled'
-import {func} from 'prop-types'
 
 export default function useAllProvinces() {
   const dispatch = useDispatch()
@@ -87,19 +86,8 @@ export default function useAllProvinces() {
     const sortedProvince = [...province]
       .map(region => region)
       .sort((a, b) => (a.name > b.name ? 1 : -1))
-    return sortedProvince.map(region => (
-      <StyledLi
-        active={selectedMap[0] === region.name}
-        style={{
-          fontWeight: isHovering === region.name ? '700' : '',
-        }}
-        onMouseOver={() => handleMouseOver(region.name)}
-        onMouseOut={() => handleMouseOut()}
-        onMouseDown={() => handleMouseDown(region)}
-        key={region.name}>
-        {region.name}
-      </StyledLi>
-    ))
+
+    return sortedProvince
   }
 
   const allProvinces = [
