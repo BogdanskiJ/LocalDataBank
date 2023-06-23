@@ -325,6 +325,7 @@ export const SelectRegionName = ({poland, setProvinceName}) => {
       className="basic-single"
       classNamePrefix="select"
       styles={style}
+      menuShouldScrollIntoView={true}
       defaultValue={{
         value: '',
         label: 'Wybierz województwo',
@@ -347,13 +348,6 @@ export const SelectProvinceName = ({provinces, setSelectedMap}) => {
     let windowOrientation = window.orientation
     windowOrientation !== undefined ? (searchable = false) : (searchable = true)
     return searchable
-  }
-
-  const options = ({provinces}) => {
-    return provinces.map(province => ({
-      value: province.id,
-      label: province.name,
-    }))
   }
 
   const style = {
@@ -410,13 +404,17 @@ export const SelectProvinceName = ({provinces, setSelectedMap}) => {
       className="basic-single"
       classNamePrefix="select"
       styles={style}
+      menuShouldScrollIntoView={true}
       defaultValue={{
         value: '',
         label: 'Wybierz powiat',
       }}
       isClearable={false}
       isSearchable={isSearchable()}
-      options={options({provinces})}
+      options={provinces.map(province => ({
+        value: province.id,
+        label: province.name,
+      }))}
       onChange={target =>
         dispatch(setSelectedMap([target.label, target.value, null]))
       }></Select>
