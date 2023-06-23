@@ -5,6 +5,13 @@ import {StyledMultiSelect, StyledSelect} from './styled'
 export const SelectOneVariable = ({dataType, setValue}) => {
   const dispatch = useDispatch()
 
+  const isSearchable = () => {
+    let searchable = true
+    let windowOrientation = window.orientation
+    windowOrientation !== undefined ? (searchable = false) : (searchable = true)
+    return searchable
+  }
+
   const style = {
     control: styles => ({
       ...styles,
@@ -66,7 +73,7 @@ export const SelectOneVariable = ({dataType, setValue}) => {
         }}
         isClearable={false}
         openMenuOnFocus={true}
-        isSearchable={true}
+        isSearchable={isSearchable()}
         autoFocus={true}
         styles={style}
         noOptionsMessage={() => 'Brak dostępnych zmiennych'}
@@ -87,6 +94,13 @@ export const SelectOneVariable = ({dataType, setValue}) => {
 
 export const SelectManyVariables = ({dataType, setValue}) => {
   const dispatch = useDispatch()
+
+  const isSearchable = () => {
+    let searchable = true
+    let windowOrientation = window.orientation
+    windowOrientation !== undefined ? (searchable = false) : (searchable = true)
+    return searchable
+  }
 
   const style = {
     control: styles => ({
@@ -218,7 +232,7 @@ export const SelectManyVariables = ({dataType, setValue}) => {
         placeholder="Wybierz"
         isMulti
         isClearable={true}
-        isSearchable={true}
+        isSearchable={isSearchable()}
         noOptionsMessage={() => 'Brak dostępnych zmiennych'}
         isFocused={true}
         autoFocus={true}
@@ -242,6 +256,13 @@ export const SelectManyVariables = ({dataType, setValue}) => {
 
 export const SelectRegionName = ({poland, setProvinceName}) => {
   const dispatch = useDispatch()
+
+  const isSearchable = () => {
+    let searchable = true
+    let windowOrientation = window.orientation
+    windowOrientation !== undefined ? (searchable = false) : (searchable = true)
+    return searchable
+  }
 
   const style = {
     control: styles => ({
@@ -302,7 +323,7 @@ export const SelectRegionName = ({poland, setProvinceName}) => {
         label: 'Wybierz województwo',
       }}
       isClearable={false}
-      isSearchable={true}
+      isSearchable={isSearchable()}
       options={poland.map(province => ({
         value: province.id,
         label: province.name,
