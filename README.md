@@ -12,7 +12,7 @@ Local Data Bank is the largest database on economy, society and snvironment in P
 
 ## Local Data Bank Demo
 
-[Local Data Bank](https://kubabogd.github.io/LocalDataBank/)
+[Local Data Bank](https://bogdanskij.github.io/LocalDataBank/)
 
 ## General Info
 
