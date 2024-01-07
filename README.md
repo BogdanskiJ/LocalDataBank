@@ -33,13 +33,14 @@ The results can be displayed in the form of a graph or a table.
 
 ## Technologies
 
-- HTML
-- CSS
-- JS
-- ES6
-- BEM
 - React
 - Redux
+- JS
+- ChartJS
+- HTML
+- CSS 
+- ES6
+- BEM
 
 ## Local Data Bank License
 
